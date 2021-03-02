@@ -1,5 +1,3 @@
-
-
 {% extends 'baseBack.html.twig' %}
 
 {% block title %}  Modifier Reservation {% endblock %}
@@ -18,30 +16,33 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Modifier Reservation</h1>
                             </div>
-                            <div class="form-group">
                                 <div class="form-group">
                                     {{ form_start(form) }}
                                     {{ form_widget(form.tourist , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Tourist'}} ) }}
                                     {{ form_errors(form.tourist) }}
                                 </div>
-                                {{ form_widget(form.evenement , {'attr': {'class': ' form-select-lg form-control form-control-user' , 'placeholder' : 'Event'}} ) }}
-                                {{ form_errors(form.evenement) }}
-                            </div>
-                            {{ form_widget(form.offre , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Offre'}} ) }}
-                            {{ form_errors(form.offre) }}
-                            <div class="form-group">
-                                {{ form_widget(form.date_reservation , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Date Reservation'}} ) }}
-                                {{ form_errors(form.date_reservation) }}
-                            </div>
-                            <div class="form-group">
-                                <div class=" mb-3 mb-sm-0">
+                                <div class="form-group">
+                                    {{ form_widget(form.evenement , {'attr': {'class': ' form-select-lg form-control form-control-user' , 'placeholder' : 'Event'}} ) }}
+                                    {{ form_errors(form.evenement) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_widget(form.offre , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Offre'}} ) }}
+                                    {{ form_errors(form.offre) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_widget(form.date_reservation , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Date Reservation'}} ) }}
+                                    {{ form_errors(form.date_reservation) }}
+                                </div>
+                                <div class="form-group">
                                     {{ form_widget(form.tarif, {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Tarif'}} ) }}
                                     {{ form_errors(form.tarif) }}
                                 </div>
-                            </div>
                             <div class="form-group">
                                 {{ form_widget(form.modifier , {'attr': {'class': 'form-control form-control-user btn-info' , 'placeholder' : 'Modifier'}} ) }}
                                 {{ form_end(form) }}
+                            </div>
+                            <div align="right">
+                                <a href="{{ path('offres') }}">Retourner vers Offres</a>
                             </div>
                         </div>
                     </div>

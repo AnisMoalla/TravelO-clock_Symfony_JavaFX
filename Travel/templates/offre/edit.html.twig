@@ -1,4 +1,3 @@
-
 {% extends 'baseBack.html.twig' %}
 
 {% block title %}  Modifier Offre {% endblock %}
@@ -23,38 +22,38 @@
                                     {{ form_widget(form.nom , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'First Name'}} ) }}
                                     {{ form_errors(form.nom) }}
                                 </div>
-                                {{ form_widget(form.date_debut , {'attr': {'class': ' form-select-lg form-control form-control-user' , 'placeholder' : 'Date Debut'}} ) }}
-                                {{ form_errors(form.date_debut) }}
-                            </div>
-                            {{ form_widget(form.date_debut , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Date Debut'}} ) }}
-                            {{ form_errors(form.date_debut) }}
-                            <div class="form-group">
-                                {{ form_widget(form.date_fin , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Date Fin'}} ) }}
-                                {{ form_errors(form.date_fin) }}
-                            </div>
-                            <div class="form-group">
-                                <div class=" mb-3 mb-sm-0">
+                                <div class="form-group">
+                                    {{ form_widget(form.date_debut , {'attr': {'class': ' form-select-lg form-control form-control-user' , 'placeholder' : 'Date Debut'}} ) }}
+                                    {{ form_errors(form.date_debut) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_widget(form.date_debut , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Date Debut'}} ) }}
+                                    {{ form_errors(form.date_debut) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_widget(form.date_fin , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Date Fin'}} ) }}
+                                    {{ form_errors(form.date_fin) }}
+                                </div>
+                                <div class="form-group">
                                     {{ form_widget(form.pourcentage, {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Pourcentage'}} ) }}
                                     {{ form_errors(form.pourcentage) }}
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <div class=" mb-3 mb-sm-0">
+                                <div class="form-group">
                                     {{ form_widget(form.evenement, {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Evenement'}} ) }}
                                     {{ form_errors(form.evenement) }}
                                 </div>
-                            </div>
                             <div class="form-group">
                                 {{ form_widget(form.modifier , {'attr': {'class': 'form-control form-control-user btn-info' , 'placeholder' : 'Modifier'}} ) }}
                                 {{ form_end(form) }}
                             </div>
+                                <div align="right">
+                                    <a href="{{ path('offres') }}">Retourner vers Offres</a>
+                                </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
-
 {% endblock %}
 
