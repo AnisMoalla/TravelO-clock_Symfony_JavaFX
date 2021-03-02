@@ -2,17 +2,17 @@
 
 namespace App\Controller;
 
+use App\Entity\Evenement;
 use App\Entity\Reservation;
 use App\Form\ReservationType;
 use App\Repository\ReservationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/")
- */
+
 class ReservationController extends AbstractController
 {
     /**
@@ -39,7 +39,7 @@ class ReservationController extends AbstractController
             $entityManager->persist($reservation);
             $entityManager->flush();
 
-            return $this->redirectToRoute('reservation_index');
+            return $this->redirectToRoute('reservations');
         }
 
         return $this->render('reservation/new.html.twig', [
@@ -63,13 +63,13 @@ class ReservationController extends AbstractController
      */
     public function edit(Request $request, Reservation $reservation): Response
     {
-        $form = $this->createForm(ReservationType::class, $reservation);
+        $form = $this->createForm(ReservationType::class, $reservation)->add('modifier', SubmitType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('reservation_index');
+            return $this->redirectToRoute('reservations');
         }
 
         return $this->render('reservation/edit.html.twig', [
@@ -79,16 +79,15 @@ class ReservationController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/deletereservation", name="reservation_delete", methods={"DELETE"})
+     * @Route("/{id}/deletereservation", name="reservation_delete")
      */
-    public function delete(Request $request, Reservation $reservation): Response
+    public function delete(Request $request, $id): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$reservation->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($reservation);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('reservation_index');
+        $entityManager = $this->getDoctrine()->getManager();
+        $reservationRepository = $this->getDoctrine()->getRepository(Reservation::class);
+        $reservation = $reservationRepository->find($id);
+        $entityManager->remove($reservation);
+        $entityManager->flush();
+        return $this->redirectToRoute('reservations');
     }
 }

@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Evenement;
+use App\Entity\User;
 use App\Form\EvenementType;
 use App\Repository\EvenementRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -61,13 +63,13 @@ class EvenementController extends AbstractController
      */
     public function edit(Request $request, Evenement $evenement): Response
     {
-        $form = $this->createForm(EvenementType::class, $evenement);
+        $form = $this->createForm(EvenementType::class, $evenement)->add('modifier', SubmitType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('evenement_index');
+            return $this->redirectToRoute('evenements');
         }
 
         return $this->render('evenement/edit.html.twig', [
@@ -77,16 +79,16 @@ class EvenementController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/deleteevenement", name="evenement_delete", methods={"DELETE"})
+     * @Route("/{id}/deleteevenement", name="evenement_delete")
      */
-    public function delete(Request $request, Evenement $evenement): Response
+    public function delete(Request $request, $id): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$evenement->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($evenement);
-            $entityManager->flush();
-        }
 
-        return $this->redirectToRoute('evenement_index');
+        $entityManager = $this->getDoctrine()->getManager();
+        $evenementRepository = $this->getDoctrine()->getRepository(Evenement::class);
+        $evenement = $evenementRepository->find($id);
+        $entityManager->remove($evenement);
+        $entityManager->flush();
+        return $this->redirectToRoute('evenements');
     }
 }

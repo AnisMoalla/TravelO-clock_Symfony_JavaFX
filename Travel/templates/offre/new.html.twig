@@ -1,11 +1,12 @@
-<!DOCTYPE html>
 
-<title>New Offre</title>
+{% extends 'baseBack.html.twig' %}
 
-{% block body %}
+{% block title %}New Offre{% endblock %}
+
+{% block content %}
     <h1>Create new Offre</h1>
 
-    {{ include('offre/_form.html.twig') }}
+    <div>{{ include('offre/_form.html.twig') }}</div>
 
-    <a href="{{ path('offre_index') }}">back to list</a>
+    <a href="{{ path('offres') }}">back to list</a>
 {% endblock %}

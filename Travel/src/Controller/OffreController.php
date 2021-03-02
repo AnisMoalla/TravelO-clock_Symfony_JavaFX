@@ -2,17 +2,17 @@
 
 namespace App\Controller;
 
+use App\Entity\Evenement;
 use App\Entity\Offre;
 use App\Form\OffreType;
 use App\Repository\OffreRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/")
- */
+
 class OffreController extends AbstractController
 {
     /**
@@ -39,7 +39,7 @@ class OffreController extends AbstractController
             $entityManager->persist($offre);
             $entityManager->flush();
 
-            return $this->redirectToRoute('offre_index');
+            return $this->redirectToRoute('offres');
         }
 
         return $this->render('offre/new.html.twig', [
@@ -63,13 +63,13 @@ class OffreController extends AbstractController
      */
     public function edit(Request $request, Offre $offre): Response
     {
-        $form = $this->createForm(OffreType::class, $offre);
+        $form = $this->createForm(OffreType::class, $offre)->add('modifier', SubmitType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('offre_index');
+            return $this->redirectToRoute('offres');
         }
 
         return $this->render('offre/edit.html.twig', [
@@ -79,16 +79,15 @@ class OffreController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/deleteoffre", name="offre_delete", methods={"DELETE"})
+     * @Route("/{id}/deleteoffre", name="offre_delete")
      */
-    public function delete(Request $request, Offre $offre): Response
+    public function delete(Request $request, $id): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$offre->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($offre);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('offre_index');
+        $entityManager = $this->getDoctrine()->getManager();
+        $offreRepository = $this->getDoctrine()->getRepository(Offre::class);
+        $offre = $offreRepository->find($id);
+        $entityManager->remove($offre);
+        $entityManager->flush();
+        return $this->redirectToRoute('offres');
     }
 }

@@ -33,7 +33,7 @@ class Offre
     private $date_debut;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="date")
      * @Assert\NotBlank
      */
     private $date_fin;
@@ -90,12 +90,12 @@ class Offre
         return $this;
     }
 
-    public function getDateFin(): ?string
+    public function getDateFin(): ?\DateTimeInterface
     {
         return $this->date_fin;
     }
 
-    public function setDateFin(string $date_fin): self
+    public function setDateFin(\DateTimeInterface $date_fin): self
     {
         $this->date_fin = $date_fin;
 
@@ -154,5 +154,10 @@ class Offre
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->nom;
     }
 }
