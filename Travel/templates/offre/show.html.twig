@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<title>Offre</title>
+
+{% block body %}
+    <h1>Offre</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ offre.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ offre.nom }}</td>
+            </tr>
+            <tr>
+                <th>Date_debut</th>
+                <td>{{ offre.dateDebut ? offre.dateDebut|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date_fin</th>
+                <td>{{ offre.dateFin }}</td>
+            </tr>
+            <tr>
+                <th>Pourcentage</th>
+                <td>{{ offre.pourcentage }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('offre_index') }}">back to list</a>
+
+    <a href="{{ path('offre_edit', {'id': offre.id}) }}">edit</a>
+
+    {{ include('offre/_delete_form.html.twig') }}
+{% endblock %}
