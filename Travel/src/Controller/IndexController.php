@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class IndexController extends AbstractController
 {
     /**
-     * @Route("/", name="index")
+     * @Route("/admin", name="index")
      */
     public function index(): Response
     {
@@ -17,4 +17,18 @@ class IndexController extends AbstractController
             'controller_name' => 'IndexController',
         ]);
     }
+
+ /**
+     * @Route("/", name="home")
+     */
+
+
+    public function home(): Response
+    {
+        return $this->render('baseFront.html.twig', [
+            'controller_name' => 'IndexController',
+        ]);
+    }
+
+
 }
