@@ -8,13 +8,5 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class IndexController extends AbstractController
 {
-    /**
-     * @Route("/", name="index")
-     */
-    public function index(): Response
-    {
-        return $this->render('baseBack.html.twig', [
-            'controller_name' => 'IndexController',
-        ]);
-    }
+
 }

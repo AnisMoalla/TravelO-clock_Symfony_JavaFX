@@ -335,8 +335,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <a class="dropdown-item" href="{{ url('profile')}}">
                                     Profile
                                 </a>
                                 <a class="dropdown-item" href="#">
@@ -395,8 +394,8 @@
                                             <td>{{ user.prenom}}</td>
                                             <td>{{ user.email}}</td>
                                             <td>{{ user.etat}}</td>
-                                            <td>test</td>
-                                            <td>test</td>
+                                            <td> <a href="{{ url('user_edit' , {id : user.id} ) }}"> <img src="{{ asset('back/img/edit.png') }}" alt="edit" width="50px" height="50px" >  </a> </td>
+                                            <td><a href="{{ url('user_delete' , {id : user.id} ) }}"> <img src="{{ asset('back/img/icon-delete.jpg') }}" alt="edit" width="50px" height="50px" >  </a></td>
                                         </tr>
                                             {% endfor %}
 
