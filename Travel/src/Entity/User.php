@@ -92,10 +92,22 @@ class User
      */
     private $reservations;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Guide::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $guides;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Vendeur::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $vendeurs;
+
     public function __construct()
     {
         $this->evenements = new ArrayCollection();
         $this->reservations = new ArrayCollection();
+        $this->guides = new ArrayCollection();
+        $this->vendeurs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -286,6 +298,66 @@ class User
     public function __toString()
     {
         return $this->nom;
+    }
+
+    /**
+     * @return Collection|Guide[]
+     */
+    public function getGuides(): Collection
+    {
+        return $this->guides;
+    }
+
+    public function addGuide(Guide $guide): self
+    {
+        if (!$this->guides->contains($guide)) {
+            $this->guides[] = $guide;
+            $guide->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGuide(Guide $guide): self
+    {
+        if ($this->guides->removeElement($guide)) {
+            // set the owning side to null (unless already changed)
+            if ($guide->getUser() === $this) {
+                $guide->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Vendeur[]
+     */
+    public function getVendeurs(): Collection
+    {
+        return $this->vendeurs;
+    }
+
+    public function addVendeur(Vendeur $vendeur): self
+    {
+        if (!$this->vendeurs->contains($vendeur)) {
+            $this->vendeurs[] = $vendeur;
+            $vendeur->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVendeur(Vendeur $vendeur): self
+    {
+        if ($this->vendeurs->removeElement($vendeur)) {
+            // set the owning side to null (unless already changed)
+            if ($vendeur->getUser() === $this) {
+                $vendeur->setUser(null);
+            }
+        }
+
+        return $this;
     }
 
 }
