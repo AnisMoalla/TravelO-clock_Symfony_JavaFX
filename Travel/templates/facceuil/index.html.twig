@@ -1,0 +1,63 @@
+
+
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}  admins {% endblock %}
+
+{% block content %}
+
+
+<body id="page-top">
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Adresse</th>
+                    <th>Nb_place</th>
+                    <th>Description</th>
+                    <th>modifier</th>
+                    <th>supprimer</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for facceuil in facceuils %}
+                    <tr>
+                        <td>{{ facceuil.id }}</td>
+                        <td>{{ facceuil.nom }}</td>
+                        <td>{{ facceuil.adresse }}</td>
+                        <td>{{ facceuil.nbPlace }}</td>
+                        <td>{{ facceuil.description }}</td>
+                        <td>
+                            <a href="{{ path('facceuil_edit', {'id': facceuil.id}) }}"> <button class="btn btn-info"> modifier</button>   </a>
+                        </td>
+                        <td>
+                            <a href="{{ path('facceuil_delete', {'id': facceuil.id}) }}"><button class="btn btn-info">supprimer </button></a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+
+
+
+
+{% endblock %}
