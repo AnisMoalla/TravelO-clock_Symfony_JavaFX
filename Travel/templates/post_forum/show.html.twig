@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PostForum{% endblock %}
+
+{% block body %}
+    <h1>PostForum</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ post_forum.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ post_forum.name }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ post_forum.content }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('post_forum_index') }}">back to list</a>
+
+    <a href="{{ path('post_forum_edit', {'id': post_forum.id}) }}">edit</a>
+
+    {{ include('post_forum/_delete_form.html.twig') }}
+{% endblock %}

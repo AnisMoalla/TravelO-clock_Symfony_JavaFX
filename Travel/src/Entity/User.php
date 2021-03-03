@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -79,6 +81,20 @@ class User
      * @ORM\Column(type="string", length=255)
      */
     private $role;
+
+    
+    private $postforums;
+
+    /**
+     * @ORM\OneToMany(targetEntity=PostForum::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $postForums;
+
+    public function __construct()
+    {
+        $this->postforums = new ArrayCollection();
+        $this->postForums = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -204,4 +220,35 @@ class User
 
         return $this;
     }
+
+    /**
+     * @return Collection|PostForum[]
+     */
+    public function getPostForums(): Collection
+    {
+        return $this->postForums;
+    }
+
+    public function addPostForum(PostForum $postForum): self
+    {
+        if (!$this->postForums->contains($postForum)) {
+            $this->postForums[] = $postForum;
+            $postForum->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePostForum(PostForum $postForum): self
+    {
+        if ($this->postForums->removeElement($postForum)) {
+            // set the owning side to null (unless already changed)
+            if ($postForum->getUser() === $this) {
+                $postForum->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

@@ -1,0 +1,37 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}PostForum index{% endblock %}
+
+{% block content %}
+    <h1>PostForum index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Content</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for post_forum in post_forums %}
+            <tr>
+                <td>{{ post_forum.id }}</td>
+                <td>{{ post_forum.name }}</td>
+                <td>{{ post_forum.content }}</td>
+                <td>
+                    <a href="{{ path('post_forum_show', {'id': post_forum.id}) }}">show</a>
+                    <a href="{{ path('post_forum_edit', {'id': post_forum.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('post_forum_new') }}">Create new</a>
+{% endblock %}

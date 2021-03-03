@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\PostFrum;
+use App\Entity\PostForum;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method PostFrum|null find($id, $lockMode = null, $lockVersion = null)
- * @method PostFrum|null findOneBy(array $criteria, array $orderBy = null)
- * @method PostFrum[]    findAll()
- * @method PostFrum[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method PostForum|null find($id, $lockMode = null, $lockVersion = null)
+ * @method PostForum|null findOneBy(array $criteria, array $orderBy = null)
+ * @method PostForum[]    findAll()
+ * @method PostForum[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class PostFrumRepository extends ServiceEntityRepository
+class PostForumRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, PostFrum::class);
+        parent::__construct($registry, PostForum::class);
     }
 
     // /**
-    //  * @return PostFrum[] Returns an array of PostFrum objects
+    //  * @return PostForum[] Returns an array of PostForum objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class PostFrumRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?PostFrum
+    public function findOneBySomeField($value): ?PostForum
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')

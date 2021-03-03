@@ -1,0 +1,11 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}New PostForum{% endblock %}
+
+{% block body %}
+    <h1>Create new PostForum</h1>
+
+    {{ include('post_forum/_form.html.twig') }}
+
+    <a href="{{ path('post_forum_index') }}">back to list</a>
+{% endblock %}
