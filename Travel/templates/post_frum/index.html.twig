@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<title>PostFrum index</title>
+
+{% block body %}
+    <h1>PostFrum index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for post_frum in post_frums %}
+            <tr>
+                <td>{{ post_frum.id }}</td>
+                <td>{{ post_frum.Name }}</td>
+                <td>{{ post_frum.Description }}</td>
+                <td>
+                    <a href="{{ path('post_frum_show', {'id': post_frum.id}) }}">show</a>
+                    <a href="{{ path('post_frum_edit', {'id': post_frum.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('post_frum_new') }}">Create new</a>
+{% endblock %}

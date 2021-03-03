@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+
+<title>Edit PostFrum</title>
+
+{% block body %}
+    <h1>Edit PostFrum</h1>
+
+    {{ include('post_frum/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('post_frum_index') }}">back to list</a>
+
+    {{ include('post_frum/_delete_form.html.twig') }}
+{% endblock %}

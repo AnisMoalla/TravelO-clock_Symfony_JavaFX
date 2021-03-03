@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<title>PostFrum</title>
+
+{% block body %}
+    <h1>PostFrum</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ post_frum.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ post_frum.Name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ post_frum.Description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('post_frum_index') }}">back to list</a>
+
+    <a href="{{ path('post_frum_edit', {'id': post_frum.id}) }}">edit</a>
+
+    {{ include('post_frum/_delete_form.html.twig') }}
+{% endblock %}
