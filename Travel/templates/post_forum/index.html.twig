@@ -3,35 +3,44 @@
 {% block title %}PostForum index{% endblock %}
 
 {% block content %}
-    <h1>PostForum index</h1>
+    <h1>Post list</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
+  
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div>
+                <a href="{{ url('post_forum_new') }}"> <img src="{{ asset('back/img/edit.png') }}" alt="edit" width="50px" height="50px" >  </a>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
                 <th>Name</th>
                 <th>Content</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for post_forum in post_forums %}
+                <th>Modifier</th>
+                <th>Supprimer</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                   {% for post_forum in post_forums %}
             <tr>
                 <td>{{ post_forum.id }}</td>
                 <td>{{ post_forum.name }}</td>
                 <td>{{ post_forum.content }}</td>
-                <td>
-                    <a href="{{ path('post_forum_show', {'id': post_forum.id}) }}">show</a>
-                    <a href="{{ path('post_forum_edit', {'id': post_forum.id}) }}">edit</a>
-                </td>
+                <td> <a href="{{ url('post_forum_edit' , {id : post_forum.id} ) }}"> <img src="{{ asset('back/img/edit.png') }}" alt="edit" width="50px" height="50px" >  </a> </td>
+                            <td><a href="{{ url('post_forum_delete' , {id : post_forum.id} ) }}"> <img src="{{ asset('back/img/icon-delete.jpg') }}" alt="edit" width="50px" height="50px" >  </a></td>
             </tr>
         {% else %}
             <tr>
                 <td colspan="4">no records found</td>
             </tr>
         {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('post_forum_new') }}">Create new</a>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 {% endblock %}

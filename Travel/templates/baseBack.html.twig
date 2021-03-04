@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-{% block Title %}
-    <title> TravelOClock-Dashboard</title>
-{% endblock %}
+
+    <title> {% block title %}TravelOClock-Dashboard{% endblock %}</title>
+
     <!-- Custom fonts for this template-->
     <link href="{{asset( 'back/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link
@@ -18,6 +18,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
+    <link href="{{ asset('back/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <link href="{{asset('back/css/sb-admin-2.min.css')}}" rel="stylesheet">
 
 </head>
@@ -27,9 +28,9 @@
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-
+        {% block sidebar %}
        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-{% block sidebar %}
+
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon rotate-n-15">
@@ -66,9 +67,9 @@
                 <div id="collapseUsers" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestion Utilisateurs:</h6>
-                        <a class="collapse-item" href="buttons.html">Admins</a>
-                        <a class="collapse-item" href="cards.html">Fournisseurs</a>
-                        <a class="collapse-item" href="cards.html">Touristes</a>
+                        <a class="collapse-item" href="{{ url('showadmins') }}">Admins</a>
+                        <a class="collapse-item" href="{{ url('showfs') }}">Fournisseurs</a>
+                        <a class="collapse-item" href="{{ url('showtourists') }}">Touristes</a>
                     </div>
                 </div>
             </li>
@@ -84,9 +85,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestion Services:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Guides</a>
-                        <a class="collapse-item" href="utilities-border.html">Vendeurs</a>
-                        <a class="collapse-item" href="utilities-animation.html">Promotions</a>
+                        <a class="collapse-item" href="{{ url('guides') }}">Guides</a>
+                        <a class="collapse-item" href="{{ url('vendeurs') }}">Vendeurs</a>
                     </div>
                 </div>
             </li>
@@ -96,13 +96,13 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePlans"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Plans Et Forums</span>
+                    <span>categories Et Forums</span>
                 </a>
                 <div id="collapsePlans" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Gestion Plans Et Offres:</h6>
-                        <a class="collapse-item" href="login.html">Plans</a>
-                        <a class="collapse-item" href="register.html">Offres</a>
+                        <h6 class="collapse-header"> categories Et Forum:</h6>
+                        <a class="collapse-item" href="{{ url('category_index') }}">category</a>
+                        <a class="collapse-item" href="{{ url('post_forum_index') }}">Forum</a>
                     </div>
                 </div>
             </li>
@@ -117,9 +117,8 @@
                 <div id="collapseHebgs" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestion Hebergements:</h6>
-                        <a class="collapse-item" href="login.html">Hotels</a>
-                        <a class="collapse-item" href="register.html">Familles Acceuils</a>
-                        <a class="collapse-item" href="register.html">Reservations</a>
+                        <a class="collapse-item" href="{{ url('afficheHotel') }}">Hotels</a>
+                        <a class="collapse-item" href="{{ url('facceuil_index') }}">Familles Acceuils</a>
                     </div>
                 </div>
             </li>
@@ -127,16 +126,16 @@
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEvents"
-                    aria-expanded="true" aria-controls="collapsePages">     
+                    aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Evenements</span>
                 </a>
                 <div id="collapseEvents" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestion Evenements:</h6>
-                        <a class="collapse-item" href="login.html">Evenements</a>
-                        <a class="collapse-item" href="register.html">Offres</a>
-                        <a class="collapse-item" href="register.html">Reservations</a>
+                        <a class="collapse-item" href="{{ url('evenements') }}">Evenements</a>
+                        <a class="collapse-item" href="{{ url('offres') }}">Offres</a>
+                        <a class="collapse-item" href="{{ url('reservations') }}">Reservations</a>
                     </div>
                 </div>
             </li>
@@ -151,12 +150,30 @@
                 <div id="collapseAvis" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestion Avis Et Reclamations:</h6>
-                        <a class="collapse-item" href="login.html">Avis</a>
-                        <a class="collapse-item" href="register.html">Reclamations</a>
+                        <a class="collapse-item" href="{{ url('avis') }}">Avis Evenement</a>
+                        <a class="collapse-item" href="{{ url('reclamation') }}">Reclamations Evenement</a>
+
+                        <a class="collapse-item" href="{{ url('avis_facc_index') }}">Avis Hebergements</a>
+                        <a class="collapse-item" href="{{ url('reclamation_facc_index') }}">Reclamations Hebergements</a>
+
+
                     </div>
                 </div>
             </li>
-
+                   <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#CollapsePlan"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-columns"></i>
+                    <span>plant</span>
+                </a>
+                <div id="CollapsePlan" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">plant:</h6>
+                        <a class="collapse-item" href="{{ url('plan_index') }}">plant</a>
+                     
+                    </div>
+                </div>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -165,13 +182,12 @@
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
-<div class="sidebar-card">
-                <img class="sidebar-card-illustration mb-2" src="{{asset('back/img/undraw_rocket.svg')}}" alt="">
-                <p class="text-center mb-2"><strong>Travel<sup>O</sup>Clock</strong>.</p>
-                <a class="btn btn-success btn-sm" href="file:///C:/Users/legion/Desktop/This%20Year/3rd%20Year/S2/PiDev/travelix-colorlib/travelix/index.html">Web-Site</a>
-            </div>
-
-          
+           <!-- Sidebar Message -->
+           <div class="sidebar-card">
+               <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="">
+               <p class="text-center mb-2"><strong>Travel<sup>O</sup>Clock</strong>.</p>
+               <a class="btn btn-success btn-sm" href="file:///C:/Users/legion/Desktop/This%20Year/3rd%20Year/S2/PiDev/travelix-colorlib/travelix/index.html">Web-Site</a>
+           </div>
 
         </ul>
         {% endblock %}
@@ -193,7 +209,7 @@
                     </button>
 
                     <!-- Topbar Search -->
-                  
+
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -344,17 +360,21 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle"
-                                    src="{{asset('back/img/undraw_profile.svg')}}">
+                                     src="back/img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -370,9 +390,8 @@
 
                     </ul>
 
-
                 </nav>
-                <!-- End of Topbar -->
+                    <!-- End of Topbar -->
 {% endblock %}
 {% block content %}
                 <!-- Begin Page Content -->
@@ -595,7 +614,7 @@
                                 </div>
                             </div>
 
-                           
+
 
                         </div>
 
@@ -619,8 +638,8 @@
                                         unDraw &rarr;</a>
                                 </div>
                             </div>
-                                
-                           
+
+
 
                         </div>
                     </div>
@@ -635,13 +654,7 @@
             {% block footer %}
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Developed by Brogrammers 2021</span>
-                    </div>
-                </div>
-            </footer>
+
             <!-- End of Footer -->
             {% endblock %}
         </div>
@@ -674,24 +687,37 @@
             </div>
         </div>
     </div>
-{% block Bootstrap%}
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{asset('back/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('back/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    {% block Bootstrap%}
+        <!-- Bootstrap core JavaScript-->
+        <script src="{{asset('back/vendor/jquery/jquery.min.js')}}"></script>
+        <script src="{{asset('back/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="{{asset('back/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="{{asset('back/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="{{asset('back/js/sb-admin-2.min.js')}}"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="{{asset('back/js/sb-admin-2.min.js')}}"></script>
 
-    <!-- Page level plugins -->
-    <script src="{{asset('back/vendor/chart.js/Chart.min.js')}}"></script>
+        <!-- Page level plugins -->
+        <script src="{{asset('back/vendor/chart.js/Chart.min.js')}}"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="{{asset('back/js/demo/chart-area-demo.js')}}"></script>
-    <script src="{{asset('back/js/demo/chart-pie-demo.js')}}"></script>
-{% endblock %}
+        <!-- Page level custom scripts -->
+        <script src="{{asset('back/js/demo/chart-area-demo.js')}}"></script>
+        <script src="{{asset('back/js/demo/chart-pie-demo.js')}}"></script>
+
+        <!-- Bootstrap core JavaScript-->
+
+
+        <!-- Core plugin JavaScript-->
+        <script src="{{ asset('back/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+        <!-- Page level plugins -->
+        <script src="{{ asset('back/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('back/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+        <!-- Page level custom scripts -->
+        <script src="{{ asset('back/js/demo/datatables-demo.js') }}"></script>
+    {% endblock %}
 </body>
 {% endblock  %}
 

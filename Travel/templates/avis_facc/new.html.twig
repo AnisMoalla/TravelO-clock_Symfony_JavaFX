@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+
+<title>New AvisFacc</title>
+
+{% block body %}
+    <h1>Create new AvisFacc</h1>
+
+    {{ include('avis_facc/_form.html.twig') }}
+
+    <a href="{{ path('avis_facc_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+
+<title>New Avis</title>
+
+{% block body %}
+    <h1>Create new Avis</h1>
+
+    {{ include('avis/_form.html.twig') }}
+
+    <a href="{{ path('avis') }}">back to list</a>
+{% endblock %}

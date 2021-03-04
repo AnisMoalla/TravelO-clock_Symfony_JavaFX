@@ -1,0 +1,52 @@
+
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}  Offers {% endblock %}
+
+{% block content %}
+
+
+<body id="page-top">
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div>
+            <a href="{{ url('offre_new') }}"> <img src="{{ asset('back/img/edit.png') }}" alt="edit" width="50px" height="50px" >  </a>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Date_debut</th>
+                    <th>Date_fin</th>
+                    <th>Pourcentage</th>
+                    <th>modifier</th>
+                    <th>supprimer</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for offre in offres %}
+                    <tr>
+                        <td>{{ offre.nom }}</td>
+                        <td>{{ offre.dateDebut ? offre.dateDebut|date('Y-m-d') : '' }}</td>
+                        <td>{{ offre.dateFin ? offre.dateFin|date('Y-m-d') : '' }}</td>
+                        <td>{{ offre.pourcentage }}</td>
+                        <td> <a href="{{ url('offre_edit' , {id : offre.id} ) }}"> <img src="{{ asset('back/img/edit.png') }}" alt="edit" width="50px" height="50px" >  </a> </td>
+                        <td><a href="{{ url('offre_delete' , {id : offre.id} ) }}"> <img src="{{ asset('back/img/icon-delete.jpg') }}" alt="edit" width="50px" height="50px" >  </a></td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}
+
+

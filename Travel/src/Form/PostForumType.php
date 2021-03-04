@@ -6,6 +6,8 @@ use App\Entity\PostForum;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 
 class PostForumType extends AbstractType
 {
@@ -16,6 +18,7 @@ class PostForumType extends AbstractType
             ->add('content')
             ->add('category')
             ->add('user')
+            
         ;
     }
 

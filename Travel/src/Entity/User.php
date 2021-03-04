@@ -58,42 +58,78 @@ class User
 
     /**
      * @ORM\Column(type="integer", length=255, nullable=true)
+     * @Assert\NotBlank
      */
     private $cin;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank
      */
     private $photo;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\NotBlank
+     *
      */
     private $numero;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
 
     private $etat;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $role;
 
-    
-    private $postforums;
+    /**
+     * @ORM\OneToMany(targetEntity=Evenement::class, mappedBy="user")
+     * @Assert\NotBlank
+     */
+    private $evenements;
 
     /**
-     * @ORM\OneToMany(targetEntity=PostForum::class, mappedBy="user", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="tourist", orphanRemoval=true)
+     * @Assert\NotBlank
      */
-    private $postForums;
+    private $reservations;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Avis::class, mappedBy="user")
+     * @Assert\NotBlank
+     */
+    private $avis;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Reclamation::class, mappedBy="user")
+     * @Assert\NotBlank
+     */
+    private $reclamations;
+
+    /**
+     * @ORM\OneToMany(targetEntity=AvisFacc::class, mappedBy="user")
+     */
+    private $avisFaccs;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ReclamationFacc::class, mappedBy="user")
+     */
+    private $reclamationFaccs;
 
     public function __construct()
     {
-        $this->postforums = new ArrayCollection();
-        $this->postForums = new ArrayCollection();
+        $this->evenements = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
+        $this->avis = new ArrayCollection();
+        $this->reclamations = new ArrayCollection();
+        $this->avisFaccs = new ArrayCollection();
+        $this->reclamationFaccs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -106,7 +142,7 @@ class User
         return $this->nom;
     }
 
-    public function setNom(string $nom): self
+    public function setNom(?string $nom): self
     {
         $this->nom = $nom;
 
@@ -118,7 +154,7 @@ class User
         return $this->prenom;
     }
 
-    public function setPrenom(string $prenom): self
+    public function setPrenom(?string $prenom): self
     {
         $this->prenom = $prenom;
 
@@ -130,7 +166,7 @@ class User
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(?string $email): self
     {
         $this->email = $email;
 
@@ -142,7 +178,7 @@ class User
         return $this->password;
     }
 
-    public function setPassword(string $password): self
+    public function setPassword(?string $password): self
     {
         $this->password = $password;
 
@@ -154,7 +190,7 @@ class User
         return $this->age;
     }
 
-    public function setAge(int $age): self
+    public function setAge(?int $age): self
     {
         $this->age = $age;
 
@@ -202,7 +238,7 @@ class User
         return $this->etat;
     }
 
-    public function setEtat(string $etat): self
+    public function setEtat(?string $etat): self
     {
         $this->etat = $etat;
 
@@ -214,7 +250,7 @@ class User
         return $this->role;
     }
 
-    public function setRole(string $role): self
+    public function setRole(?string $role): self
     {
         $this->role = $role;
 
@@ -222,29 +258,184 @@ class User
     }
 
     /**
-     * @return Collection|PostForum[]
+     * @return Collection|Evenement[]
      */
-    public function getPostForums(): Collection
+    public function getEvenements(): Collection
     {
-        return $this->postForums;
+        return $this->evenements;
     }
 
-    public function addPostForum(PostForum $postForum): self
+    public function addEvenement(Evenement $evenement): self
     {
-        if (!$this->postForums->contains($postForum)) {
-            $this->postForums[] = $postForum;
-            $postForum->setUser($this);
+        if (!$this->evenements->contains($evenement)) {
+            $this->evenements[] = $evenement;
+            $evenement->setUser($this);
         }
 
         return $this;
     }
 
-    public function removePostForum(PostForum $postForum): self
+    public function removeEvenement(Evenement $evenement): self
     {
-        if ($this->postForums->removeElement($postForum)) {
+        if ($this->evenements->removeElement($evenement)) {
             // set the owning side to null (unless already changed)
-            if ($postForum->getUser() === $this) {
-                $postForum->setUser(null);
+            if ($evenement->getUser() === $this) {
+                $evenement->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Reservation[]
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): self
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations[] = $reservation;
+            $reservation->setTourist($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): self
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getTourist() === $this) {
+                $reservation->setTourist(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * @return Collection|Avis[]
+     */
+    public function getAvis(): Collection
+    {
+        return $this->avis;
+    }
+
+    public function addAvi(Avis $avi): self
+    {
+        if (!$this->avis->contains($avi)) {
+            $this->avis[] = $avi;
+            $avi->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAvi(Avis $avi): self
+    {
+        if ($this->avis->removeElement($avi)) {
+            // set the owning side to null (unless already changed)
+            if ($avi->getUser() === $this) {
+                $avi->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Reclamation[]
+     */
+    public function getReclamations(): Collection
+    {
+        return $this->reclamations;
+    }
+
+    public function addReclamation(Reclamation $reclamation): self
+    {
+        if (!$this->reclamations->contains($reclamation)) {
+            $this->reclamations[] = $reclamation;
+            $reclamation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReclamation(Reclamation $reclamation): self
+    {
+        if ($this->reclamations->removeElement($reclamation)) {
+            // set the owning side to null (unless already changed)
+            if ($reclamation->getUser() === $this) {
+                $reclamation->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|AvisFacc[]
+     */
+    public function getAvisFaccs(): Collection
+    {
+        return $this->avisFaccs;
+    }
+
+    public function addAvisFacc(AvisFacc $avisFacc): self
+    {
+        if (!$this->avisFaccs->contains($avisFacc)) {
+            $this->avisFaccs[] = $avisFacc;
+            $avisFacc->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAvisFacc(AvisFacc $avisFacc): self
+    {
+        if ($this->avisFaccs->removeElement($avisFacc)) {
+            // set the owning side to null (unless already changed)
+            if ($avisFacc->getUser() === $this) {
+                $avisFacc->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ReclamationFacc[]
+     */
+    public function getReclamationFaccs(): Collection
+    {
+        return $this->reclamationFaccs;
+    }
+
+    public function addReclamationFacc(ReclamationFacc $reclamationFacc): self
+    {
+        if (!$this->reclamationFaccs->contains($reclamationFacc)) {
+            $this->reclamationFaccs[] = $reclamationFacc;
+            $reclamationFacc->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReclamationFacc(ReclamationFacc $reclamationFacc): self
+    {
+        if ($this->reclamationFaccs->removeElement($reclamationFacc)) {
+            // set the owning side to null (unless already changed)
+            if ($reclamationFacc->getUser() === $this) {
+                $reclamationFacc->setUser(null);
             }
         }
 

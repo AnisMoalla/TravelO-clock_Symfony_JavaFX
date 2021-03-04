@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+
+<title>Edit AvisFacc</title>
+
+{% block body %}
+    <h1>Edit AvisFacc</h1>
+
+    {{ include('avis_facc/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('avis_facc_index') }}">back to list</a>
+
+    {{ include('avis_facc/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hotel{% endblock %}
+
+{% block body %}
+    <h1>Hotel</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ hotel.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ hotel.nom }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ hotel.description }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ hotel.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Nbrechambre</th>
+                <td>{{ hotel.nbrechambre }}</td>
+            </tr>
+            <tr>
+                <th>NbrechambreDispo</th>
+                <td>{{ hotel.nbrechambreDispo }}</td>
+            </tr>
+            <tr>
+                <th>NbreEtoile</th>
+                <td>{{ hotel.nbreEtoile }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('afficheHotel') }}">back to list</a>
+
+    <a href="{{ path('hotel_edit', {'id': hotel.id}) }}">edit</a>
+
+
+    {{ include('hotel/_delete_form.html.twig') }}
+{% endblock %}

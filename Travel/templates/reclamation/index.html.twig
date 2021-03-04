@@ -1,0 +1,60 @@
+
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}  Reclamation {% endblock %}
+
+{% block content %}
+
+
+<body id="page-top">
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Description</th>
+                    <th>Date_reclamtion</th>
+                    <th>User</th>
+                    <th>Evenement</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for reclamation in reclamations %}
+                    <tr>
+                        <td>{{ reclamation.id }}</td>
+                        <td>{{ reclamation.description }}</td>
+                        <td>{{ reclamation.dateReclamtion ? reclamation.dateReclamtion|date('Y-m-d') : '' }}</td>
+                        <td>{{ reclamation.user }}</td>
+                        <td>{{ reclamation.evenement }}</td>
+                        <td><a href="{{ url('editreclamation' , {id : reclamation.id} ) }}"> <img src="{{ asset('back/img/edit.png') }}" alt="edit" width="50px" height="50px" >  </a></td>
+
+                        <td><a href="{{ url('deletereclamation' , {id : reclamation.id} ) }}"> <img src="{{ asset('back/img/icon-delete.jpg') }}" alt="delete" width="50px" height="50px" >  </a></td>
+
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+
+
+
+
+{% endblock %}
+

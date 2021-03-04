@@ -1,0 +1,71 @@
+
+
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}  admins {% endblock %}
+
+{% block content %}
+
+
+<body id="page-top">
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div>
+            <a href="{{ url('hotel_new') }}"> <img src="{{ asset('back/img/edit.png') }}" alt="edit" width="50px" height="50px" >  </a>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Adresse</th>
+                    <th>Nb_place</th>
+                    <th>Description</th>
+                    <th>modifier</th>
+                    <th>supprimer</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for hotel in hotels %}
+                    <tr>
+                        <td>{{ hotel.id }}</td>
+                        <td>{{ hotel.nom }}</td>
+                        <td>{{ hotel.description }}</td>
+                        <td>{{ hotel.adresse }}</td>
+                        <td>{{ hotel.nbrechambre }}</td>
+                        <td>{{ hotel.nbrechambreDispo }}</td>
+                        <td>{{ hotel.nbreEtoile }}</td>
+                        <td>{{ hotel.image }}</td>
+                        <td>{{ hotel.file }}</td>
+                        <td>{{ hotel.user }}</td>
+
+
+                        <td>
+                            <a href="{{ path('hotel_show', {'id': hotel.id}) }}">show</a>
+                            <a href="{{ path('hotel_edit', {'id': hotel.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+
+
+
+
+{% endblock %}

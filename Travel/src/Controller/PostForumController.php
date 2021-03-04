@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 /**
  * @Route("/post/forum")
@@ -31,7 +32,7 @@ class PostForumController extends AbstractController
     public function new(Request $request): Response
     {
         $postForum = new PostForum();
-        $form = $this->createForm(PostForumType::class, $postForum);
+        $form = $this->createForm(PostForumType::class, $postForum)->add('save',submitType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +64,7 @@ class PostForumController extends AbstractController
      */
     public function edit(Request $request, PostForum $postForum): Response
     {
-        $form = $this->createForm(PostForumType::class, $postForum);
+        $form = $this->createForm(PostForumType::class, $postForum)->add('Modifier',SubmitType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -79,15 +80,17 @@ class PostForumController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="post_forum_delete", methods={"DELETE"})
+     * @Route("/{id}/deletepostforum", name="post_forum_delete")
      */
-    public function delete(Request $request, PostForum $postForum): Response
+    public function delete(Request $request, $id): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$postForum->getId(), $request->request->get('_token'))) {
+      
             $entityManager = $this->getDoctrine()->getManager();
+            $PostForumRepository = $this->getDoctrine()->getRepository(PostForum::class);
+            $postForum= $PostForumRepository->find($id);
             $entityManager->remove($postForum);
             $entityManager->flush();
-        }
+        
 
         return $this->redirectToRoute('post_forum_index');
     }

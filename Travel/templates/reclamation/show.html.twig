@@ -1,0 +1,53 @@
+
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}  Afficher Reclamation {% endblock %}
+
+{% block content %}
+
+
+<body id="page-top">
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ reclamation.id }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ reclamation.description }}</td>
+                </tr>
+                <tr>
+                    <th>Date_reclamation</th>
+                    <td>{{ reclamation.datereclamtion ? reclamation.datereclamtion|date('Y-m-d') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>User</th>
+                    <td>{{ reclamation.user }}</td>
+                </tr>
+                <tr>
+                    <th>Evenement</th>
+                    <td>{{ reclamation.evenement }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+
+
+
+
+{% endblock %}
+
+
