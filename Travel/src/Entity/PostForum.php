@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PostForumRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -41,6 +43,16 @@ class PostForum
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="PostF")
+     */
+    private $forum;
+
+    public function __construct()
+    {
+        $this->forum = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -93,5 +105,39 @@ class PostForum
         $this->user = $user;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Commentaire[]
+     */
+    public function getForum(): Collection
+    {
+        return $this->forum;
+    }
+
+    public function addForum(Commentaire $forum): self
+    {
+        if (!$this->forum->contains($forum)) {
+            $this->forum[] = $forum;
+            $forum->setPostF($this);
+        }
+
+        return $this;
+    }
+
+    public function removeForum(Commentaire $forum): self
+    {
+        if ($this->forum->removeElement($forum)) {
+            // set the owning side to null (unless already changed)
+            if ($forum->getPostF() === $this) {
+                $forum->setPostF(null);
+            }
+        }
+
+        return $this;
+    }
+    public function __toString()
+    {
+        return $this->name;
     }
 }

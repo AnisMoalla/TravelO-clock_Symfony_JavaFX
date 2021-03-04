@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 /**
  * @Route("/plan")
  */
@@ -65,7 +66,7 @@ class PlanController extends AbstractController
     {
         $form = $this->createForm(PlanType::class, $plan)->add("save",SubmitType::class);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
@@ -79,7 +80,7 @@ class PlanController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/deletePlan", name="plan_delete")
+     * @Route("/{id}/deletePlan", name="plan_delete",)
      */
     public function delete(Request $request, $id): Response
     {
@@ -93,4 +94,21 @@ class PlanController extends AbstractController
 
         return $this->redirectToRoute('plan_index');
     }
+
+    
+    /**
+     * @Route("/", name="addEvent",)
+     */
+    public function AddEvent(Request $request,$id,$id_event): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $planRepository=$this->getDoctrine()->getRepository(Plan::class);
+        $plan=$planRepository->find($id);
+        $plan->AddEvent($id_event);
+        $entityManager->flush();    
+
+        return $this->redirectToRoute('plan_index');
+
+    }
+
 }

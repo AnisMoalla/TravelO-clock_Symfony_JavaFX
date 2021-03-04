@@ -22,16 +22,30 @@
                         </div>
                             <div class="form-group">
                             {{ form_start(form) }}
-                                <div class="form-group">
+                           <div class="form-group">
                                     {{ form_widget(form.name,{'attr':{'class':'form-control from-control-user','placholder':'plan name'}}) }}
                                     {{ form_errors(form.name ) }}
                                 </div>
                                 <div class="form-group">
-                                    {{ form_widget(form.description,{'attr':{'class':'form-control from-control-user','placholder':' Discription'}}) }}
-                                    {{ form_errors(form.description ) }}
+                                    {{ form_widget(form.Description,{'attr':{'class':'form-control from-control-user','placholder':' Discription'}}) }}
+                                    {{ form_errors(form.Description ) }}
                                 </div>
-                                
-                            </div>
+                                <div class="form-group">
+                                    {{ form_widget(form.Event,{'attr':{'class':'form-control form-control-user','style':'width:100%;height:50px'  }}) }}
+                                    {{ form_errors(form.Event ) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_widget(form.hotel,{'attr':{'class':'form-control form-control-user','style':'width:100%;height:50px'  }}) }}
+                                    {{ form_errors(form.hotel ) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_widget(form.facceuil,{'attr':{'class':'form-control form-control-user','style':'width:100%;height:50px'  }}) }}
+                                    {{ form_errors(form.facceuil ) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_widget(form.guide,{'attr':{'class':'form-control form-control-user','style':'width:100%;height:50px'  }}) }}
+                                    {{ form_errors(form.guide ,{'attr':{'class':'form-control form-control-user','style':'width:100%;height:50px'  }}) }}
+                                </div>
                            
                         
                             

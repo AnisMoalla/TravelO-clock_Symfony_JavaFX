@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\GuideRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -80,10 +82,18 @@ class Guide
      */
     private $language;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Plan::class, inversedBy="guide")
-     */
+    
     private $guide;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Plan::class, mappedBy="guide")
+     */
+    private $guides;
+
+    public function __construct()
+    {
+        $this->guides = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -215,16 +225,33 @@ class Guide
         return $this->nom;
     }
 
-    public function getGuide(): ?Plan
+    /**
+     * @return Collection|Plan[]
+     */
+    public function getGuides(): Collection
     {
-        return $this->guide;
+        return $this->guides;
     }
 
-    public function setGuide(?Plan $guide): self
+    public function addGuide(Plan $guide): self
     {
-        $this->guide = $guide;
+        if (!$this->guides->contains($guide)) {
+            $this->guides[] = $guide;
+            $guide->addGuide($this);
+        }
 
         return $this;
     }
+
+    public function removeGuide(Plan $guide): self
+    {
+        if ($this->guides->removeElement($guide)) {
+            $guide->removeGuide($this);
+        }
+
+        return $this;
+    }
+
+   
 }
 

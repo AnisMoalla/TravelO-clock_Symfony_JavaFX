@@ -65,9 +65,7 @@ class Facceuil
      */
     private $reclamationFaccs;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Plan::class, inversedBy="Heberg")
-     */
+   
     private $facceuil;
 
     public function __construct()
@@ -218,15 +216,5 @@ class Facceuil
         return $this->nom;
     }
 
-    public function getFacceuil(): ?Plan
-    {
-        return $this->facceuil;
-    }
-
-    public function setFacceuil(?Plan $facceuil): self
-    {
-        $this->facceuil = $facceuil;
-
-        return $this;
-    }
+ 
 }

@@ -2,30 +2,25 @@
 
 namespace App\Form;
 
-use App\Entity\Plan;
+use App\Entity\Commentaire;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Bridge\Doctrine\Form\Type\CollectionType;
 
-class PlanType extends AbstractType
+class CommentaireType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('Description')
-            ->add('Event')
-            ->add('hotel')
-            ->add('facceuil')
-            ->add('guide')
+            ->add('content')
+            ->add('PostF')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Plan::class,
+            'data_class' => Commentaire::class,
         ]);
     }
 }

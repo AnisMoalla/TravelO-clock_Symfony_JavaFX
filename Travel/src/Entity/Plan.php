@@ -6,7 +6,6 @@ use App\Repository\PlanRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=PlanRepository::class)
@@ -22,42 +21,39 @@ class Plan
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
-     * 
      */
     private $name;
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Assert\NotBlank
      */
-    private $description;
+    private $Description;
 
     /**
-     * @ORM\OneToMany(targetEntity=Evenement::class, mappedBy="event")
+     * @ORM\ManyToMany(targetEntity=Evenement::class, inversedBy="Events")
      */
-    private $event;
+    private $Event;
 
     /**
-     * @ORM\OneToMany(targetEntity=Facceuil::class, mappedBy="facceuil")
-     */
-    private $Heberg;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Hotel::class, mappedBy="hotel")
+     * @ORM\ManyToMany(targetEntity=Hotel::class, inversedBy="Hotels")
      */
     private $hotel;
 
     /**
-     * @ORM\OneToMany(targetEntity=Guide::class, mappedBy="guide")
+     * @ORM\ManyToMany(targetEntity=Facceuil::class)
+     */
+    private $facceuil;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Guide::class, inversedBy="guides")
      */
     private $guide;
 
     public function __construct()
     {
-        $this->event = new ArrayCollection();
-        $this->Heberg = new ArrayCollection();
+        $this->Event = new ArrayCollection();
         $this->hotel = new ArrayCollection();
+        $this->facceuil = new ArrayCollection();
         $this->guide = new ArrayCollection();
     }
 
@@ -80,12 +76,12 @@ class Plan
 
     public function getDescription(): ?string
     {
-        return $this->description;
+        return $this->Description;
     }
 
-    public function setDescription(?string $description): self
+    public function setDescription(?string $Description): self
     {
-        $this->description = $description;
+        $this->Description = $Description;
 
         return $this;
     }
@@ -95,14 +91,13 @@ class Plan
      */
     public function getEvent(): Collection
     {
-        return $this->event;
+        return $this->Event;
     }
 
     public function addEvent(Evenement $event): self
     {
-        if (!$this->event->contains($event)) {
-            $this->event[] = $event;
-            $event->setEvent($this);
+        if (!$this->Event->contains($event)) {
+            $this->Event[] = $event;
         }
 
         return $this;
@@ -110,42 +105,7 @@ class Plan
 
     public function removeEvent(Evenement $event): self
     {
-        if ($this->event->removeElement($event)) {
-            // set the owning side to null (unless already changed)
-            if ($event->getEvent() === $this) {
-                $event->setEvent(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Facceuil[]
-     */
-    public function getHeberg(): Collection
-    {
-        return $this->Heberg;
-    }
-
-    public function addHeberg(Facceuil $heberg): self
-    {
-        if (!$this->Heberg->contains($heberg)) {
-            $this->Heberg[] = $heberg;
-            $heberg->setFacceuil($this);
-        }
-
-        return $this;
-    }
-
-    public function removeHeberg(Facceuil $heberg): self
-    {
-        if ($this->Heberg->removeElement($heberg)) {
-            // set the owning side to null (unless already changed)
-            if ($heberg->getFacceuil() === $this) {
-                $heberg->setFacceuil(null);
-            }
-        }
+        $this->Event->removeElement($event);
 
         return $this;
     }
@@ -162,7 +122,6 @@ class Plan
     {
         if (!$this->hotel->contains($hotel)) {
             $this->hotel[] = $hotel;
-            $hotel->setHotel($this);
         }
 
         return $this;
@@ -170,12 +129,31 @@ class Plan
 
     public function removeHotel(Hotel $hotel): self
     {
-        if ($this->hotel->removeElement($hotel)) {
-            // set the owning side to null (unless already changed)
-            if ($hotel->getHotel() === $this) {
-                $hotel->setHotel(null);
-            }
+        $this->hotel->removeElement($hotel);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Facceuil[]
+     */
+    public function getFacceuil(): Collection
+    {
+        return $this->facceuil;
+    }
+
+    public function addFacceuil(Facceuil $facceuil): self
+    {
+        if (!$this->facceuil->contains($facceuil)) {
+            $this->facceuil[] = $facceuil;
         }
+
+        return $this;
+    }
+
+    public function removeFacceuil(Facceuil $facceuil): self
+    {
+        $this->facceuil->removeElement($facceuil);
 
         return $this;
     }
@@ -192,7 +170,6 @@ class Plan
     {
         if (!$this->guide->contains($guide)) {
             $this->guide[] = $guide;
-            $guide->setGuide($this);
         }
 
         return $this;
@@ -200,12 +177,7 @@ class Plan
 
     public function removeGuide(Guide $guide): self
     {
-        if ($this->guide->removeElement($guide)) {
-            // set the owning side to null (unless already changed)
-            if ($guide->getGuide() === $this) {
-                $guide->setGuide(null);
-            }
-        }
+        $this->guide->removeElement($guide);
 
         return $this;
     }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\HotelRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -97,10 +99,18 @@ class Hotel
      */
     private $user;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Plan::class, inversedBy="hotel")
-     */
+    
     private $hotel;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Plan::class, mappedBy="hotel")
+     */
+    private $Hotels;
+
+    public function __construct()
+    {
+        $this->Hotels = new ArrayCollection();
+    }
 
 
     public function getWebpath(){
@@ -276,19 +286,39 @@ class Hotel
         return $this;
     }
 
-    public function getHotel(): ?Plan
+    /**
+     * @return Collection|Plan[]
+     */
+    public function getHotels(): Collection
     {
-        return $this->hotel;
+        return $this->Hotels;
     }
 
-    public function setHotel(?Plan $hotel): self
+    public function addHotel(Plan $hotel): self
     {
-        $this->hotel = $hotel;
+        if (!$this->Hotels->contains($hotel)) {
+            $this->Hotels[] = $hotel;
+            $hotel->addHotel($this);
+        }
 
         return $this;
     }
 
+    public function removeHotel(Plan $hotel): self
+    {
+        if ($this->Hotels->removeElement($hotel)) {
+            $hotel->removeHotel($this);
+        }
 
+        return $this;
+    }
+
+   
+
+    public function __toString()
+    {
+        return $this->id;
+    }
 
 
 

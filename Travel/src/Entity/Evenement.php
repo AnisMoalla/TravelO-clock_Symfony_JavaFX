@@ -93,15 +93,19 @@ class Evenement
      */
     private $reservations;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Plan::class, inversedBy="event")
-     */
+        
     private $event;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Plan::class, mappedBy="Event")
+     */
+    private $Events;
 
     public function __construct()
     {
         $this->offres = new ArrayCollection();
         $this->reservations = new ArrayCollection();
+        $this->Events = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -294,15 +298,32 @@ class Evenement
         return $this->nom;
     }
 
-    public function getEvent(): ?Plan
+    /**
+     * @return Collection|Plan[]
+     */
+    public function getEvents(): Collection
     {
-        return $this->event;
+        return $this->Events;
     }
 
-    public function setEvent(?Plan $event): self
+    public function addEvent(Plan $event): self
     {
-        $this->event = $event;
+        if (!$this->Events->contains($event)) {
+            $this->Events[] = $event;
+            $event->addEvent($this);
+        }
 
         return $this;
     }
+
+    public function removeEvent(Plan $event): self
+    {
+        if ($this->Events->removeElement($event)) {
+            $event->removeEvent($this);
+        }
+
+        return $this;
+    }
+
+  
 }
