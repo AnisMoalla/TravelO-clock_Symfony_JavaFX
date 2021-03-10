@@ -82,7 +82,7 @@ class Guide
      */
     private $language;
 
-    
+
     private $guide;
 
     /**
@@ -90,9 +90,15 @@ class Guide
      */
     private $guides;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Calander::class, mappedBy="Guide")
+     */
+    private $res;
+
     public function __construct()
     {
         $this->guides = new ArrayCollection();
+        $this->res = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -252,6 +258,33 @@ class Guide
         return $this;
     }
 
-   
-}
+    /**
+     * @return Collection|Calander[]
+     */
+    public function getRes(): Collection
+    {
+        return $this->res;
+    }
 
+    public function addRe(Calander $re): self
+    {
+        if (!$this->res->contains($re)) {
+            $this->res[] = $re;
+            $re->setGuide($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRe(Calander $re): self
+    {
+        if ($this->res->removeElement($re)) {
+            // set the owning side to null (unless already changed)
+            if ($re->getGuide() === $this) {
+                $re->setGuide(null);
+            }
+        }
+
+        return $this;
+    }
+}

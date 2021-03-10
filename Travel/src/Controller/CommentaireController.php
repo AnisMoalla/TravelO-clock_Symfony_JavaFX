@@ -10,6 +10,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+
+
 
 /**
  * @Route("/commentaire")
@@ -32,7 +37,7 @@ class CommentaireController extends AbstractController
     public function new(Request $request): Response
     {
         $commentaire = new Commentaire();
-        $form = $this->createForm(CommentaireType::class, $commentaire)->add("save",SubmitType::class);
+        $form = $this->createForm(CommentaireType::class, $commentaire)->add("save", SubmitType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -64,7 +69,7 @@ class CommentaireController extends AbstractController
      */
     public function edit(Request $request, Commentaire $commentaire): Response
     {
-        $form = $this->createForm(CommentaireType::class, $commentaire)->add("save",SubmitType::class);
+        $form = $this->createForm(CommentaireType::class, $commentaire)->add("save", SubmitType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -85,12 +90,12 @@ class CommentaireController extends AbstractController
     public function delete(Request $request, $id): Response
     {
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $commentaireRepository=$this->getDoctrine()->getRepository(commentaire::class);
-            $commentaire=$commentaireRepository->find($id);
-            $entityManager->remove($commentaire);
-            $entityManager->flush();
-        
+        $entityManager = $this->getDoctrine()->getManager();
+        $commentaireRepository = $this->getDoctrine()->getRepository(commentaire::class);
+        $commentaire = $commentaireRepository->find($id);
+        $entityManager->remove($commentaire);
+        $entityManager->flush();
+
 
         return $this->redirectToRoute('commentaire_index');
     }

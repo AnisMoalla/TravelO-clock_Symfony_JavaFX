@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Plan;
 use App\Form\PlanType;
+use App\Repository\CalanderRepository;
 use App\Repository\PlanRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,11 +20,24 @@ class PlanController extends AbstractController
     /**
      * @Route("/", name="plan_index", methods={"GET"})
      */
-    public function index(PlanRepository $planRepository): Response
+    public function index(CalanderRepository $calander): Response
     {
-        return $this->render('plan/index.html.twig', [
-            'plans' => $planRepository->findAll(),
-        ]);
+        $events = $calander->findAll();
+
+
+        foreach ($events as $event) {
+            $rdvs[] = [
+                'id' => $event->getId(),
+                'title' => $event->getTitle(),
+                'start' => $event->getDateBegin()->format('Y-m-d H:i:s'),
+                'fin' => $event->getDataFin()->format('Y-m-d H:i:s'),
+                'guide' => $event->getGuide()->getNom()
+
+            ];
+        }
+        $data = json_encode($rdvs);
+
+        return $this->render('plan/index.html.twig', compact('data'));
     }
 
     /**
@@ -32,7 +46,7 @@ class PlanController extends AbstractController
     public function new(Request $request): Response
     {
         $plan = new Plan();
-        $form = $this->createForm(PlanType::class, $plan)->add("save",SubmitType::class);
+        $form = $this->createForm(PlanType::class, $plan)->add("save", SubmitType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -64,9 +78,9 @@ class PlanController extends AbstractController
      */
     public function edit(Request $request, Plan $plan): Response
     {
-        $form = $this->createForm(PlanType::class, $plan)->add("save",SubmitType::class);
+        $form = $this->createForm(PlanType::class, $plan)->add("save", SubmitType::class);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
@@ -84,31 +98,14 @@ class PlanController extends AbstractController
      */
     public function delete(Request $request, $id): Response
     {
-        
-            $entityManager = $this->getDoctrine()->getManager();
-            $planRepository=$this->getDoctrine()->getRepository(Plan::class);
-            $plan=$planRepository->find($id);
-            $entityManager->remove($plan);
-            $entityManager->flush();
-        
 
-        return $this->redirectToRoute('plan_index');
-    }
-
-    
-    /**
-     * @Route("/", name="addEvent",)
-     */
-    public function AddEvent(Request $request,$id,$id_event): Response
-    {
         $entityManager = $this->getDoctrine()->getManager();
-        $planRepository=$this->getDoctrine()->getRepository(Plan::class);
-        $plan=$planRepository->find($id);
-        $plan->AddEvent($id_event);
-        $entityManager->flush();    
+        $planRepository = $this->getDoctrine()->getRepository(Plan::class);
+        $plan = $planRepository->find($id);
+        $entityManager->remove($plan);
+        $entityManager->flush();
+
 
         return $this->redirectToRoute('plan_index');
-
     }
-
 }

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\PostForum;
+use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -47,4 +48,16 @@ class PostForumRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function PostBycategory($id){
+
+
+       return $this->createQueryBuilder('p')
+        ->where('p.category = :id')
+        ->setParameter('id',$id)
+        ->getQuery()->getResult();
+        
+        
+    }
+   
 }

@@ -11,12 +11,13 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Symfony\Component\Validator\Constraints\Json;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class GuideController extends AbstractController
 {
     /**
-     * @Route("/guides", name="guides", methods={"GET"})
+     * @Route("/guides/", name="guides", methods={"GET"})
      */
     public function index(GuideRepository $guideRepository): Response
     {
@@ -90,5 +91,25 @@ class GuideController extends AbstractController
         $entityManager->remove($guide);
         $entityManager->flush();
         return $this->redirectToRoute('guides');
+    }
+
+    /**
+     * @Route("/guides/json", name="guidesjson", methods={"GET"})
+     */
+    public function indexjson(GuideRepository $guideRepository, NormalizerInterface $normalizerInterface): Response
+    {
+        $guides = $guideRepository->findAll();
+
+        foreach ($guides as $guide) {
+            $raw[] = [
+                'id' => $guide->getId(),
+                'nom' => $guide->getNom(),
+                'prenom' => $guide->getPrenom()
+            ];
+        }
+        $data = json_encode($raw);
+
+
+        return new Response($data);
     }
 }

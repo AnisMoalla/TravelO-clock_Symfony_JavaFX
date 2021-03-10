@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\PostForum;
+
 use App\Form\PostForumType;
 use App\Repository\PostForumRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -94,4 +95,12 @@ class PostForumController extends AbstractController
 
         return $this->redirectToRoute('post_forum_index');
     }
+
+
+
+
+
+ 
+
+
 }

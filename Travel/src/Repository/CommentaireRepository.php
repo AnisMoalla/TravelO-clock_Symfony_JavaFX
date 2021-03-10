@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Commentaire;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\PostForum;
 
 /**
  * @method Commentaire|null find($id, $lockMode = null, $lockVersion = null)
@@ -47,4 +48,13 @@ class CommentaireRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findbypost($value)
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.PostF = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult();
+    }
 }
