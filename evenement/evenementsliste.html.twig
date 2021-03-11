@@ -1,0 +1,47 @@
+
+
+{% block title %}  Evenements {% endblock %}
+
+{% block content %}
+<h1 style="text-align: center">Gestion des Evenements</h1>
+
+<body id="page-top">
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+
+
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <input class="form-control" id="myInput" type="text" id="navbar-search-input" placeholder="Recherche" aria-label="search" aria-describedby="search">
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Date_debut</th>
+                    <th>Date_fin</th>
+                    <th>Description</th>
+                    <th> prix </th>
+                    <th> Ville </th>
+
+                </tr>
+                </thead>
+
+                <tbody id="hi">
+                {% for evenement in evenements %}
+                    <tr>
+                        <td>{{ evenement.nom }}</td>
+                        <td>{{ evenement.dateDebut ? evenement.dateDebut|date('Y-m-d') : '' }}</td>
+                        <td>{{ evenement.dateFin ? evenement.dateFin|date('Y-m-d') : '' }}</td>
+                        <td>{{ evenement.description }}</td>
+                        <td>{{ evenement.prix }}</td>
+                        <td>{{ evenement.ville }}</td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

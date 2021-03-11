@@ -1,0 +1,17 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}  Evenements {% endblock %}
+    {% block content %}
+
+        <div id="div_chart" align="center" height="500" width="500" style="margin: 50px"></div>
+        <div align="center"> <a href="{{ path('evenements') }}">Retourner vers Evenements</a><br>
+            <a href="{{ path('offres') }}">Retourner vers Offres</a></div>
+
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
+
+        </script>
+        <script type="text/javascript"> {{ gc_draw(piechart, 'div_chart') }}
+        </script>
+
+    {% endblock %}
+
