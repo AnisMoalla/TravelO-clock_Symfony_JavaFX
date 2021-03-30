@@ -92,10 +92,32 @@ class Evenement
      */
     private $reservations;
 
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $rate;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $vote;
+
+    /**
+     * @ORM\OneToMany(targetEntity=EvenementCommentaire::class, mappedBy="event")
+     */
+    private $evenementCommentaires;
+
+    /**
+     * @ORM\OneToMany(targetEntity=EventLike::class, mappedBy="event")
+     */
+    private $ManyToOne;
+
     public function __construct()
     {
         $this->offres = new ArrayCollection();
         $this->reservations = new ArrayCollection();
+        $this->evenementCommentaires = new ArrayCollection();
+        $this->ManyToOne = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -286,5 +308,102 @@ class Evenement
     public function __toString()
     {
         return $this->nom;
+    }
+
+    public function getRate(): ?float
+    {
+        return $this->rate;
+    }
+
+    public function setRate(?float $rate): self
+    {
+        $this->rate = $rate;
+
+        return $this;
+    }
+
+    public function getVote(): ?int
+    {
+        return $this->vote;
+    }
+
+    public function setVote(?int $vote): self
+    {
+        $this->vote = $vote;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|EvenementCommentaire[]
+     */
+    public function getEvenementCommentaires(): Collection
+    {
+        return $this->evenementCommentaires;
+    }
+
+    public function addEvenementCommentaire(EvenementCommentaire $evenementCommentaire): self
+    {
+        if (!$this->evenementCommentaires->contains($evenementCommentaire)) {
+            $this->evenementCommentaires[] = $evenementCommentaire;
+            $evenementCommentaire->setEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvenementCommentaire(EvenementCommentaire $evenementCommentaire): self
+    {
+        if ($this->evenementCommentaires->removeElement($evenementCommentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($evenementCommentaire->getEvent() === $this) {
+                $evenementCommentaire->setEvent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|EventLike[]
+     */
+    public function getManyToOne(): Collection
+    {
+        return $this->ManyToOne;
+    }
+
+    public function addManyToOne(EventLike $manyToOne): self
+    {
+        if (!$this->ManyToOne->contains($manyToOne)) {
+            $this->ManyToOne[] = $manyToOne;
+            $manyToOne->setEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeManyToOne(EventLike $manyToOne): self
+    {
+        if ($this->ManyToOne->removeElement($manyToOne)) {
+            // set the owning side to null (unless already changed)
+            if ($manyToOne->getEvent() === $this) {
+                $manyToOne->setEvent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function islikebyuser(User $user): bool
+    {
+        foreach ($this->ManyToOne as $like) {
+            if ($like->getUser() === $user) {
+                return true;
+            }
+        }
+        return false;
     }
 }

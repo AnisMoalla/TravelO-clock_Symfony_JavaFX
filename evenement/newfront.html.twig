@@ -1,6 +1,5 @@
 {% extends 'baseFront.html.twig' %}
 
-
 {% block change %}
     <div class="contact_form_section">
         <div class="container">
@@ -8,16 +7,16 @@
                 <div class="col">
                     <!-- Contact Form -->
                     <div class="contact_form_container">
-                        <div class="contact_title text-center">Modifier Evenement</div>
+                        <div class="contact_title text-center">Ajouter Evenement</div>
                             <div class="contact_form_email input_field" style="margin-left: 250px">
                                 {{ form_start(form) }}
                                 {{ form_label(form.user) }}
-                                {{ form_widget(form.user, {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'User'}} ) }}
+                                {{ form_widget(form.user, {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Fournisseur'}} ) }}
                                 {{ form_errors(form.user) }}
                             </div>
                             <div class="contact_form_email input_field" style="margin-left: 250px;margin-top: 30px">
                                 {{ form_label(form.nom) }}
-                                {{ form_widget(form.nom , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'First Name'}} ) }}
+                                {{ form_widget(form.nom , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Nom Evenement'}} ) }}
                                 {{ form_errors(form.nom) }}
                             </div>
                             <div class="contact_form_email input_field" style="margin-left: 250px;margin-top: 30px">
@@ -45,7 +44,11 @@
                                 {{ form_widget(form.ville, {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Ville'}} ) }}
                                 {{ form_errors(form.ville) }}
                             </div>
-
+                            <div class="contact_form_email input_field" style="margin-left: 250px;margin-top: 30px">
+                                {{ form_label(form.photo) }}
+                                {{ form_widget(form.photo, {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Image'}} ) }}
+                                {{ form_errors(form.photo) }}
+                            </div>
                             <div class="contact_form_email input_field" style="margin-left: 250px;margin-top: 30px">
                                 {{ form_label(form.prix) }}
                                 {{ form_widget(form.prix, {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Prix'}} ) }}
@@ -57,7 +60,7 @@
                                 {{ form_errors(form.nbr_places) }}
                             </div>
                             <div class="contact_form_email input_field" style="margin-left: 250px;margin-top: 30px">
-                                {{ form_widget(form.modifier , {'attr': {'class': 'form-control form-control-user btn-info' , 'placeholder' : 'Modifier'}} ) }}
+                                {{ form_widget(form.ajouter , {'attr': {'class': 'form-control form-control-user btn-info' , 'placeholder' : 'Ajouter'}} ) }}
                                 {{ form_end(form) }}
                             </div>
                             <div align="right">

@@ -113,15 +113,16 @@ class ReservationController extends AbstractController
             ->add('ajouter',SubmitType::class);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($reservation);
             $entityManager->flush();
 
-            return $this->redirectToRoute('reservations');
+            return $this->redirectToRoute('frontEvenements');
         }
 
-        return $this->render('reservation/newfront.html.twig', [
+        return $this->render('reservation/frontreservation.html.twig', [
             'reservation' => $reservation,
             'form' => $form->createView(),
         ]);
@@ -146,5 +147,30 @@ class ReservationController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/{id}/deletereservationfront", name="delete_reservation")
+     */
+    public function deletef(Request $request, $id): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $reservationRepository = $this->getDoctrine()->getRepository(Reservation::class);
+        $reservation = $reservationRepository->find($id);
+        $entityManager->remove($reservation);
+        $entityManager->flush();
+        return $this->redirectToRoute('frontReservations');
+        $this->get('session')->getFlashBag()->add('notice','Reservation Supprimé');
+    }
+
+    /**
+     * @Route("/frontmesReservations", name="frontmesReservations", methods={"GET"})
+     */
+    public function frontmesReservation(ReservationRepository $reservationRepository): Response
+    {
+        return $this->render('reservation/frontmesreservations.html.twig', [
+            'reservations' => $reservationRepository->findAll(),
+        ]);
+    }
+
 
 }

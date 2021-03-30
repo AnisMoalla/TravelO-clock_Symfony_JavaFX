@@ -19,23 +19,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class OffreController extends AbstractController
 {
-    /**
-     * @Route("/offres", name="offres", methods={"GET"})
-     */
-    public function index(Request $request , PaginatorInterface $paginator): Response
-    {
-        $donnees=$this->getDoctrine()->getManager()->getRepository(Offre::class)->findAll();
-
-        $offres = $paginator->paginate(
-            $donnees ,
-            $request->query->getInt('page',1),
-            2
-        );
-
-        return $this->render('offre/index.html.twig', [
-            'offres' => $offres,
-        ]);
-    }
 
     /**
      * @Route("/offresliste", name="offresliste", methods={"GET"})
@@ -72,6 +55,57 @@ class OffreController extends AbstractController
     }
 
     /**
+     * @Route("/mailoffre", name="mailoffre", methods={"GET","POST"})
+     */
+    public function mailoffre(\Swift_Mailer $mailer): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        // or add an optional message - seen by developers
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
+
+
+        $message = (new \Swift_Message('Welcome to our website'))
+            ->setFrom('projetpidev992@gmail.com')
+            ->setTo($this->getUser()->getEmail())
+            ->setBody(
+                "voila nos derniers offres"
+            )
+        ;
+
+        $mailer->send($message);
+        return $this->redirectToRoute("offres");
+    }
+
+    /**
+     * @Route("/offre/{id}", name="offre_show", methods={"GET"})
+     */
+    public function show(Offre $offre): Response
+    {
+        return $this->render('offre/show.html.twig', [
+            'offre' => $offre,
+        ]);
+    }
+
+    /**
+     * @Route("/offres", name="offres", methods={"GET"})
+     */
+    public function index(Request $request , PaginatorInterface $paginator): Response
+    {
+        $donnees=$this->getDoctrine()->getManager()->getRepository(Offre::class)->findAll();
+
+        $offres = $paginator->paginate(
+            $donnees ,
+            $request->query->getInt('page',1),
+            2
+        );
+
+        return $this->render('offre/index.html.twig', [
+            'offres' => $offres,
+        ]);
+    }
+
+    /**
      * @Route("/newoffre", name="offre_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
@@ -91,16 +125,6 @@ class OffreController extends AbstractController
         return $this->render('offre/new.html.twig', [
             'offre' => $offre,
             'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/offre/{id}", name="offre_show", methods={"GET"})
-     */
-    public function show(Offre $offre): Response
-    {
-        return $this->render('offre/show.html.twig', [
-            'offre' => $offre,
         ]);
     }
 
@@ -189,4 +213,40 @@ class OffreController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/{id}/deleteoffrefront", name="delete_offre")
+     */
+    public function deletef(Request $request, $id): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $offreRepository = $this->getDoctrine()->getRepository(Offre::class);
+        $offre = $offreRepository->find($id);
+        $entityManager->remove($offre);
+        $entityManager->flush();
+        return $this->redirectToRoute('frontOffres');
+    }
+
+    /**
+     * @Route("/frontmesOffres", name="frontmesOffres", methods={"GET"})
+     */
+    public function frontmesEvenement(OffreRepository $offreRepository): Response
+    {
+        return $this->render('offre/frontmesoffres.html.twig', [
+            'offres' => $offreRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/frontOffrea", name="frontOffrea", methods={"GET"})
+     */
+    public function frontEvenementa(OffreRepository $offreRepository , $id): Response
+    {
+        return $this->render('offre/frontoffre.html.twig', [
+            'offres' => $offreRepository->findAll(),
+            'offre' => $offreRepository->find($id),
+        ]);
+    }
+
+
 }
