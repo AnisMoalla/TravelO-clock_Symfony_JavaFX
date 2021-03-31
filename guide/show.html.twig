@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<title>Guide</title>
+
+{% block body %}
+    <h1>Guide</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ guide.id }}</td>
+            </tr>
+            <tr>
+                <th>Pays</th>
+                <td>{{ guide.pays }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ guide.ville }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ guide.image }}</td>
+            </tr>
+            <tr>
+                <th>Tel</th>
+                <td>{{ guide.tel }}</td>
+            </tr>
+            <tr>
+                <th>Age</th>
+                <td>{{ guide.age }}</td>
+            </tr>
+            <tr>
+                <th>Sexe</th>
+                <td>{{ guide.sexe }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ guide.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ guide.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Language</th>
+                <td>{{ guide.language }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('guide_index') }}">back to list</a>
+
+    <a href="{{ path('guide_edit', {'id': guide.id}) }}">edit</a>
+
+    {{ include('guide/_delete_form.html.twig') }}
+{% endblock %}
