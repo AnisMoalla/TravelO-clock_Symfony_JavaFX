@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<title>Badword index</title>
+
+{% block body %}
+    <h1>Badword index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Word</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for badword in badwords %}
+            <tr>
+                <td>{{ badword.id }}</td>
+                <td>{{ badword.Word }}</td>
+                <td>
+                    <a href="{{ path('badword_show', {'id': badword.id}) }}">show</a>
+                    <a href="{{ path('badword_edit', {'id': badword.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('badword_new') }}">Create new</a>
+{% endblock %}

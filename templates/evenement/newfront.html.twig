@@ -1,0 +1,71 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block change %}
+    <div class="contact_form_section">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <!-- Contact Form -->
+                    <div class="contact_form_container">
+                        <div class="contact_title text-center">Ajouter Evenement</div>
+                            <div class="contact_form_email input_field" style="margin-left: 250px">
+                                {{ form_start(form) }}
+                            </div>
+                            <div class="contact_form_email input_field" style="margin-left: 250px;margin-top: 30px">
+                                {{ form_label(form.nom) }}
+                                {{ form_widget(form.nom , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Nom Evenement'}} ) }}
+                                {{ form_errors(form.nom) }}
+                            </div>
+                            <div class="contact_form_email input_field" style="margin-left: 250px;margin-top: 30px">
+                                {{ form_label(form.date_debut) }}
+                                {{ form_widget(form.date_debut , {'attr': {'class': ' form-select-lg form-control form-control-user' , 'placeholder' : 'Date Debut'}} ) }}
+                                {{ form_errors(form.date_debut) }}
+                            </div>
+                            <div class="contact_form_email input_field" style="margin-left: 250px;margin-top: 30px">
+                                {{ form_label(form.date_fin) }}
+                                {{ form_widget(form.date_fin , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Date Fin'}} ) }}
+                                {{ form_errors(form.date_fin) }}
+                            </div>
+                            <div class="contact_form_email input_field" style="margin-left: 250px;margin-top: 30px">
+                                {{ form_label(form.description) }}
+                                {{ form_widget(form.description, {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Description'}} ) }}
+                                {{ form_errors(form.description) }}
+                            </div>
+                            <div class="contact_form_email input_field" style="margin-left: 250px;margin-top: 30px">
+                                {{ form_label(form.pays) }}
+                                {{ form_widget(form.pays , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Pays'}} ) }}
+                                {{ form_errors(form.pays) }}
+                            </div>
+                            <div class="contact_form_email input_field" style="margin-left: 250px;margin-top: 30px">
+                                {{ form_label(form.ville) }}
+                                {{ form_widget(form.ville, {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Ville'}} ) }}
+                                {{ form_errors(form.ville) }}
+                            </div>
+                            <div class="contact_form_email input_field" style="margin-left: 250px;margin-top: 30px">
+                                {{ form_label(form.photo) }}
+                                {{ form_widget(form.photo, {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Image'}} ) }}
+                                {{ form_errors(form.photo) }}
+                            </div>
+                            <div class="contact_form_email input_field" style="margin-left: 250px;margin-top: 30px">
+                                {{ form_label(form.prix) }}
+                                {{ form_widget(form.prix, {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Prix'}} ) }}
+                                {{ form_errors(form.prix) }}
+                            </div>
+                            <div class="contact_form_email input_field" style="margin-left: 250px;margin-top: 30px">
+                                {{ form_label(form.nbr_places) }}
+                                {{ form_widget(form.nbr_places, {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Nombres Places'}} ) }}
+                                {{ form_errors(form.nbr_places) }}
+                            </div>
+                            <div class="contact_form_email input_field" style="margin-left: 250px;margin-top: 30px">
+                                {{ form_widget(form.ajouter , {'attr': {'class': 'form-control form-control-user btn-info' , 'placeholder' : 'Ajouter'}} ) }}
+                                {{ form_end(form) }}
+                            </div>
+                            <div align="right">
+                                <a href="{{ path('frontmesEvenements') }}">Retourner vers Evenements</a>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

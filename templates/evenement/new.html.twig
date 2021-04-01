@@ -1,0 +1,83 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}New Evenement{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block"> <img src="{{ asset('back/img/event.jpg') }}" width="450" height="780"></div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Ajouter Evenement</h1>
+                            </div>
+                            {% set flashbag_notices = app.session.flashbag.get('notice') %}
+                            {% if flashbag_notices is not empty %}
+                            <ul class="m-sm-0">
+                                {% for notice in flashbag_notices %}
+                                    <li>{{ notice }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                                <div class="form-group">
+                                    {{ form_start(form) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_widget(form.nom , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Nom Evenement'}} ) }}
+                                    {{ form_errors(form.nom) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_widget(form.date_debut , {'attr': {'class': ' form-select-lg form-control form-control-user' , 'placeholder' : 'Date Debut'}} ) }}
+                                    {{ form_errors(form.date_debut) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_widget(form.date_debut , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Date Debut'}} ) }}
+                                    {{ form_errors(form.date_debut) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_widget(form.date_fin , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Date Fin'}} ) }}
+                                    {{ form_errors(form.date_fin) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_widget(form.description, {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Description'}} ) }}
+                                    {{ form_errors(form.description) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_widget(form.pays , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Pays'}} ) }}
+                                    {{ form_errors(form.pays) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_widget(form.ville, {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Ville'}} ) }}
+                                    {{ form_errors(form.ville) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_widget(form.photo, {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Image'}} ) }}
+                                    {{ form_errors(form.photo) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_widget(form.prix, {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Prix'}} ) }}
+                                    {{ form_errors(form.prix) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_widget(form.nbr_places, {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Nombres Places'}} ) }}
+                                    {{ form_errors(form.nbr_places) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_widget(form.ajouter , {'attr': {'class': 'form-control form-control-user btn-info' , 'placeholder' : 'Ajouter'}} ) }}
+                                    {{ form_end(form) }}
+                                </div>
+                            <div align="right">
+                                <a href="{{ path('evenements') }}">Retourner vers Evenements</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,161 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}  edit Profile {% endblock %}
+
+{% block content %}
+    <!-- Page content -->
+    <div class="container-fluid mt--7 p-5">
+      <div class="row">
+        <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+          <div class="card card-profile shadow mt-5">
+            <div class="row justify-content-center mt-5">
+              <div class="col-lg-3 order-lg-2">
+                <div class="card-profile-image">
+                  <a href="#">
+                    <img src="{{ asset('uploads/images/' ~ photo)}}" class="rounded-circle" height="150">
+                  </a>
+                </div>
+              </div>
+            </div>
+            {{ form_start(form) }}
+
+            <div class="card-body pt-0 pt-md-4">
+              <div class="row">
+                <div class="col">
+
+                </div>
+              </div>
+              <div class="text-center">
+                {{ form_widget(form.photo , {'attr': {'class': 'btn btn-sm btn-info mr-4 mt-5 ml-4' , 'placeholder' : 'nom'}} ) }}
+                {{ form_errors(form.photo) }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-8 order-xl-1">
+          <div class="card bg-secondary shadow mt-5">
+            <div class="card-header bg-white border-0 pt-4">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">My profile</h3>
+                </div>
+                <div class="col-4 text-right">
+                  {{ form_widget(form.save , {'attr': {'class': 'btn btn-sm btn-primary' , 'placeholder' : 'nom'}} ) }}
+
+                </div>
+              </div>
+            </div>
+            <div class="card-body bg-white">
+                <h6 class="heading-small text-muted mb-4">Admin information</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-first-name">First name</label>
+                        {{ form_widget(form.nom , {'attr': {'class': 'form-control form-control-alternative' , 'placeholder' : 'nom'}} ) }}
+            						{{ form_errors(form.nom) }}
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-last-name">Last name</label>
+                        {{ form_widget(form.prenom , {'attr': {'class': 'form-control form-control-alternative' , 'placeholder' : 'prenom'}} ) }}
+            						{{ form_errors(form.prenom) }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-email">Email address</label>
+                        {{ form_widget(form.email , {'attr': {'class': 'form-control form-control-alternative' , 'placeholder' : 'email'}} ) }}
+            						{{ form_errors(form.email) }}
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-password">Password</label>
+                        {{ form_widget(form.password , {'attr': {'class': 'form-control form-control-alternative' , 'placeholder' : 'password'}} ) }}
+            						{{ form_errors(form.password) }}
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-age">Age</label>
+                        {{ form_widget(form.age , {'attr': {'class': 'form-control form-control-alternative' , 'placeholder' : 'age'}} ) }}
+            						{{ form_errors(form.age) }}
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-numero">Numero</label>
+                        {{ form_widget(form.numero , {'attr': {'class': 'form-control form-control-alternative' , 'placeholder' : 'age'}} ) }}
+            						{{ form_errors(form.numero) }}
+                      </div>
+                    </div>
+                      <div class="col-lg-6">
+                          <div class="form-group">
+                              <label class="form-control-label" for="input-numero">country</label>
+                              {{ form_widget(form.country , {'attr': {'class': 'form-control form-control-alternative' , 'placeholder' : 'country'}} ) }}
+                              {{ form_errors(form.country) }}
+                          </div>
+                      </div>
+                  </div>
+                </div>
+
+                {{ form_end(form) }}
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+{% endblock %}

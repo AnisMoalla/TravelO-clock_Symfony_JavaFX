@@ -1,0 +1,48 @@
+
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}  Reservations {% endblock %}
+
+{% block content %}
+<h1 class='text-center'>Gestion des Reservations</h1>
+
+<body id="page-top">
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div>
+        <a href="{{ url('reservation_new')}}"><button type="button" class="btn btn-info mb-4" name="button"> Ajouter </button> </a>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Date reservation</th>
+                    <th>Tarif</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for reservation in reservations %}
+                    <tr>
+                        <td>{{ reservation.id }}</td>
+                        <td>{{ reservation.dateReservation ? reservation.dateReservation|date('Y-m-d') : '' }}</td>
+                        <td>{{ reservation.tarif }}</td>
+                        <td> <a href="{{ url('reservation_edit' , {id : reservation.id} ) }}"> <img src="{{ asset('back/img/edit.png') }}" alt="edit" width="50px" height="50px" >  </a> </td>
+                        <td><a href="{{ url('reservation_delete' , {id : reservation.id} ) }}"> <img src="{{ asset('back/img/icon-delete.jpg') }}" alt="edit" width="50px" height="50px" >  </a></td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

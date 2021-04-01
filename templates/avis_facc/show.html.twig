@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<title>AvisFacc</title>
+
+{% block body %}
+    <h1>AvisFacc</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ avis_facc.id }}</td>
+            </tr>
+            <tr>
+                <th>Rating</th>
+                <td>{{ avis_facc.rating }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ avis_facc.description }}</td>
+            </tr>
+            <tr>
+                <th>Date_publication</th>
+                <td>{{ avis_facc.datePublication ? avis_facc.datePublication|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>User</th>
+                <td>{{ avis_facc.user }}</td>
+            </tr>
+            <tr>
+                <th>Facceuil</th>
+                <td>{{ avis_facc.facceuil }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('avis_facc_index') }}">back to list</a>
+
+    <a href="{{ path('avis_facc_edit', {'id': avis_facc.id}) }}">edit</a>
+
+    {{ include('avis_facc/_delete_form.html.twig') }}
+{% endblock %}

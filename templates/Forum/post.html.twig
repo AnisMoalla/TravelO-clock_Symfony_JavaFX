@@ -1,0 +1,171 @@
+{% extends 'baseFront.html.twig' %}
+
+
+
+
+
+
+{% block title %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<title >Forum</title>
+{% endblock %}
+{% block search %}
+    <div class="search">
+
+
+        <!-- Search Contents -->
+
+        <div class="container fill_height">
+            <div class="row fill_height">
+                <div class="col fill_height ">
+
+                    <!-- Search Tabs -->
+
+                    <h1 class=" intro_title text-light text-center text-uppercase pt-4 align-middle"> {{post.name}} </h1>
+
+                    
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+    {% block change %}
+
+    <div class="container">
+    
+    <div class="card p-10 m-5">
+    
+    <p class=" text-capitalize  font-weight-norma  text-justify">
+    {{post.content}}
+
+    </p>
+
+    </div>
+    <div class="row">
+    <a href="{{url('likepost',{'id':post.id})}}" class="js.like">
+    {% if app.user and post.islikebyuser(app.user) %}
+    <i class="fas fa-thumbs-up"></i>
+    {% else %}
+    <i class="far fa-thumbs-up"></i>
+{% endif  %}
+    <span class="js-likes">{{post.likes | length}} </span>
+    <span class="js-label">Like</span>
+    </a>
+    </div>
+<h3 class="text-center">comments</h3>
+<div class="row ">
+
+
+<textarea class="form-control" id="ZoneCom" rows="3" name="content"></textarea>
+<button type="submit" class="btn btn-default" id="addcomment"> add comment</button>
+
+</div >
+<span id="show"></span>
+
+    </div>
+    
+<p id="test"><p>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script>
+function OnlclickbtnLike(event){
+    event.preventDefault()
+     url ="{{url('likepost',{'id':post.id})}}";
+    axios.get(url).then(function(response){
+    console.log(response)
+    const likes=response.data.likes;
+    spanCount.textContent=likes 
+});
+
+
+}
+
+function Onlclickntn(event){
+
+    event.preventDefault()
+    $.post("{{ url('newComment',{'id': post.id}) }}",{ content : $('#ZoneCom').val()});
+     document.querySelector('#ZoneCom').value="";
+
+}
+
+
+function listComment(){
+$.getJSON("{{ url('listComment',{'id': post.id}) }}",function(data){
+    div="<div class='container'>"
+    for (let r of data){
+        div=div+"<br><div class='row'> <div class='border col-md-4 '><b>"+r.username+" "+r.userpren+"</b><br><img src='"+r.userphoto+"' style='widht:20px;height:20px'></div><div class='border col-md-4'>"+r.content+"</div></div>"
+    }
+    div=div+"</div>"
+    document.querySelector('#show').innerHTML=div;
+
+})
+$.get("{{ url('listComment',{'id': post.id}) }}",function(data){
+  const datajson=  JSON.stringify(data.content)
+
+})
+
+}
+function changer(event){
+    var text=document.querySelector("#ZoneCom").value;
+    $.getJSON("{{ url('jsonbad') }}",function(data){
+        array=[];
+        for(let word of data){
+            array.push(new String(word.content))
+        }
+    
+        
+            for(let i of array){
+                text.text.indexOf(i)
+            res=text.replace(i,"*****");
+            document.querySelector("#ZoneCom").value=res;
+             
+
+    
+            }})}
+            function replaceWords(event) {
+    //Prevent form submission to server 
+    event.preventDefault();
+    var text=document.querySelector("#ZoneCom");
+    console.log(text.value);
+    $.getJSON("{{ url('jsonbad') }}",function(data){
+        array=[];
+        for(let word of data){
+            array.push(new String(word.content))
+        }
+    console.log(text.value);
+    var censored = censore(text.value, array);
+    text.value = censored;
+
+})
+
+}
+function censore(string, filters) {
+    // "i" is to ignore case and "g" for global
+    var regex = new RegExp(filters.join("|"), "gi");
+    console.log(regex);
+    return string.replace(regex, function (match) {
+        //replace each letter with a star
+        var stars = '';
+        for (var i = 0; i < match.length; i++) {
+            stars += '*';
+        }
+        return stars;
+    });
+
+}
+
+document.querySelectorAll('a.js-like').forEach(function(link){
+    link.addEventListener('click',OnlclickbtnLike)
+})
+
+document.querySelector("#addcomment").addEventListener('click',Onlclickntn)
+document.querySelector("#ZoneCom").addEventListener('keyup',replaceWords)
+setInterval(listComment,1000);
+
+</script>
+
+    {% endblock %}

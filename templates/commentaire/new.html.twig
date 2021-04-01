@@ -1,0 +1,44 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %} New Commentaire{% endblock %}
+
+{% block content %}
+
+<div class="container" style="height:100%">
+
+    <div class="card o-hidden border-0 shadow-lg my-5" style="height:80%"> 
+        <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row" style="height:80%">
+                <div class="col-lg-4 d-none d-lg-block"> <img src="{{ asset('back/img/tt.jpg') }}" width="400" height="800"></div>
+                <div class="col-lg-8">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">New Commentaire</h1>
+                        </div>
+                            <div class="form-group">
+                            {{ form_start(form) }}
+                                <div class="form-group">
+                                    {{ form_widget(form.content,{'attr':{'class':'form-control from-control-user','placholder':'Title Post'}}) }}
+                                    {{ form_errors(form.content) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_widget(form.PostF) }}
+                                    {{ form_errors(form.PostF) }}
+                                </div>
+                               
+                            <hr>
+
+                            {{ form_widget(form.save,{'attr':{'class':'btn btn-danger'}} ) }}
+                              {{ form_end(form) }}
+                        <hr>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

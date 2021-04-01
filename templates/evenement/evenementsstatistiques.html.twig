@@ -1,0 +1,149 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}  Evenements {% endblock %}
+
+{% block content %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+    <style>
+        .statsofevenements {
+            margin-left: 18vw  ;
+        }
+
+        .canvas-container {
+            display: flex;
+            width: 40%;
+        }
+
+        .cv {
+            width: 100%;
+            height: 100%;
+        }
+
+    </style>
+
+
+    <div class="canvas-container" style="height:40vh; width:40vw">
+        <canvas id="myChart"></canvas>
+        <canvas id="chartprix"></canvas>
+    </div>
+
+    <div class="canvas-container mt-5 mb-5" style="height:40vh; width:40vw">
+        <canvas id="myChart2"></canvas>
+        <canvas id="chartdate"></canvas>
+    </div>
+    <div align="center"> <a href="{{ path('evenements') }}">Retourner vers Evenements</a></div>
+
+    <script>
+
+        // chart prix
+        var ctx = document.getElementById('chartprix');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["1-49", "50-99", "100-149", "149-199", "200-250"],
+                datasets: [
+                    {
+                        label: "Prix des Evenements",
+                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                        data: {{ statprix|json_encode }}
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        stacked: true
+                    }]
+                },
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: 'Prix des Evenements'
+                }
+            }
+        });
+
+
+        // chart nbrplaces
+
+        var ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["1-4", "4-9", "10-14", "15-19", "20-25"],
+                datasets: [
+                    {
+                        label: "Nombre des Places par Evenement",
+                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                        data: {{ statnbr|json_encode }}
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        stacked: true
+                    }]
+                },
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: 'Nombre des Places par Evenement'
+                }
+            }
+        });
+
+
+
+
+        // chart date
+        var ctx = document.getElementById('chartdate');
+        var data = {
+            datasets: [{
+                data:  {{ statdate|json_encode }}  ,
+                backgroundColor: [
+                    '#b7c7b7',
+                ]
+            }
+            ],
+
+            // These labels appear in the legend and in the tooltips when hovering different arcs
+            labels: [
+                'January',
+                'February',
+                'March',
+                'April',
+                'May',
+                'June',
+                'July',
+                'August',
+                'September',
+                'October',
+                'November',
+                'December'
+            ]
+        };
+
+        var myLineChart = new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: {
+                scales: {
+                    yAxes: [{
+                        stacked: true
+                    }]
+                },
+                title: {
+                    display: true,
+                    text: 'Nombre des Evenements par Mois'
+                }
+            }
+        });
+
+
+    </script>
+
+{% endblock %}

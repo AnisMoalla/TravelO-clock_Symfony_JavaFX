@@ -1,0 +1,61 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}  promotion {% endblock %}
+{% block  search%}{% endblock %}
+{% block change %}
+
+
+
+    <!-- Contact -->
+
+    <div class="contact_form_section" style="margin: 50px">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+
+                    <!-- Contact Form -->
+                    <div class="contact_form_container">
+                        <div class="contact_title text-center">Edit Promotion</div>
+
+
+                        <div>
+                            <div class="form-group">
+                                {{ form_start(form) }}
+                                {{ form_label(form.nom) }}
+                                {{ form_widget(form.nom , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Name'}} ) }}
+                                {{ form_errors(form.nom) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(form.date_debut) }}
+
+                                {{ form_widget(form.date_debut , {'attr': {'class': ' form-select-lg form-control form-control-user' , 'placeholder' : 'Date Debut'}} ) }}
+                                {{ form_errors(form.date_debut) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(form.date_fin) }}
+
+                                {{ form_widget(form.date_fin , {'attr': {'class': ' form-select-lg form-control form-control-user' , 'style':'width:100'}} ) }}
+                                {{ form_errors(form.date_fin) }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_label(form.pourcentage) }}
+                                {{ form_widget(form.pourcentage , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Pourcentage'}} ) }}
+                                {{ form_errors(form.pourcentage) }}
+                            </div>
+                            {{ form_widget(form.modifier ,{'attr': {'class': 'btn btn-block btn-warning' }}) }}
+                            {{ form_end(form) }}
+
+                            {% if check is defined %}
+                                check date
+                            {% endif %}
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

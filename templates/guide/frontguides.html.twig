@@ -1,0 +1,141 @@
+{% extends 'baseFront.html.twig' %}
+{% block search %}
+    <style>
+        .book_button
+        {
+            background: #31124b;
+            margin-top: 39px;
+            margin-bottom: -5px;
+            -webkit-transition: all 200ms ease;
+            -moz-transition: all 200ms ease;
+            -ms-transition: all 200ms ease;
+            -o-transition: all 200ms ease;
+            transition: all 200ms ease;
+        }
+    </style>
+    <div class="search">
+        <div class="container fill_height">
+            <div class="row fill_height">
+                <div class="col fill_height">
+                    <div class="search_tabs_container">
+                        <div class="search_tabs d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+                            <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="{{asset('front/images/suitcase.png')}}" alt=""><span>Hotels</span></div>
+                            <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="{{asset('front/images/bus.png')}}" alt="">Familles Acceuils</div>
+                            <div class="search_tab active d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="{{asset('front/images/departure.png')}}" alt="">Guides</div>
+                            <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="{{asset('front/images/island.png')}}" alt="">Vendeurs</div>
+                            <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="{{asset('front/images/cruise.png')}}" alt="">Evenements</div>
+                            <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="{{asset('front/images/diving.png')}}" alt="">Offres</div>
+                        </div>
+                    </div>
+                    <div class="search_panel active">
+                        <form action="#" id="search_form_1" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+                            <div class="search_item">
+                                <div>Destination</div>
+                                <input type="text" class="destination search_input" required="required">
+                            </div>
+                            <div class="search_item">
+                                <div>Date Debut</div>
+                                <input type="text" class="check_in search_input" placeholder="YYYY-MM-DD">
+                            </div>
+                            <div class="search_item">
+                                <div>Date Fin</div>
+                                <input type="text" class="check_out search_input" placeholder="YYYY-MM-DD">
+                            </div>
+                            <div class="search_item">
+                                <div>Nombre Places</div>
+                                <select name="adults" id="adults_1" class="dropdown_item_select search_input">
+                                    <option>01</option>
+                                    <option>02</option>
+                                    <option>03</option>
+                                    <option>04</option>
+                                    <option>05</option>
+                                    <option>01</option>
+                                    <option>02</option>
+                                    <option>03</option>
+                                    <option>01</option>
+                                    <option>02</option>
+                                    <option>03</option>
+                                </select>
+                            </div>
+                            <button class="button search_button">Rechercher<span></span><span></span><span></span></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block change %}
+    {% set bol1 = true %}
+    {% set bol2 = true %}
+    {% set bol3 = true %}
+    {% set bol4 = true %}
+    {% set bol5 = true %}
+    <div class="col-lg-14">
+    <br>
+    <div class="offers_price" style="padding-left: 670px;">GUIDES</div>
+    <br>
+    {% set flashbag_notices = app.session.flashbag.get('notice') %}
+    {% if flashbag_notices is not empty %}
+        <ul class="m-sm-0">
+            {% for notice in flashbag_notices %}
+                <li>{{ notice }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% for v in guides %}
+        {% if (v.getUser().getAge() > 20) and (bol1 == true) %}
+            <div class="row">
+            <div class="button home_slider_button" style="margin-left: 200px"><div class="button_bcg"></div><a href="{{ url('new_guide',{'id':v.getUser().getId()})}}">Ajouter Guide<span></span><span></span><span></span></a></div>
+            {% set bol1 = false %}
+        {% endif %}
+        {% if (v.getUser().getAge() > 20) and (bol2 == true) %}
+        <div class="button home_slider_button" style="margin-left: 700px"><div class="button_bcg"></div><a href="{{ url('frontVendeurs')}}">Voir Vendeurs<span></span><span></span><span></span></a></div>
+        {% set bol2 = false %}
+        {% endif %}x
+        </div>
+        <br>
+        <div class="offers_grid">
+            <div class="offers_item rating_3">
+                <div class="row">
+                    <div class="col-lg-1 temp_col"></div>
+                    <div class="col-lg-3 col-1680-4">
+                        <div class="offers_image_container">
+                            <div class="offers_image_background" style="background-image:url({{ asset('uploads/images/' ~ v.image)}})"></div>
+                            {% if (v.getUser().getAge() > 20)  %}
+                                <div class="offer_name"><a href="{{ url('frontGuide'  , {id : v.id} )}}">Voir Plus</a></div>
+                                {% set bol4 = false %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="offers_content">
+                            <div class="mr-6" style="padding-left: 790px">
+                                <a href="{{ url('newreclamation',{'id':v.id})}}"><img src="{{ asset('front/images/claim.png')}}" alt="alert" height="50" weight="50"></a>
+                            </div>
+                            <div class="offers_price">{{ v.nom}}</div>
+                            <div class="offers_price">{{ v.prenom}}</div>
+                            <div class="rating_r rating_r_3 offers_rating" data-rating="3">
+                                <i></i>
+                                <i></i>
+                                <i></i>
+                                <i></i>
+                                <i></i>
+                            </div>
+                            <h3 class="mt-3">Nombre des Places: {{ v.pays }}</h3>
+                            <p class="offers_text">Description: {{ v.ville }}</p>
+                            <p class="offers_text">Description: {{ v.tel }}</p>
+                            <p class="offers_text">Description: {{ v.sexe }}</p>
+                            <div class="row">
+                            <div>     <a href="{{ url('edit_guide'  , {'id' : v.id} )}}"><button type="button" class="button book_button btn-danger" name="button" style="width: 150px"> Modifier<span></span><span></span><span></span></button></a></div>
+                            <div style="margin-left: 500px">     <a href="{{ url('delete_guide'  , {'id' : v.id} )}}"><button type="button" class="button book_button btn-danger" name="button" style="width: 150px"> Supprimer<span></span><span></span><span></span></button> </a></div>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <br>
+    {% endfor %}
+{% endblock %}

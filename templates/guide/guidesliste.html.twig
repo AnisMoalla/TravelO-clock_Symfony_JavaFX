@@ -1,0 +1,43 @@
+
+
+{% block title %}  Guides {% endblock %}
+
+{% block content %}
+<h1 style="text-align: center">Gestion des Guides</h1>
+
+<body id="page-top">
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+
+
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <input class="form-control" id="myInput" type="text" id="navbar-search-input" placeholder="Recherche" aria-label="search" aria-describedby="search">
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Tel</th>
+                    <th> Sexe </th>
+                    <th> Ville </th>
+
+                </tr>
+                </thead>
+
+                <tbody id="hi">
+                {% for guide in guides %}
+                    <tr>
+                        <td>{{ guide.nom }}</td>
+                        <td>{{ guide.tel }}</td>
+                        <td>{{ guide.sexe }}</td>
+                        <td>{{ guide.ville }}</td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

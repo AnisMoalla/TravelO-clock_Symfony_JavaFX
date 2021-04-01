@@ -1,0 +1,59 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block change %}
+    <div class="contact_form_section">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <!-- Contact Form -->
+                    <div class="contact_form_container">
+                        <div class="contact_title text-center">Ajouter Vendeur</div>
+                        <div class="form-group">
+                            {{ form_start(form) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_widget(form.pays , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Pays'}} ) }}
+                            {{ form_errors(form.pays) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_widget(form.ville , {'attr': {'class': ' form-select-lg form-control form-control-user' , 'placeholder' : 'Ville'}} ) }}
+                            {{ form_errors(form.ville) }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form_widget(form.tel , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Tel'}} ) }}
+                            {{ form_errors(form.tel) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_widget(form.photo , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Tel'}} ) }}
+                            {{ form_errors(form.photo) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_widget(form.nom, {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Name'}} ) }}
+                            {{ form_errors(form.nom) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_widget(form.type , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Type'}} ) }}
+                            {{ form_errors(form.type) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_widget(form.heure_ouverture, {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Opening Time'}} ) }}
+                            {{ form_errors(form.heure_ouverture) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_widget(form.heure_fermeture, {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Closing Time'}} ) }}
+                            {{ form_errors(form.heure_fermeture) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_widget(form.ajouter , {'attr': {'class': 'form-control form-control-user btn-info' , 'placeholder' : 'Modifier'}} ) }}
+                            {{ form_end(form) }}
+                        </div>
+                        <div align="right">
+                            <a href="{{ path('frontVendeurs') }}">Retourner vers Vendeurs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

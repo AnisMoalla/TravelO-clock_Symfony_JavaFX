@@ -1,0 +1,111 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}  reclamation {% endblock %}
+
+{% block change %}
+
+
+<html lang="en">
+<head>
+    <title>Contact V12</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="{{ asset('reclamation/images/icons/favicon.ico') }}"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('reclamation/vendor/bootstrap/css/bootstrap.min.css') }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('reclamation/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('reclamation/vendor/animate/animate.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('reclamation/vendor/css-hamburgers/hamburgers.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('reclamation/vendor/select2/select2.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('reclamation/css/util.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('reclamation/css/main.css')}}">
+    <!--===============================================================================================-->
+</head>
+<body>
+
+<div class="bg-contact100" >
+    <div class="container-contact100">
+        <div class="wrap-contact100" style="margin-bottom: 10px">
+            <div class="contact100-pic js-tilt" data-tilt>
+                <img src="{{ asset('reclamation/images/img-01.png') }}" alt="IMG">
+            </div>
+
+            <h3 class="contact100-form-title" style="color:red" size="25px">Reclamation</h3>
+
+            <div  class="contact100-pic js-tilt" data-tilt>
+					<span class="contact100-form-title">
+						Type de reclamation
+					</span>
+                {{ form_start(form) }}
+
+                {% for child in form.type %}
+                  <div>
+                      {{ form_widget(child, { 'attr': {'class': 'mdl-radio__button', 'name': 'options'}}) }} {{ form_label(child) }} </div>
+                {% endfor %}
+
+                <br>
+                {{ form_widget(form.description ,{'attr': { class:"form-control form-control-user"}} ) }}
+                {%if nott is defined %}
+                empty
+                {% endif %}
+                <br>
+                <div class="form-group">
+                    {{ form_widget(form.send , {'attr': {'class': 'contact100-form-btn'}} ) }}
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+                <div class="form-group">
+                    {{ form_widget(form.send , {'attr': {'class': 'contact100-form-btn'}} ) }}
+                </div>
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--===============================================================================================-->
+<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="vendor/bootstrap/js/popper.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="vendor/tilt/tilt.jquery.min.js"></script>
+<script >
+    $('.js-tilt').tilt({
+        scale: 1.1
+    })
+</script>
+<!--===============================================================================================-->
+<script src="js/main.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-23581568-13');
+</script>
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,82 @@
+
+
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}  list hotel {% endblock %}
+
+{% block content %}
+
+<h1 style="text-align: center">Liste d'Hotel </h1>
+<input class="form-control" id="myInput" type="text" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+
+
+<body id="page-top">
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div>
+        <a href="{{ url('hotel_new')}}"><button type="button" class="btn btn-info mb-4" name="button"> ajouter </button> </a>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered"  width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th>Adresse</th>
+                    <th>NbrChambre</th>
+                    <th>NbrChambreDispo</th>
+                    <th>NbrEtoile</th>
+                    <th>Image</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+
+                <tbody id="hi">
+                {% for hotel in hotels %}
+                    <tr>
+                        <td>{{ hotel.id }}</td>
+                        <td>{{ hotel.nom }}</td>
+                        <td>{{ hotel.description }}</td>
+                        <td>{{ hotel.adresse }}</td>
+                        <td>{{ hotel.nbrechambre }}</td>
+                        <td>{{ hotel.nbrechambreDispo }}</td>
+                        <td>{{ hotel.nbreEtoile }}</td>
+                        <td><img src="{{ asset('Upload/')}}{{ hotel.image }}" width="100"  /></td>
+                        <td><a href="{{ url('hotel_edit' , {id : hotel.id} ) }}"> <img src="{{ asset('back/img/edit.png') }}" alt="edit" width="50px" height="50px" >  </a>
+
+                        <a href="{{ url('hotel_delete' , {id : hotel.id} ) }}"> <img src="{{ asset('back/img/icon-delete.jpg') }}" alt="delete" width="50px" height="50px" >  </a></td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#hi tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+
+
+{% endblock %}

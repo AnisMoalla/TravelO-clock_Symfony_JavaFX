@@ -1,0 +1,199 @@
+
+{% extends 'baseFront.html.twig' %}
+ {% block up %}
+     <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="description" content="Travelix Project">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" type="text/css" href="{{asset('front/styles/bootstrap4/bootstrap.min.css')}}">
+     <link href="{{asset('front/plugins/font-awesome-4.7.0/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+     <link rel="stylesheet" type="text/css" href="{{asset('front/plugins/OwlCarousel2-2.2.1/owl.carousel.css')}}">
+     <link rel="stylesheet" type="text/css" href="{{asset('front/plugins/OwlCarousel2-2.2.1/owl.theme.default.css')}}">
+     <link rel="stylesheet" type="text/css" href="{{asset('front/plugins/OwlCarousel2-2.2.1/animate.css')}}">
+     <link rel="stylesheet" type="text/css" href="{{asset('front/styles/main_styles.css')}}">
+     <link rel="stylesheet" type="text/css" href="{{asset('front/styles/responsive.css')}}">
+     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+     <style>
+
+         span {
+             font-size: 13px;
+         }
+         .btn-group .btn {
+             transition: background-color .3s ease;
+         }
+
+         .panel-table .panel-body {
+             padding: 0;
+         }
+
+         .table > thead > tr > th {
+             border-bottom: none;
+         }
+
+
+         .panel-table .panel-body .table-bordered > thead > tr > th:first-of-type {
+             text-align: center;
+             width: 50px;
+         }
+
+         .panel-table .panel-body .table-bordered > thead > tr > th.col-tools {
+             text-align: center;
+             width: 120px;
+         }
+
+         .panel-table .panel-body .table-bordered > thead > tr > th:last-of-type,
+         .panel-table .panel-body .table-bordered > tbody > tr > td:last-of-type {
+             border-right: 0;
+         }
+
+         .panel-table .panel-body .table-bordered > thead > tr > th:first-of-type,
+         .panel-table .panel-body .table-bordered > tbody > tr > td:first-of-type {
+             border-left: 0;
+         }
+
+         .panel-table .panel-body .table-bordered > tbody > tr:first-of-type > td {
+             border-bottom: 0;
+         }
+
+         .panel-table .panel-body .table-bordered > thead > tr:first-of-type > th {
+             border-top: 0;
+         }
+
+         .pagination > li > a, .pagination > li > span {
+             border-radius: 50% !important;
+             margin: 0 5px;
+         }
+
+         .panel-default {
+             margin-left: 50px;
+             width: 1000px;                }
+         input.hidden {
+             position: absolute;
+             left: -9999px;
+         }
+
+         #profile-image1 {
+             cursor: pointer;
+
+             width: 100px;
+             height: 100px;
+             border:2px solid #03b1ce ;}
+         .tital{ font-size:16px; font-weight:500;}
+         .bot-border{ border-bottom:1px #f8f8f8 solid;  margin:20px 0  5px 0}
+     </style>
+ {% endblock %}
+
+{% block title %}  profile {% endblock %}
+{% block search %}
+{% endblock %}
+{% block change %}
+            <div class="container" style="padding: 10px">
+                <div class="card">
+
+                    <div class="col-md-7 ">
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">  <h4 >User Profile</h4></div>
+                            <div class="panel-body">
+
+                                <div class="box box-info">
+
+                                    <div class="box-body">
+                                        <div class="col-sm-6">
+                                            <div align="center"> <img alt="User Pic" src="{{ asset('uploads/images/') ~ app.session.get('user').photo }}"
+                                                                       id="profile-image1" class="img-circle img-responsive"
+                                                                       width="200px" height="200px">
+
+                                            <br>
+                                        </div>
+                                        </div>
+                                        <div>
+                                            {{ form_start(form) }}
+                                            {{ form_widget(form.photo) }}
+                                            {{ form_errors(form.photo) }}
+                                            <div style="margin-top: 40px">
+                                            {{ form_widget(form.save,{ 'attr': {'class': 'btn btn-info'} }) }}                                        </div>
+                                            {{ form_end(form) }}
+                                            </div>
+                                        <div class="clearfix"></div>
+                                        <hr style="margin:5px 0 5px 0;">
+
+                                        <span style="margin-left: 100px;width: 500px ; margin-top: 30px" >
+                                            Nom :
+                                            <span style="margin-left: 400px">{{ app.session.get('user').nom }}</span>
+                                        </span>
+                                        <div class="clearfix"></div>
+                                        <div class="bot-border"></div>
+
+                                        <span style="margin-left: 100px;width: 500px" >
+                                            Prenom :
+                                            <span style="margin-left: 380px">{{ app.session.get('user').prenom }}</span>
+                                        </span>
+                                        <div class="clearfix"></div>
+                                        <div class="bot-border"></div>
+
+                                        <span style="margin-left: 100px;width: 500px" >
+                                            Age :
+                                            <span style="margin-left: 403px">{{ app.session.get('user').age }}</span>
+                                        </span>
+                                        <div class="clearfix"></div>
+                                        <div class="bot-border"></div>
+
+
+                                        <span style="margin-left: 100px;width: 500px" >
+                                            Country :
+                                            <span style="margin-left: 380px">{{ app.session.get('user').country }}</span>
+                                        </span>
+                                        <div class="clearfix"></div>
+                                        <div class="bot-border"></div>
+
+
+
+                                        <span style="margin-left: 100px;width: 500px" >
+                                            Numero :
+                                            <span style="margin-left: 380px">{{ app.session.get('user').numero }}</span>
+                                        </span>
+                                        <div class="clearfix"></div>
+                                        <div class="bot-border"></div>
+
+                                        <span style="margin-left: 100px;width: 500px" >
+                                            Cin :
+                                            <span style="margin-left: 405px">{{ app.session.get('user').cin }}</span>
+                                        </span>
+                                        <div class="clearfix"></div>
+                                        <div class="bot-border"></div>
+                                        <a href="{{ url('updateprof') }}">
+                                            <button style="margin-top: 30px ; width: 100px ; margin-left: 800px" class="btn btn-info">
+                                                Update Info
+                                            </button>
+                                        </a>
+
+                                    </div>
+                                    <!-- /.box -->
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </div> <!-- card.// -->
+
+            </div>
+
+{% endblock %}

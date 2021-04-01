@@ -1,0 +1,50 @@
+{% extends 'baseFront.html.twig' %}
+{% block change %}
+    <div align="center" height="100" weight="100">     <a href="{{ url('new_reservation')}}"><button type="button" class="btn btn-info mb-4" name="button"> Ajouter Reservation </button> </a></div>
+    <!-- Offers Item -->
+    {% for v in reservations %}
+        <div class="offers_item rating_3">
+            <div class="row mt-5">
+                <div class="col-lg-1 temp_col"></div>
+                <div class="col-lg-3 col-1680-4">
+
+
+
+                </div>
+                <div class="col-lg-8">
+                    <div class="offers_content">
+                        <div class="mr-5 " align="right">
+                            <a href="{{ url('frontReservations')}}"><img src="{{ asset('front/images/alert.png')}}" alt="alert" height="50" weight="50"></a>
+                        </div>
+                        <h3> {{ v.tourist}}</h3>
+                        <div class="offers_price">{{ v.evenement}}<span>available rooms</span></div>
+                        <div class="offers_price">{{ v.offre}}<span>available rooms</span></div>
+                        <div class="offers_price">{{ v.dateReservation ? v.dateReservation|date('Y-m-d') : '' }}<span>available rooms</span></div>
+                        <div class="offers_price">{{ v.tarif}}<span>available rooms</span></div>
+
+                        <div class="rating_r rating_r_3 offers_rating" data-rating="3">
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                        </div>
+
+                        <div class="offers_icons">
+                            <ul class="offers_icons_list">
+                                <li class="offers_icons_item"><img src="{{ asset('front/images/post.png') }}" alt=""></li>
+                                <li class="offers_icons_item"><img src="{{ asset('front/images/compass.png') }}" alt=""></li>
+                                <li class="offers_icons_item"><img src="{{ asset('front/images/bicycle.png') }}" alt=""></li>
+                                <li class="offers_icons_item"><img src="{{ asset('front/images/sailboat.png') }}" alt=""></li>
+                            </ul>
+                        </div>
+                        <div class="button book_button"><a href="#">View More<span></span><span></span><span></span></a></div>
+
+                    </div>
+                </div>
+            </div>
+            <div align="center" height="100" weight="100">     <a href="{{ url('edit_reservation' , {id : v.id} )}}"><button type="button" class="btn btn-info mb-4" name="button"> Modifier </button> </a></div>
+        </div>
+    {% endfor %}
+
+{% endblock %}

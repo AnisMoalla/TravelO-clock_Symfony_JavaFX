@@ -1,0 +1,28 @@
+{% extends 'baseFront.html.twig' %}
+
+
+
+{% block container %}
+<h1>Plan list</h1>
+
+ 
+        {% for plan in plans %}
+            
+                
+              
+                
+            
+        
+    <div class="card text-black bg-default mb-3" style="max-width: 18rem;">
+  <div class="card-header">Title{{ plan.name }}</div>
+  <div class="card-body">
+     <td> <a href="{{ url('plan_edit' , {id : plan.id} ) }}"> <img src="{{ asset('back/img/edit.png') }}" alt="edit" width="50px" height="50px" >  </a> </td>
+                            <td><a href="{{ url('plan_delete' , {id : plan.id} ) }}"> <img src="{{ asset('back/img/icon-delete.jpg') }}" alt="edit" width="50px" height="50px" >  </a></td>
+    <p class="card-text">{{ plan.description }}</p>
+  </div>
+</div>
+        
+        {% endfor %}
+                    
+
+{% endblock %}

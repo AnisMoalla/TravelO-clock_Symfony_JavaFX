@@ -1,0 +1,68 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}  admins {% endblock %}
+
+{% block content %}
+
+<body id="page-top">
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                        <a href="{{ url('addadmin')}}"><button type="button" class="btn btn-info mb-4" name="button"> ajouter </button> </a>
+                            <input style="margin-bottom: 10px" class="form-control" id="myInput" type="text" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>nom</th>
+                                            <th>prenom</th>
+                                            <th>email</th>
+                                            <th>etat</th>
+                                            <th>Action</th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody id="hi">
+                                      {% for user in users %}
+                                        <tr>
+                                            <td>{{ user.nom}}</td>
+                                            <td>{{ user.prenom}}</td>
+                                            <td>{{ user.email}}</td>
+                                            <td>{{ user.etat}}</td>
+                                            <td> <a href="{{ url('admin_edit' , {id : user.id} ) }}"> <img src="{{ asset('back/img/edit.png') }}" alt="edit" width="50px" height="50px" >  </a>
+                                            <a href="{{ url('admin_delete' , {id : user.id} ) }}"> <img src="{{ asset('back/img/icon-delete.jpg') }}" alt="edit" width="50px" height="50px" >  </a></td>
+                                        </tr>
+                                            {% endfor %}
+
+                                    </tbody>
+
+                                </table>
+                                <div style="margin-left: 1400px">
+                                    {{ knp_pagination_render(users) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+                    <script>
+                        $(document).ready(function(){
+                            $("#myInput").on("keyup", function() {
+                                var value = $(this).val().toLowerCase();
+                                $("#hi tr").filter(function() {
+                                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                                });
+                            });
+                        });
+                    </script>
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}  Reclamation {% endblock %}
+
+{% block content %}
+
+<h1 style="text-align: center">Liste des Reclamations Facceuil</h1>
+<body id="page-top">
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+
+        <input style="margin-bottom: 10px" class="form-control" id="myInput" type="text" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+        <div class="table-responsive">
+            <table class="table table-bordered"  width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Description</th>
+                    <th>Date_reclamation</th>
+                    <th>User</th>
+                    <th>Facceuil</th>
+                    <th>Action</th>
+
+                </tr>
+                </thead>
+                <tbody id="hi">
+                {% for reclamation_facc in reclamation_faccs %}
+                    <tr>
+                        <td>{{ reclamation_facc.id }}</td>
+                        <td>{{ reclamation_facc.description }}</td>
+                        <td>{{ reclamation_facc.dateReclamation ? reclamation_facc.dateReclamation|date('Y-m-d') : '' }}</td>
+                        <td>{{ reclamation_facc.user }}</td>
+                        <td>{{ reclamation_facc.facceuil }}</td>
+                        <td>
+                        <a href="{{ url('reclamation_facc_delete' , {id : reclamation_facc.id} ) }}"> <img src="{{ asset('back/img/icon-delete.jpg') }}" alt="delete" width="50px" height="50px" >  </a>
+                        </td>
+
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div style="margin-left: 1400px">
+                {{ knp_pagination_render(reclamation_faccs) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#hi tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+
+
+
+{% endblock %}
+

@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+
+<title>New ReservationFacceuil</title>
+
+{% block body %}
+    <h1>Create new ReservationFacceuil</h1>
+
+    {{ include('reservation_facceuil/_form.html.twig') }}
+
+    <a href="{{ path('reservation_facceuil_index') }}">back to list</a>
+{% endblock %}

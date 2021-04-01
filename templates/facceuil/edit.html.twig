@@ -1,0 +1,46 @@
+{% extends 'baseFront.html.twig' %}
+{% block change %}
+    <!-- Contact -->
+
+
+                    <!-- Contact Form -->
+                    <div class="contact_form_container">
+                        <div class="contact_title text-center">Ajouter Votre Maison</div>
+
+                        {{ form_start(form ,{'attr': {'class': 'contact_form text-center'}}) }}
+                        <div>
+                            {{ form_widget(form.nom , {'attr': {'class': 'contact_form_email input_field' , 'placeholder' : 'Nom'}} ) }}
+
+                        </div>
+
+                        <div>
+                            {{ form_widget(form.adresse , {'attr': {'class': 'contact_form_email input_field' , 'placeholder' : 'Adresse'}} ) }}
+
+                        </div>
+                        <div>
+                            {{ form_widget(form.description , {'attr': {'class': 'contact_form_email input_field' , 'placeholder' : 'description'}} ) }}
+
+                        </div>
+                        <div>
+                            {{ form_widget(form.nb_place , {'attr': {'class': 'contact_form_email input_field' , 'placeholder' : 'Nombre de Place'}} ) }}
+
+                        </div>
+                        <div>
+                            {{ form_widget(form.file , {'attr': {'class': 'contact_form_email input_field' , 'placeholder' : 'Image'}} ) }}
+
+                        </div>
+
+                        <input type="submit" value="Enregistrer" class="form_submit_button button trans_200"/>
+                        {{ form_end(form) }}
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

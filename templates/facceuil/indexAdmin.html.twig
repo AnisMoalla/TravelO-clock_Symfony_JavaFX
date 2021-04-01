@@ -1,0 +1,84 @@
+
+
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}  admins {% endblock %}
+
+{% block content %}
+
+<h1 style="text-align: center">Liste d'Hotel </h1>
+<input class="form-control" id="myInput" type="text" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+
+
+<body id="page-top">
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div>
+            <a href="{{ url('hotel_new')}}"><button type="button" class="btn btn-info mb-4" name="button"> ajouter </button> </a>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+
+                    <th>Nom</th>
+                    <th>Adresse</th>
+                    <th>Description</th>
+                    <th>Nombre de Place</th>
+                    <th>User</th>
+                    <th>Etat</th>
+                    <th>Image</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+
+                <tbody id="hi">
+                {% for a in facceuils %}
+                    <tr>
+                        <td>{{ a.nom }}</td>
+                        <td>{{ a.adresse }}</td>
+                        <td>{{ a.description }}</td>
+                        <td>{{ a.getNbPlace }}</td>
+                        <td>{{ a.getUser.getNom() }}</td>
+                        <td>{{ a.etat }}</td>
+                        <td><img src="{{ asset('Upload/')}}{{ a.image }}" width="100"  /></td>
+                          {% if a.etat == "disable" %}
+                              <td><a href="{{ url('enable' , {id : a.id} ) }}"> <img src="{{ asset('back/img/edit.png') }}" alt="delete" width="50px" height="50px" >  </a></td>
+                          {% endif%}
+                          {% if a.etat == "enable" %}
+                      <td>  <a href="{{ url('disable' , {id : a.id} ) }}"> <img src="{{ asset('back/img/icon-delete.jpg') }}" alt="delete" width="50px" height="50px" >  </a></td>
+                        {% endif %}
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#hi tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+
+
+{% endblock %}

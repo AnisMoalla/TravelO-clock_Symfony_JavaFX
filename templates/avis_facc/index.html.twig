@@ -1,0 +1,60 @@
+
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}  Avis Facceuil {% endblock %}
+
+{% block content %}
+
+<h1 style="text-align: center">Liste d'Avis Facceuil </h1>
+
+<body id="page-top">
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+    <a href="{{ url('avis_facc_new')}}"><button type="button" class="btn btn-info mb-4" name="button"> ajouter </button> </a>
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Rating</th>
+                    <th>Description</th>
+                    <th>Date_publication</th>
+                    <th>User</th>
+                    <th>Facceuil</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for avis_facc in avis_faccs %}
+                    <tr>
+                        <td>{{ avis_facc.id }}</td>
+                        <td>{{ avis_facc.rating }}</td>
+                        <td>{{ avis_facc.description }}</td>
+                        <td>{{ avis_facc.datePublication ? avis_facc.datePublication|date('Y-m-d') : '' }}</td>
+                        <td>{{ avis_facc.user }}</td>
+                        <td>{{ avis_facc.facceuil }}</td>
+
+                        <td><a href="{{ url('avis_facc_edit' , {id : avis_facc.id} ) }}"> <img src="{{ asset('back/img/edit.png') }}" alt="edit" width="50px" height="50px" >  </a></td>
+                        <td><a href="{{ url('avis_facc_delete' , {id : avis_facc.id} ) }}"> <img src="{{ asset('back/img/icon-delete.jpg') }}" alt="delete" width="50px" height="50px" >  </a></td>
+
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Category index{% endblock %}
+
+{% block content %}
+    <h1 style="text-align: center">Category list</h1>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <input style="margin-bottom: 10px" class="form-control" id="myInput" type="text" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+        <div class="card-body">
+            <div>
+            <a href="{{ url('category_new')}}"><button type="button" class="btn btn-info mb-4" name="button"> ajouter </button> </a>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                <th>Name</th>
+
+                <th>Action</th>
+
+                    </tr>
+                    </thead>
+                    <tbody id="hi">
+                   {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.Name }}</td>
+
+                <td> <a href="{{ url('category_edit' , {id : category.id} ) }}"> <img src="{{ asset('back/img/edit.png') }}" alt="edit" width="50px" height="50px" >  </a>
+                <a href="{{ url('category_delete' , {id : category.id} ) }}"> <img src="{{ asset('back/img/icon-delete.jpg') }}" alt="edit" width="50px" height="50px" >  </a></td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#hi tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+{% endblock %}

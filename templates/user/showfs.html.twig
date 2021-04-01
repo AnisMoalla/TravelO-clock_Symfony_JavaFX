@@ -1,0 +1,44 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}  info user {% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+                <div class="col-lg-5 d-none d-lg-block"> <img src="{{ asset('back/img/tt.jpg') }}" width="400" height="530"></div>
+                <div class="col-lg-7">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4"> {{ user.nom }} info  </h1>
+                        </div>
+                            <div class="form-group">
+                              <h5> nom  : {{ user.nom }} </h5>
+                              <h5> prenom  : {{ user.prenom }} </h5>
+                              <h5> email  : {{ user.email }} </h5>
+                              <h5> age  : {{ user.age }} </h5>
+                              <h5> cin  : {{ user.cin }} </h5>
+                              <h5> numero  : {{ user.numero }} </h5>
+                              <h5> etat  : {{ user.etat }} </h5>
+                            <div class="form-group text-center">
+                              {% if user.etat == 'non valid' %}
+                              <a href="{{ url('acceptfs',{id : user.id}) }}"> <button class="btn btn-info mt-5" name="button">Accepter </button> </a>
+                              <a href="{{ url('fs_delete',{id : user.id}) }}"> <button class="btn btn-danger mt-5" name="button">refuser </button> </a>
+                              {% else %}
+                              <a href="{{ url('fs_delete',{id : user.id}) }}"> <button class="btn btn-danger mt-5" name="button">supprimer </button> </a>
+                              {% endif %}
+                        <hr>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

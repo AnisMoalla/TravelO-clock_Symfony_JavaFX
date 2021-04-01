@@ -1,0 +1,76 @@
+{% extends 'baseFront.html.twig' %}
+{% block change %}
+    <style>
+        .book_button
+        {
+            background: #31124b;
+            margin-top: 39px;
+            margin-bottom: -5px;
+            -webkit-transition: all 200ms ease;
+            -moz-transition: all 200ms ease;
+            -ms-transition: all 200ms ease;
+            -o-transition: all 200ms ease;
+            transition: all 200ms ease;
+        }
+    </style>
+
+<!-- Offers Item -->
+
+
+                        <!-- Offers Item -->
+                        {% for h in facceuils %}
+                            {% if h.etat == "disable" %}
+                        {% else %}
+                            <div class="offers_item rating_3">
+                                <div class="row">
+                                    <div class="col-lg-1 temp_col"></div>
+                                    <div class="col-lg-3 col-1680-4">
+                                        <div class="offers_image_container">
+                                            <!-- Image by https://unsplash.com/@thoughtcatalog -->
+                                            <div class="offers_image_background" style="background-image:url({{ asset('Upload/') }}{{ h.image }})"></div>
+                                            <div class="offer_name"><a href="single_listing.html">{{ h.image }}</a></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="offers_content">
+                                            <div class="offers_price">{{ h.NbPlace }}<span>places disponible</span></div>
+                                            <p class="" style="text-align:left;">
+                                                {% if h.rate < 1 %}
+                                                    <i class="fa fa-star-o mystar" aria-hidden="true" ></i>
+                                                    <i class="fa fa-star-o mystar" aria-hidden="true"></i>
+                                                    <i class="fa fa-star-o mystar " aria-hidden="true"></i>
+                                                    <i class="fa fa-star-o mystar" aria-hidden="true"></i>
+                                                    <i class="fa fa-star-o mystar" aria-hidden="true"></i>
+                                                {% elseif h.rate >= 1 %}
+                                                    {% for i in 1..h.rate | round %}
+                                                        <i class="fa fa-star mystar" aria-hidden="true"></i>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <i class="fa fa-star-o mystar" aria-hidden="true" ></i>
+                                                    <i class="fa fa-star-o mystar" aria-hidden="true"></i>
+                                                    <i class="fa fa-star-o mystar " aria-hidden="true"></i>
+                                                    <i class="fa fa-star-o mystar" aria-hidden="true"></i>
+                                                    <i class="fa fa-star-o mystar" aria-hidden="true"></i>
+                                                {% endif  %}
+                                            </p>
+                                            <p class="offers_text">{{ h.description }}</p>
+
+                                            <div class="button book_button"><a href="{{ path('details_show',{id:h.id}) }}">Show<span></span><span></span><span></span></a></div><br><br><br>
+                                        <div class="button book_button" style="margin-top: -30px"><a href="{{ path('reclamation_facc_new',{id:h.id}) }}">Reclamer</a></div><br><br><br>
+
+                                        <div class="offer_reviews">
+                                            <div class="offer_reviews_content">
+
+                                                <div class="offer_reviews_subtitle">{{ h.Vote | round }} reviews</div>
+                                            </div>
+                                            <div class="offer_reviews_rating text-center">{{ h.Rate  }}</div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><br><br><br>
+                            {% endif %}
+                        {% endfor %}
+                        <!-- Offers Item -->
+
+{% endblock %}

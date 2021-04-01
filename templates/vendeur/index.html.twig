@@ -1,0 +1,72 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}  Vendeurs {% endblock %}
+
+{% block content %}
+    <h1 style="text-align: center">Gestion des Vendeurs </h1>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+        <a href="{{ url('vendeur_new')}}"><button type="button" class="btn btn-info mb-4" name="button"> Ajouter </button> </a>
+
+            <div class="table-responsive">
+                <table class="table table-bordered" width="100%" cellspacing="0">
+                    <input style="margin-bottom: 10px" class="form-control" id="myInput" type="text" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Pays</th>
+                        <th>Ville</th>
+                        <th>Image</th>
+                        <th>Tel</th>
+                        <th>Nom</th>
+                        <th>Type</th>
+                        <th>Heure_ouverture</th>
+                        <th>Heure_fermeture</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody id="hi">
+                    {% for vendeur in vendeurs %}
+                        <tr>
+                            <td>{{ vendeur.id }}</td>
+                            <td>{{ vendeur.pays }}</td>
+                            <td>{{ vendeur.ville }}</td>
+                            <td>{{ vendeur.image }}</td>
+                            <td>{{ vendeur.tel }}</td>
+                            <td>{{ vendeur.nom }}</td>
+                            <td>{{ vendeur.type }}</td>
+                            <td>{{ vendeur.heureOuverture ? vendeur.heureOuverture|date('H:i:s') : '' }}</td>
+                            <td>{{ vendeur.heureFermeture ? vendeur.heureFermeture|date('H:i:s') : '' }}</td>
+                            <td> <a href="{{ url('vendeur_edit' , {id : vendeur.id} ) }}"> <img src="{{ asset('back/img/edit.png') }}" alt="edit" width="50px" height="50px" >  </a>
+                            <a href="{{ url('vendeur_delete' , {id : vendeur.id} ) }}"> <img src="{{ asset('back/img/icon-delete.jpg') }}" alt="edit" width="50px" height="50px" >  </a></td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="10">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    {{ knp_pagination_render(vendeurs) }}
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#hi tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+{% endblock %}

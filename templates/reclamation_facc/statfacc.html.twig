@@ -1,0 +1,167 @@
+
+
+
+
+
+{% extends 'baseBack.html.twig' %}
+
+{% block head %}
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title> {% block title %}Statistique Facceuil{% endblock %}</title>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css"
+              integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w=="
+              crossorigin="anonymous" >
+
+        <!-- Custom fonts for this template-->
+        <link href="{{asset( 'back/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+        <link
+                href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+                rel="stylesheet">
+
+        <!-- Custom styles for this template-->
+        <link href="{{ asset('back/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+        <link href="{{asset('back/css/sb-admin-2.min.css')}}" rel="stylesheet">
+
+    </head>
+{% endblock %}
+
+{% block content %}
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="p-5">
+
+                        <div class="canvas-container" style="height:40vh; width:40vw">
+                            <canvas id="reclamationfacc" width="200" height="100"></canvas>
+                            <canvas id="nbreclamationetatt" width="200" height="100" style="margin-left: 150px"></canvas>
+
+                            <style>
+                                .canvas-container {
+                                    display: flex;
+                                    width: 50%;
+                                }
+                            </style>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+
+{% block Bootstrap%}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
+            integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
+            crossorigin="anonymous"></script>
+    <script>
+        let reclame = document.querySelector("#reclamationfacc");
+        let graphreclame = new Chart(reclame, {
+            type:"pie",
+            data:{
+                labels:{{ choice|raw }},
+                datasets:[{
+                    label: "type reclamation",
+                    data:[{{ type1 }}, {{ type2 }},{{ type3 }},{{ type4 }}],
+                    backgroundColor:["red","blue","green","yellow"]
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'statistique de reclamation Facceuil'
+                }
+            }});
+        Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+        Chart.defaults.global.defaultFontColor = '#858796';
+
+        // Pie Chart Example
+        var ctx = document.getElementById("nbreclamationetatt");
+        var myPieChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ["Refuser", "Accepter", "Attente"],
+                datasets: [{
+                    data: [ {{ etat[0] }} , {{ etat[1] }} , {{ etat[2] }}],
+                    backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+                    hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+                    hoverBorderColor: "rgba(234, 236, 244, 1)",
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                title: {
+                    display: true,
+                    text: 'Les etat des reclamations'
+                },
+                tooltips: {
+                    backgroundColor: "rgb(255,255,255)",
+                    bodyFontColor: "#858796",
+                    borderColor: '#dddfeb',
+                    borderWidth: 1,
+                    xPadding: 15,
+                    yPadding: 15,
+                    displayColors: false,
+                    caretPadding: 10,
+                },
+                legend: {
+                    display: true
+                },
+                cutoutPercentage: 80,
+            },
+        });
+
+
+
+
+    </script>
+    <script  src="{{asset('back/vendor/jquery/jquery.min.js')}}" ></script>
+    <script src="{{asset('back/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{{asset('back/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{{asset('back/js/sb-admin-2.min.js')}}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{{asset('back/vendor/chart.js/Chart.min.js')}}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{asset('back/js/demo/chart-area-demo.js')}}"></script>
+    <script src="{{asset('back/js/demo/chart-pie-demo.js')}}"></script>
+
+    <!-- Bootstrap core JavaScript-->
+
+
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('back/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{{ asset('back/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('back/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{ asset('back/js/demo/datatables-demo.js') }}"></script>
+{% endblock %}
+
+
+

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<title>Badword</title>
+
+{% block body %}
+    <h1>Badword</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ badword.id }}</td>
+            </tr>
+            <tr>
+                <th>Word</th>
+                <td>{{ badword.Word }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('badword_index') }}">back to list</a>
+
+    <a href="{{ path('badword_edit', {'id': badword.id}) }}">edit</a>
+
+    {{ include('badword/_delete_form.html.twig') }}
+{% endblock %}

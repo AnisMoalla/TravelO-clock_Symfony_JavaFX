@@ -1,0 +1,73 @@
+
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}  new hotel {% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block"> <img src="{{ asset('back/img/hotel.jpg') }}" width="400" height="710"></div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4"> new hotel </h1>
+                            </div>
+                            <div class="form-group">
+
+                                {{ form_start(form) }}
+                                <div class="form-group">
+                                    {{ form_widget(form.nom , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Nom'}} ) }}
+                                    {{ form_errors(form.nom) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_widget(form.description , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Description'}} ) }}
+                                    {{ form_errors(form.description) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {{ form_widget(form.adresse , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Adresse'}} ) }}
+                                {{ form_errors(form.adresse) }}
+                            </div>
+                            <div class="form-group">
+                                <div class=" mb-3 mb-sm-0">
+                                    {{  form_errors(form.nbrechambre) }}
+                                    {{ form_widget(form.nbrechambre , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Nombre de Chambre'}} ) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {{  form_errors(form.nbrechambreDispo) }}
+                                {{ form_widget(form.nbrechambreDispo , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Nombre de chambre Disponible'}} ) }}
+
+                            </div>
+                            <div class="form-group">
+                                {{  form_errors(form.nbreEtoile) }}
+                                {{ form_widget(form.nbreEtoile , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Nombre de Etoile'}} ) }}
+
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_widget(form.file , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Nombre de Etoile'}} ) }}
+
+                            </div>
+
+
+                            <input type="submit" value="Enregistrer" class="btn btn-success"/>
+
+                            <hr>
+                            {{ form_end(form) }}
+                            <hr>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

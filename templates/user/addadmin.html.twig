@@ -1,0 +1,69 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}  add fs {% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+                <div class="col-lg-5 d-none d-lg-block"> <img src="{{ asset('back/img/tt.jpg') }}" width="400" height="530"></div>
+                <div class="col-lg-7">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Admin</h1>
+                        </div>
+                            <div class="form-group">
+                            {{ form_start(form) }}
+                                <div class="form-group">
+                                    {{ form_widget(form.nom , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'First Name'}} ) }}
+                                    {{ form_errors(form.nom) }}
+                                </div>
+                                <div class="form-group">
+                                  {{ form_widget(form.prenom , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Last Name'}} ) }}
+                                  {{ form_errors(form.prenom) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                              {{ form_widget(form.email , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Email'}} ) }}
+                                {{ form_errors(form.email) }}
+                            </div>
+                            <div class="form-group">
+                                <div class=" mb-3 mb-sm-0">
+                                  {{ form_widget(form.password , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Password'}} ) }}
+                                  {{ form_errors(form.password) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                              {{ form_widget(form.age , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Age'}} ) }}
+                              {{ form_errors(form.age) }}
+
+                            </div>
+
+                        <div class="form-group">
+                            {{ form_widget(form.country , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'country'}} ) }}
+                            {{ form_errors(form.country) }}
+
+                        </div>
+
+                            <div class="form-group">
+                              {{ form_widget(form.add , {'attr': {'class': 'form-control form-control-user btn-info' , 'placeholder' : 'Age'}} ) }}
+
+
+                            </div>
+
+                              {{ form_end(form) }}
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}  Afficher Avis {% endblock %}
+
+{% block content %}
+
+
+<body id="page-top">
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ avi.id }}</td>
+                </tr>
+                <tr>
+                    <th>Rating</th>
+                    <td>{{ avi.rating }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ avi.description }}</td>
+                </tr>
+                <tr>
+                    <th>Date_publication</th>
+                    <td>{{ avi.datePublication ? avi.datePublication|date('Y-m-d') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>User</th>
+                    <td>{{ avi.user }}</td>
+                </tr>
+                <tr>
+                    <th>Evenement</th>
+                    <td>{{ avi.evenement }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+
+
+
+
+{% endblock %}
+
+

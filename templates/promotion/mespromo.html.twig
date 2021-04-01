@@ -1,0 +1,145 @@
+
+
+{% block up %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Travelix Project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{asset('front/styles/bootstrap4/bootstrap.min.css')}}">
+    <link href="{{asset('front/plugins/font-awesome-4.7.0/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{asset('front/plugins/OwlCarousel2-2.2.1/owl.carousel.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('front/plugins/OwlCarousel2-2.2.1/owl.theme.default.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('front/plugins/OwlCarousel2-2.2.1/animate.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('front/styles/main_styles.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('front/styles/responsive.css')}}">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<style>
+
+    .btn-group .btn {
+        transition: background-color .3s ease;
+    }
+
+    .panel-table .panel-body {
+        padding: 0;
+    }
+
+    .table > thead > tr > th {
+        border-bottom: none;
+    }
+
+    .panel-footer, .panel-table .panel-body .table-bordered {
+        border-style: none;
+        margin: 0;
+    }
+
+    .panel-table .panel-body .table-bordered > thead > tr > th:first-of-type {
+        text-align: center;
+        width: 50px;
+    }
+
+    .panel-table .panel-body .table-bordered > thead > tr > th.col-tools {
+        text-align: center;
+        width: 120px;
+    }
+
+    .panel-table .panel-body .table-bordered > thead > tr > th:last-of-type,
+    .panel-table .panel-body .table-bordered > tbody > tr > td:last-of-type {
+        border-right: 0;
+    }
+
+    .panel-table .panel-body .table-bordered > thead > tr > th:first-of-type,
+    .panel-table .panel-body .table-bordered > tbody > tr > td:first-of-type {
+        border-left: 0;
+    }
+
+    .panel-table .panel-body .table-bordered > tbody > tr:first-of-type > td {
+        border-bottom: 0;
+    }
+
+    .panel-table .panel-body .table-bordered > thead > tr:first-of-type > th {
+        border-top: 0;
+    }
+
+    .pagination > li > a, .pagination > li > span {
+        border-radius: 50% !important;
+        margin: 0 5px;
+    }
+
+    .pagination {
+        margin: 0;
+    }
+</style>
+{% endblock %}
+
+
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}  reclamation {% endblock %}
+{% block search %}
+{% endblock %}
+{% block change %}
+    <div class="container" style="padding: 10px">
+        <div class="card">
+            <table class="table table-hover shopping-cart-wrap">
+                <thead class="text-muted">
+                <tr>
+                    <th scope="col">Promotion</th>
+                    <th scope="col" width="120">Pourcentage</th>
+                    <th scope="col" width="200" class="text-right" align="center">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for promotion in listepro %}
+                <tr>
+                    <td>
+                        <figure class="media" >
+                            <div class="img-wrap"><img src={{ asset("upload/"~promotion.hotel.image) }}
+                                                       class="img-thumbnail img-sm" width="200px" height="300px" ></div>
+                            <figcaption class="media-body"  >
+                                <h6 class="title text-truncate">{{ promotion.nom}} </h6>
+                                <dl class="param param-inline small">
+                                    <dt>Hotel: </dt>
+                                    <dd>{{ promotion.hotel }}</dd>
+                                </dl>
+                                <dl class="param param-inline small">
+                                    <dt>Date: </dt>
+                                    <dd> {{ promotion.dateDebut|date('Y-m-d') }} --> {{ promotion.dateFin|date('Y-m-d') }}</dd>
+                                </dl>
+                            </figcaption>
+                        </figure>
+                    </td>
+                    <td>
+
+                        <div class="progress">
+                            <div style="width: {{ promotion.pourcentage }}%;" aria-valuemax="100" aria-valuemin="0"
+                                  role="progressbar" class="green progress-bar">
+                                <span>{{ promotion.pourcentage }}%</span>
+                            </div>
+                        </div>
+
+                        <div class="price-wrap">
+                            {% set p =(promotion.hotel.prix)-( (promotion.hotel.prix) * (promotion.pourcentage/100)) %}
+                            <var class="price">{{ p }} DT </var>
+                            <small class="text-muted"><del>{{ promotion.hotel.prix }}DT</del></small>
+                        </div>
+                    </td>
+                    <td style="text-align: right">
+                        <a class="btn btn-default"  href="{{ url('promotion_edit', {'id': promotion.id}) }}"><span class="glyphicon glyphicon-pencil"
+                                                         aria-hidden="true"></span></a>
+                        <a class="btn btn-danger" href="{{ url('promotion_delete', {'id': promotion.id}) }}"><span class="glyphicon glyphicon-trash"
+                                                        aria-hidden="true"></span></a>
+                    </td>
+
+                {% endfor %}
+                </tbody>
+            </table>
+        </div> <!-- card.// -->
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,155 @@
+{% extends 'baseFront.html.twig' %}
+
+
+{% block modal %}
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Reserver</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="title" class="col-form-label">title:</label>
+            <input type="text" class="form-control" id="title">
+          </div>
+          <div class="form-group row">
+  <label for="datetime-local-debut" class="col-2 col-form-label">Date Debut</label>
+  <div class="col-10">
+    <input class="form-control" type="datetime-local"  id="datetime-local-debut">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="datetime-local-fin" class="col-2 col-form-label">Date Fin</label>
+  <div class="col-10">
+    <input class="form-control" type="datetime-local"  id="datetime-local-fin">
+  </div>
+</div>
+<div class form-group>
+
+<label class="col-4 col-form-label">liste de guide</label>
+<select class="form-select" id='guide'></select>
+
+</div>
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Reserver</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+{% block search %}
+<style>
+        #calendrier{
+            width: 80%;
+            margin: auto;
+        }
+        
+  
+      
+        
+        </style>
+    <div class="search">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.css" integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.js" integrity="sha256-DBxkGZLxKsLKhz054qUpBqtotG00r9AELGpSigJujLg=" crossorigin="anonymous"></script>
+
+
+        <!-- Search Contents -->
+
+        <div class="container fill_height">
+            <div class="row fill_height">
+                <div class="col fill_height ">
+
+                    <!-- Search Tabs -->
+
+                    <button id="addREs" class="btn btn-default p-10 m-3" data-toggle="modal" data-target="#exampleModal" >Reserver guide</button>
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+    {% block change %}
+
+   <div id="calendrier">
+   
+   
+   <div>
+
+   
+
+
+<script>
+ window.onload = () => {
+        let calendarElt = document.querySelector("#calendrier")
+        let calendar = new FullCalendar.Calendar(calendarElt, {
+            initialView: 'timeGridWeek',
+            locale: 'fr',
+            timeZone: 'Europe/Paris',
+            headerToolbar: {
+                start: 'prev,next today',
+                center: 'title',
+                end: 'dayGridMonth,timeGridWeek'
+            },
+            events: {{ data|raw }},
+            editable: true,
+            eventResizableFromStart: true
+        })
+        
+        calendar.render()
+    }
+    
+
+
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function () {
+        var $guide = $('#guide');
+    
+        $guide.append('<option value="">Choisir un guide</option>');
+        $.ajax({
+            type: 'get',
+            url: '{{ path('guidesjson') }}',
+            dataType: 'json',
+            success: function (json) {
+                {#$('#guide').append({{  dump(json)}});#}
+                console.log(json.value);
+                $.each(json, function (index, value) {
+
+                    //console.log(value);
+                    $('#guide').append('<option value="' + value.id + '">' + value.nom+" "+value.prenom + '</option>');
+                    
+                });
+            }
+        });
+
+
+
+    });
+
+
+</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script>
+
+
+
+</script>
+
+    {% endblock %}

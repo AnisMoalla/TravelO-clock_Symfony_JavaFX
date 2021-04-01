@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<title>ReservationFacceuil</title>
+
+{% block body %}
+    <h1>ReservationFacceuil</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reservation_facceuil.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('reservation_facceuil_index') }}">back to list</a>
+
+    <a href="{{ path('reservation_facceuil_edit', {'id': reservation_facceuil.id}) }}">edit</a>
+
+    {{ include('reservation_facceuil/_delete_form.html.twig') }}
+{% endblock %}

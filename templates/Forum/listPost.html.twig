@@ -1,0 +1,125 @@
+{% extends 'baseFront.html.twig' %}
+
+
+
+
+
+
+{% block title %}
+    <title >Forum</title>
+{% endblock %}
+{% block modal %}
+    <div class="modal fade" id="ajouterPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ajouter un post</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="title" class="col-form-label">title:</label>
+                            <input type="text" class="form-control" id="titleText">
+                        </div>
+                        <div class="form-group">
+                            <label for="title" class="col-form-label">Content:</label>
+                            <textarea class="form-control" id="content"></textarea>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="Ajouter">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block search %}
+    <div class="search">
+
+
+        <!-- Search Contents -->
+
+        <div class="container fill_height">
+
+            <div class="row fill_height">
+                <div class="col fill_height ">
+
+                    <!-- Search Tabs -->
+
+                    <h1 class=" intro_title text-light text-center text-uppercase pt-4 align-middle"> {{category.Name}} </h1>
+
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}
+
+    {% block change %}
+        <nav class="nav navbar-dark">
+            <div class=" nav-item col-md-4 m-3  align-content-md-end">
+                <button id="Addpost" class="btn btn-default p-10 m-3" data-toggle="modal" data-target="#ajouterPost" >Ajouter Un post</button>
+
+            </div>
+        </nav>
+
+        {% for post in posts %}
+
+            <div class="row" style="padding:10px;margin:10px">
+
+
+                <div class="card w-100 border-primary border-10 m-10 "   >
+                    <div class="card-header">
+                        <h5 class="text-black text-upercase">{{post.name }}</h5>
+
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text  text-truncate ">{{post.content}}</p>
+                        <div class="d-flex flex-row-reverse">
+                            <a href="{{url('postFront',{id:post.id})}}" class="btn btn-primary ">Read More</a>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+        {% endfor %}
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <script>
+
+            function Onlclickntn(event){
+                event.preventDefault()
+                var title=$('#titleText').val();
+                var content=$('#content').val();
+
+                $.post("{{ url('newPostFront')}}",{ 'title' : title,
+                    'content':content,
+                    'category':{{category.id}}
+                });
+                console.log(title);
+
+
+                document.location.reload();
+
+            }
+
+            document.querySelector("#Ajouter").addEventListener('click',Onlclickntn)
+
+        </script>
+    {% endblock %}

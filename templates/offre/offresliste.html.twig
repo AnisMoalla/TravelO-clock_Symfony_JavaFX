@@ -1,0 +1,41 @@
+
+
+{% block title %}  Offres {% endblock %}
+
+{% block content %}
+<h1 style="text-align: center">Gestion des Offres</h1>
+
+<body id="page-top">
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+
+
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <input class="form-control" id="myInput" type="text" id="navbar-search-input" placeholder="Recherche" aria-label="search" aria-describedby="search">
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Date Debut</th>
+                    <th>Date Fin</th>
+                    <th>Pourcentage</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for offre in offres %}
+                    <tr>
+                        <td>{{ offre.nom }}</td>
+                        <td>{{ offre.dateDebut ? offre.dateDebut|date('Y-m-d') : '' }}</td>
+                        <td>{{ offre.dateFin ? offre.dateFin|date('Y-m-d') : '' }}</td>
+                        <td>{{ offre.pourcentage }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

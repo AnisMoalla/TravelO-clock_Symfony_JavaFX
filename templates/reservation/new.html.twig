@@ -1,0 +1,60 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}  Ajouter Reservation {% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block"> <img src="{{ asset('back/img/tt.jpg') }}" width="400" height="530"></div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Ajouter Reservation</h1>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group">
+                                    {{ form_start(form) }}
+                                    {{ form_label(form.tourist) }}
+                                    {{ form_widget(form.tourist , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Tourist'}} ) }}
+                                    {{ form_errors(form.tourist) }}
+                                </div>
+                                <div class="form-group">
+                                {{ form_label(form.evenement) }}
+                                    {{ form_widget(form.evenement , {'attr': {'class': ' form-select-lg form-control form-control-user' , 'placeholder' : 'Event'}} ) }}
+                                    {{ form_errors(form.evenement) }}
+                                </div>
+                                <div class="form-group">
+                                {{ form_label(form.offre) }}
+                                    {{ form_widget(form.offre , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Offre'}} ) }}
+                                    {{ form_errors(form.offre) }}
+                                </div>
+                                <div class="form-group">
+                                {{ form_label(form.date_reservation) }}
+                                    {{ form_widget(form.date_reservation , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Date Reservation'}} ) }}
+                                    {{ form_errors(form.date_reservation) }}
+                                </div>
+                                <div class="form-group">
+                                {{ form_label(form.tarif) }}
+
+                                    {{ form_widget(form.tarif, {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Tarif'}} ) }}
+                                    {{ form_errors(form.tarif) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_widget(form.ajouter, {'attr': {'class': 'form-control form-control-user btn-info' , 'placeholder' : 'Ajouter'}} ) }}
+                                    {{ form_end(form) }}
+                                 </div>
+                            <div align="right">
+                                <a href="{{ path('reservations') }}">Retourner vers Reservations</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

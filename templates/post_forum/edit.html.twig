@@ -1,0 +1,81 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Edit PostForum{% endblock %}
+
+
+{% block content %}
+
+<div class="container" style="height:100%">
+
+    <div class="card o-hidden border-0 shadow-lg my-5" style="height:80%">
+        <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row" style="height:80%">
+                <div class="col-lg-4 d-none d-lg-block"> <img src="{{ asset('back/img/tt.jpg') }}" width="400" height="800"></div>
+                <div class="col-lg-8">
+                    <div class="p-5">
+                        <div class="text-center">
+                        <div class="row">
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4" >
+                            <h1 class="h4 text-gray-900 mb-4">Modifier un Post</h1></div>
+
+                        </div>
+                        </div>
+                            <div class="form-group">
+                            {{ form_start(form) }}
+                                <div class="form-group">
+                                    {{ form_widget(form.name,{'attr':{'class':'form-control from-control-user','placholder':'Title Post'}}) }}
+                                    {{ form_errors(form.name) }}
+                                </div>
+                                <div class="form-group" style="height:90%">
+                                  {{ form_widget(form.content , {'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Content','style':' height:500px'}} ) }}
+                                  {{ form_errors(form.content) }}
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                            <label> choisir la categorie</label>
+                            <br>
+                              {{ form_widget(form.category  ) }}
+                              {{ form_errors(form.category) }}
+
+                            </div>
+                             <div class="form-group">
+                             <label> User </label>
+                             <br>
+                              {{ form_widget(form.user ) }}
+                              {{ form_errors(form.user) }}
+
+                            </div>
+                            
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                         {{form_widget(form.Modifier,{'attr':{'class':' btn btn-danger'}})}}
+                                        <div style="visibility: hidden"   >
+                                          {{ include('post_forum/_form.html.twig') }}</div>
+                                     </div>
+
+
+
+                                </div>
+
+                              {{ form_end(form) }}
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+    <a href="{{ path('post_forum_index') }}">back to list</a>
+
+
+{% endblock %}

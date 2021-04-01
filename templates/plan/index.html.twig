@@ -1,0 +1,273 @@
+{% extends 'baseFront.html.twig' %}
+
+
+{% block modal %}
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Reserver</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="title" class="col-form-label">title:</label>
+            <input type="text" class="form-control" id="title">
+          </div>
+          <div class="form-group row">
+  <label for="datetime-local-debut" class="col-2 col-form-label">Date Debut</label>
+  <div class="col-10">
+    <input class="form-control" type="datetime-local"  id="datetime-local-debut">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="datetime-local-fin" class="col-2 col-form-label">Date Fin</label>
+  <div class="col-10">
+    <input class="form-control" type="datetime-local"  id="datetime-local-fin">
+  </div>
+</div>
+<div class form-group>
+
+<label class="col-4 col-form-label">liste de guide</label>
+<select class="form-select" id='guide'></select>
+
+</div>
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="restour">Reserver</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="ModalModifier" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalModifier">Modifier</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+          <input type="hidden" id="idEvent" >
+            <label for="titleModifier" class="col-form-label">title:</label>
+            <input type="text" class="form-control" id="titleModifier">
+          </div>
+          <div class="form-group row">
+  <label for="datetime-local-debut-modifier" class="col-2 col-form-label">Date Debut</label>
+  <div class="col-10">
+    <input class="form-control" type="datetime-local"  id="datetime-local-debut-modifier">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="datetime-local-fin-modifier" class="col-2 col-form-label">Date Fin</label>
+  <div class="col-10">
+    <input class="form-control" type="datetime-local"  id="datetime-local-fin-modifier">
+  </div>
+</div>
+<div class form-group>
+
+<label class="col-4 col-form-label">liste de guide</label>
+<select class="form-select" id='guideModifier'></select>
+
+</div>
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" id="Delete">Supprimer</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="modifier">Modifier</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+{% block search %}
+<style>
+        #calendrier{
+            width: 80%;
+            margin: auto;
+        }
+        
+  
+      
+        
+        </style>
+    <div class="search">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.css" integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.js" integrity="sha256-DBxkGZLxKsLKhz054qUpBqtotG00r9AELGpSigJujLg=" crossorigin="anonymous"></script>
+
+
+        <!-- Search Contents -->
+
+        <div class="container fill_height">
+            <div class="row fill_height">
+                <div class="col fill_height ">
+
+                    <!-- Search Tabs -->
+
+                    <button id="addREs" class="btn btn-default p-10 m-3" data-toggle="modal" data-target="#exampleModal" >Reserver guide</button>
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+    {% block change %}
+
+   <div id="calendrier">
+   
+   
+   <div>
+
+   
+
+
+<script>
+ window.onload = () => {
+        let calendarElt = document.querySelector("#calendrier")
+        let calendar = new FullCalendar.Calendar(calendarElt, {
+            initialView: 'timeGridWeek',
+            locale: 'fr',
+            timeZone: 'Europe/Paris',
+            headerToolbar: {
+                start: 'prev,next today',
+                center: 'title',
+                end: 'dayGridMonth,timeGridWeek'
+            },
+            events:{{data|raw}},
+            editable: true,
+            eventResizableFromStart: true,
+            eventClick: function(info) {
+             
+              $("#ModalModifier").modal("show");
+
+              $("#titleModifier").val(info.event.title)
+              $("#datetime-local-debut-modifier").val(new Date(info.event.start).toJSON().slice(0,19))
+              $("#datetime-local-fin-modifier").val(new Date(info.event.extendedProps.fin).toJSON().slice(0,19))
+              $('#idEvent').val(info.event.id);
+     
+        
+            }
+           
+        })
+        
+        calendar.render()
+    }
+    
+
+
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function () {
+        var $guide = $('#guide');
+    
+        $guide.append('<option value="">Choisir un guide</option>');
+        $.ajax({
+            type: 'get',
+            url: '{{ path('guidesjson') }}',
+            dataType: 'json',
+            success: function (json) {
+                {#$('#guide').append({{  dump(json)}});#}
+                console.log(json.value);
+                $.each(json, function (index, value) {
+
+                    //console.log(value);
+                    $('#guide').append('<option value="' + value.id + '">' + value.nom+" "+value.prenom + '</option>');
+                    $('#guideModifier').append('<option value="' + value.id + '">' + value.nom+" "+value.prenom + '</option>');
+
+                });
+            }
+        });
+
+
+
+    });
+
+
+</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script>
+
+
+function Onlclickntn(event){
+  event.preventDefault()
+  var title=$('#title').val();
+  var date_debut=$('#datetime-local-debut').val();
+  
+  
+  var date_fin=$('#datetime-local-fin').val();
+  var guide=new Number($('#guide').val());
+  
+   $.post("{{ url('addRes')}}",{ 'title' : title,
+  'date_debut':date_debut,
+  'date_fin':date_debut,
+  'guide':guide
+  });
+
+  document.location.reload();
+
+}
+
+         function OnclickModif(event){
+    event.preventDefault()
+    var title=$('#titleModifier').val();
+    var date_debut=$('#datetime-local-debut-modifier').val();
+  
+  
+    var date_fin=$('#datetime-local-fin-modifier').val();
+    var guide=new Number($('#guideModifier').val());
+    var idEvent=$("#idEvent").val();
+    
+     $.post("{{url('eventResModif')}}",{ 'id':idEvent,
+    'title' : title,
+    'date_debut':date_debut,
+    'date_fin':date_debut,
+    'guide':guide
+  });
+document.location.reload();
+  
+
+}
+        document.querySelector("#modifier").addEventListener('click',OnclickModif)
+  
+
+
+
+
+function OnclickSupp(event){
+   var idEvent=$("#idEvent").val();
+    
+     $.post("{{url('eventResModif')}}",{ 'id':idEvent
+  });
+
+
+document.location.reload();
+
+}
+
+document.querySelector("#restour").addEventListener('click',Onlclickntn)
+
+document.querySelector("#Delete").addEventListener('click',OnclickSupp)
+
+
+</script>
+
+    {% endblock %}

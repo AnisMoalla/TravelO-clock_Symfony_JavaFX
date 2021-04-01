@@ -1,0 +1,363 @@
+{% extends 'baseFront.html.twig' %}
+{% block up %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Travelix Project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{asset('front/styles/bootstrap4/bootstrap.min.css')}}">
+    <link href="{{asset('front/plugins/font-awesome-4.7.0/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{asset('front/plugins/OwlCarousel2-2.2.1/owl.carousel.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('front/plugins/OwlCarousel2-2.2.1/owl.theme.default.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('front/plugins/OwlCarousel2-2.2.1/animate.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('front/styles/main_styles.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('front/styles/responsive.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('front/styles/contact_styles.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('front/styles/contact_responsive.css')}}">
+{% endblock %}
+
+{% block search %}
+    <div class="search">
+
+
+        <!-- Search Contents -->
+
+        <div class="container fill_height">
+            <div class="row fill_height">
+                <div class="col fill_height">
+
+                    <!-- Search Tabs -->
+
+                    <div class="search_tabs_container">
+                        <div class="search_tabs d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+                            <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="{{asset('front/images/suitcase.png')}}" alt=""><span>Hotels</span></div>
+                            <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="{{asset('front/images/bus.png')}}" alt="">Familles Acceuils</div>
+                            <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="{{asset('front/images/departure.png')}}" alt="">Guides</div>
+                            <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="{{asset('front/images/island.png')}}" alt="">Vendeurs</div>
+                            <div class="search_tab active d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="{{asset('front/images/cruise.png')}}" alt="">Evenements</div>
+                            <div class="search_tab active d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="{{asset('front/images/diving.png')}}" alt="">Offres</div>
+                        </div>
+                    </div>
+
+                    <!-- Search Panel -->
+
+                    <div class="search_panel active">
+                        <form action="#" id="search_form_1" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+                            <div class="search_item">
+                                <div>Destination</div>
+                                <input type="text" class="destination search_input" required="required">
+                            </div>
+                            <div class="search_item">
+                                <div>Date Debut</div>
+                                <input type="text" class="check_in search_input" placeholder="YYYY-MM-DD">
+                            </div>
+                            <div class="search_item">
+                                <div>Date Fin</div>
+                                <input type="text" class="check_out search_input" placeholder="YYYY-MM-DD">
+                            </div>
+                            <div class="search_item">
+                                <div>Adultes</div>
+                                <select name="adults" id="adults_1" class="dropdown_item_select search_input">
+                                    <option>01</option>
+                                    <option>02</option>
+                                    <option>03</option>
+                                </select>
+                            </div>
+                            <div class="search_item">
+                                <div>Enfants</div>
+                                <select name="children" id="children_1" class="dropdown_item_select search_input">
+                                    <option>0</option>
+                                    <option>02</option>
+                                    <option>03</option>
+                                </select>
+                            </div>
+                            <button class="button search_button">search<span></span><span></span><span></span></button>
+                        </form>
+                    </div>
+
+                    <!-- Search Panel -->
+
+                    <div class="search_panel">
+                        <form action="#" id="search_form_2" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+                            <div class="search_item">
+                                <div>Destination</div>
+                                <input type="text" class="destination search_input" required="required">
+                            </div>
+                            <div class="search_item">
+                                <div>Date Debut</div>
+                                <input type="text" class="check_in search_input" placeholder="YYYY-MM-DD">
+                            </div>
+                            <div class="search_item">
+                                <div>Date Fin</div>
+                                <input type="text" class="check_out search_input" placeholder="YYYY-MM-DD">
+                            </div>
+                            <div class="search_item">
+                                <div>Adultes</div>
+                                <select name="adults" id="adults_2" class="dropdown_item_select search_input">
+                                    <option>01</option>
+                                    <option>02</option>
+                                    <option>03</option>
+                                </select>
+                            </div>
+                            <div class="search_item">
+                                <div>Enfants</div>
+                                <select name="children" id="children_2" class="dropdown_item_select search_input">
+                                    <option>0</option>
+                                    <option>02</option>
+                                    <option>03</option>
+                                </select>
+                            </div>
+                            <button class="button search_button">search<span></span><span></span><span></span></button>
+                        </form>
+                    </div>
+
+                    <!-- Search Panel -->
+
+                    <div class="search_panel">
+                        <form action="#" id="search_form_3" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+                            <div class="search_item">
+                                <div>Destination</div>
+                                <input type="text" class="destination search_input" required="required">
+                            </div>
+                            <div class="search_item">
+                                <div>Date Debut</div>
+                                <input type="text" class="check_in search_input" placeholder="YYYY-MM-DD">
+                            </div>
+                            <div class="search_item">
+                                <div>Date Fin</div>
+                                <input type="text" class="check_out search_input" placeholder="YYYY-MM-DD">
+                            </div>
+                            <div class="search_item">
+                                <div>Adultes</div>
+                                <select name="adults" id="adults_3" class="dropdown_item_select search_input">
+                                    <option>01</option>
+                                    <option>02</option>
+                                    <option>03</option>
+                                </select>
+                            </div>
+                            <div class="search_item">
+                                <div>Enfants</div>
+                                <select name="children" id="children_3" class="dropdown_item_select search_input">
+                                    <option>0</option>
+                                    <option>02</option>
+                                    <option>03</option>
+                                </select>
+                            </div>
+                            <button class="button search_button">search<span></span><span></span><span></span></button>
+                        </form>
+                    </div>
+
+                    <!-- Search Panel -->
+
+                    <div class="search_panel">
+                        <form action="#" id="search_form_4" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+                            <div class="search_item">
+                                <div>Destination</div>
+                                <input type="text" class="destination search_input" required="required">
+                            </div>
+                            <div class="search_item">
+                                <div>Date Debut</div>
+                                <input type="text" class="check_in search_input" placeholder="YYYY-MM-DD">
+                            </div>
+                            <div class="search_item">
+                                <div>Date Fin</div>
+                                <input type="text" class="check_out search_input" placeholder="YYYY-MM-DD">
+                            </div>
+                            <div class="search_item">
+                                <div>Adultes</div>
+                                <select name="adults" id="adults_4" class="dropdown_item_select search_input">
+                                    <option>01</option>
+                                    <option>02</option>
+                                    <option>03</option>
+                                </select>
+                            </div>
+                            <div class="search_item">
+                                <div>Enfants</div>
+                                <select name="children" id="children_4" class="dropdown_item_select search_input">
+                                    <option>0</option>
+                                    <option>02</option>
+                                    <option>03</option>
+                                </select>
+                            </div>
+                            <button class="button search_button">search<span></span><span></span><span></span></button>
+                        </form>
+                    </div>
+
+                    <!-- Search Panel -->
+
+                    <div class="search_panel">
+                        <form action="#" id="search_form_5" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+                            <div class="search_item">
+                                <div>Destination</div>
+                                <input type="text" class="destination search_input" required="required">
+                            </div>
+                            <div class="search_item">
+                                <div>Date Debut</div>
+                                <input type="text" class="check_in search_input" placeholder="YYYY-MM-DD">
+                            </div>
+                            <div class="search_item">
+                                <div>Date Fin</div>
+                                <input type="text" class="check_out search_input" placeholder="YYYY-MM-DD">
+                            </div>
+                            <div class="search_item">
+                                <div>Adultes</div>
+                                <select name="adults" id="adults_5" class="dropdown_item_select search_input">
+                                    <option>01</option>
+                                    <option>02</option>
+                                    <option>03</option>
+                                </select>
+                            </div>
+                            <div class="search_item">
+                                <div>Enfants</div>
+                                <select name="children" id="children_5" class="dropdown_item_select search_input">
+                                    <option>0</option>
+                                    <option>02</option>
+                                    <option>03</option>
+                                </select>
+                            </div>
+                            <button class="button search_button">search<span></span><span></span><span></span></button>
+                        </form>
+                    </div>
+
+                    <!-- Search Panel -->
+
+                    <div class="search_panel">
+                        <form action="#" id="search_form_6" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+                            <div class="search_item">
+                                <div>Destination</div>
+                                <input type="text" class="destination search_input" required="required">
+                            </div>
+                            <div class="search_item">
+                                <div>Date Debut</div>
+                                <input type="text" class="check_in search_input" placeholder="YYYY-MM-DD">
+                            </div>
+                            <div class="search_item">
+                                <div>Date Fin</div>
+                                <input type="text" class="check_out search_input" placeholder="YYYY-MM-DD">
+                            </div>
+                            <div class="search_item">
+                                <div>Adultes</div>
+                                <select name="adults" id="adults_6" class="dropdown_item_select search_input">
+                                    <option>01</option>
+                                    <option>02</option>
+                                    <option>03</option>
+                                </select>
+                            </div>
+                            <div class="search_item">
+                                <div>Enfants</div>
+                                <select name="children" id="children_6" class="dropdown_item_select search_input">
+                                    <option>0</option>
+                                    <option>02</option>
+                                    <option>03</option>
+                                </select>
+                            </div>
+                            <button class="button search_button">search<span></span><span></span><span></span></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block change %}
+
+    <!-- Contact -->
+
+    <div class="contact_form_section">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+
+                    <!-- Contact Form -->
+                    <div class="contact_form_container">
+                        <div class="contact_title text-center">Réserver</div>
+                        <div class="form-group">
+                            {{ form_start(form) }}
+                        </div>
+                        <div class="contact_form_email input_field" style="margin-left: 250px;margin-top: 30px">
+                            {{ form_widget(form.ajouter , {'attr': {'class': 'form-control form-control-user btn-info' , 'placeholder' : 'Ajouter'}} ) }}
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About -->
+    <div class="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+
+                    <!-- About - Image -->
+
+                    <div class="about_image">
+                        <img src="{{asset('front/images/3.jpg')}}" alt="" style="width: 450px; height: 400px">
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4">
+
+                    <!-- About - Content -->
+
+                    <div class="about_content">
+                        <div class="logo_container about_logo">
+                            <div class="logo"><a href="#"><img src="{{asset('front/images/logo.png')}}" alt="">Travel<sup>O</sup>Clock</a></div>
+                        </div>
+                        <p class="about_text">Welcome To Our Travel<sup>O</sup>Clock WebSite</p><br><br><br><br><br><br>
+                        <ul class="about_social_list">
+                            <li class="about_social_item"><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                            <li class="about_social_item"><a href="#"><i class="fa fa-facebook-f"></i></a></li>
+                            <li class="about_social_item"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li class="about_social_item"><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                            <li class="about_social_item"><a href="#"><i class="fa fa-behance"></i></a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-3">
+
+                    <!-- About Info -->
+
+                    <div class="about_info">
+                        <ul class="contact_info_list">
+                            <li class="contact_info_item d-flex flex-row">
+                                <div><div class="contact_info_icon"><img src="{{asset('front/images/placeholder.svg')}}" alt=""></div></div>
+                                <div class="contact_info_text">1, 2 rue André Ampère - 2083 - Pôle Technologique - El Ghazala.</div>
+                            </li>
+                            <li class="contact_info_item d-flex flex-row">
+                                <div><div class="contact_info_icon"><img src="{{asset('front/images/phone-call.svg')}}" alt=""></div></div>
+                                <div class="contact_info_text">+(216) 70 250 000</div>
+                            </li>
+                            <li class="contact_info_item d-flex flex-row">
+                                <div><div class="contact_info_icon"><img src="{{asset('front/images/message.svg')}}" alt=""></div></div>
+                                <div class="contact_info_text"><a href="mailto:contactme@gmail.com?Subject=Hello" target="_top">contact@esprit.tn</a></div>
+                            </li>
+                            <li class="contact_info_item d-flex flex-row">
+                                <div><div class="contact_info_icon"><img src="{{asset('front/images/planet-earth.svg')}}" alt=""></div></div>
+                                <div class="contact_info_text"><a href="https://esprit.tn">www.esprit.tn</a></div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block down %}
+    <script src="{{asset('front/js/jquery-3.2.1.min.js')}}"></script>
+    <script src="{{asset('front/styles/bootstrap4/popper.js')}}"></script>
+    <script src="{{asset('front/styles/bootstrap4/bootstrap.min.js')}}"></script>
+    <script src="{{asset('front/plugins/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
+    <script src="{{asset('front/plugins/easing/easing.js')}}"></script>
+    <script src="{{asset('front/js/custom.js')}}"></script>
+    <script src="{{asset('front/plugins/parallax-js-master/parallax.min.js')}}"></script>
+    <script src="{{asset('front/js/contact_custom.js')}}"></script>
+{% endblock %}
