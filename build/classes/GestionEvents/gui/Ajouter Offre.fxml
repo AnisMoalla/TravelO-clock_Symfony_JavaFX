@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestionEvents.gui.AjouterOffreController">
+   <children>
+      <Label layoutX="472.0" layoutY="14.0" text="Ajouter un offre">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Label>
+      <Label layoutX="100.0" layoutY="150.0" prefHeight="32.0" prefWidth="92.0" text="User ID :">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="100.0" layoutY="300.0" text="Event ID :">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="100.0" layoutY="450.0" text="Nom :">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="750.0" layoutY="150.0" text="Date de début :">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="750.0" layoutY="300.0" text="Date de fin :">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="750.0" layoutY="450.0" text="Pourcentage :">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textFieldUserID" layoutX="270.0" layoutY="150.0" />
+      <TextField fx:id="textFieldEventID" layoutX="270.0" layoutY="300.0" />
+      <TextField fx:id="textFieldNom" layoutX="270.0" layoutY="450.0" />
+      <TextField fx:id="textFieldPourcentage" layoutX="963.0" layoutY="450.0" />
+      <Button fx:id="boutonValider" layoutX="540.0" layoutY="649.0" mnemonicParsing="false" onAction="#actionValider" text="Valider" />
+      <Button fx:id="boutonRetour" layoutX="673.0" layoutY="649.0" mnemonicParsing="false" onAction="#actionRetour" text="Retour" />
+      <DatePicker fx:id="datePickerDateDebut" layoutX="963.0" layoutY="150.0" />
+      <DatePicker fx:id="datePickerDateFin" layoutX="963.0" layoutY="300.0" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="760.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="GestionEvents.gui.AjouterResrvationController">
+   <children>
+      <Label layoutX="200.0" layoutY="175.0" text="User ID :">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="200.0" layoutY="325.0" text="Evenement_ID :">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="800.0" layoutY="250.0" text="Date Resevation :">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="200.0" layoutY="475.0" text="Offre_ID :">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="800.0" layoutY="400.0" text="Tarif :">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textFieldUserID" layoutX="369.0" layoutY="176.0" />
+      <TextField fx:id="textFieldEventID" layoutX="369.0" layoutY="326.0" />
+      <TextField fx:id="textFieldOffreID" layoutX="369.0" layoutY="476.0" />
+      <TextField fx:id="textFieldTarif" layoutX="1007.0" layoutY="401.0" />
+      <DatePicker fx:id="datePickerDateReservation" layoutX="1007.0" layoutY="251.0" />
+      <Button fx:id="boutonAjouter" layoutX="550.0" layoutY="650.0" mnemonicParsing="false" onAction="#actionAjouter" text="Ajouter" />
+      <Button fx:id="boutonRetour" layoutX="750.0" layoutY="650.0" mnemonicParsing="false" onAction="#actionRetour" text="Retour" />
+   </children>
+</AnchorPane>

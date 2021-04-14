@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="760.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestionEvents.gui.SuppModifReservationController">
+   <children>
+      <Label layoutX="200.0" layoutY="325.0" text="Evenement_ID :">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="800.0" layoutY="250.0" text="Date Resevation :">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="800.0" layoutY="400.0" text="Tarif :">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textFieldEventID" layoutX="369.0" layoutY="326.0" />
+      <TextField fx:id="textFieldTarif" layoutX="1007.0" layoutY="401.0" />
+      <DatePicker fx:id="datePickerDateReservation" layoutX="1007.0" layoutY="251.0" />
+      <Button fx:id="boutonModifier" layoutX="463.0" layoutY="650.0" mnemonicParsing="false" onAction="#actionModifier" text="Modifier" />
+      <Button fx:id="boutonRetour" layoutX="795.0" layoutY="650.0" mnemonicParsing="false" onAction="#actionRetour" text="Retour" />
+      <Button fx:id="boutonSupprimer" layoutX="622.0" layoutY="650.0" mnemonicParsing="false" onAction="#actionSupprimer" text="Supprimer" />
+      <Label layoutX="509.0" layoutY="28.0" text="Editer Reservation">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

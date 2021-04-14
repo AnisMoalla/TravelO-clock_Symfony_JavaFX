@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestionEvents.gui.GestionMvtController">
+   <children>
+      <Button fx:id="buttonEvent" layoutX="250.0" layoutY="350.0" mnemonicParsing="false" onAction="#eventEvent" text="Evenements" />
+      <Button fx:id="buttonOffre" layoutX="1000.0" layoutY="350.0" mnemonicParsing="false" onAction="#eventOffre" text="Offres" />
+   </children>
+</AnchorPane>
