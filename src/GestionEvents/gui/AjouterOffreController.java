@@ -31,8 +31,6 @@ public class AjouterOffreController implements Initializable {
     @FXML
     private TextField textFieldUserID;
     @FXML
-    private TextField textFieldEventID;
-    @FXML
     private TextField textFieldNom;
     @FXML
     private TextField textFieldPourcentage;
@@ -62,7 +60,8 @@ public class AjouterOffreController implements Initializable {
         if (textFieldUserID.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Vous devez saisir un User ID d'abord !");
         } else {
-            if (textFieldEventID.getText().isEmpty()) {
+//            if (textFieldEventID.getText().isEmpty()) {
+              if (false) {
                 JOptionPane.showMessageDialog(null, "Vous devez saisir un Event ID d'abord !");
             } else {
                 if (textFieldNom.getText().isEmpty()) {
@@ -80,8 +79,9 @@ public class AjouterOffreController implements Initializable {
                             if (resultat2 > 0) {
                                 JOptionPane.showMessageDialog(null, "Date de Fin doit etre superieure à Date Debut !");
                             } else {
+                                EncapsulationEvent encapsulationEvent=new EncapsulationEvent();
                                 o.setUser_id(Integer.parseInt(textFieldUserID.getText()));
-                                o.setEvenement_id(Integer.parseInt(textFieldEventID.getText()));
+                                o.setEvenement_id(encapsulationEvent.getId());
                                 o.setNom(textFieldNom.getText());
                                 o.setDate_debut(java.sql.Date.valueOf(datePickerDateDebut.getValue()));
                                 o.setDate_fin(java.sql.Date.valueOf(datePickerDateFin.getValue()));
@@ -90,9 +90,8 @@ public class AjouterOffreController implements Initializable {
                                 textFieldPourcentage.setText("");
                                 textFieldNom.setText("");
                                 textFieldUserID.setText("");
-                                textFieldEventID.setText("");
                                 datePickerDateDebut.setValue(LocalDate.now());
-                                datePickerDateFin.setValue(LocalDate.now());
+                                 datePickerDateFin.setValue(LocalDate.now());
                             }
                         }
                     }
@@ -104,7 +103,7 @@ public class AjouterOffreController implements Initializable {
 
     @FXML
     private void actionRetour(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("OffresBack.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("EventsBack.fxml"));
         Pane root = loader.load();
         boutonRetour.getScene().setRoot(root);
     }

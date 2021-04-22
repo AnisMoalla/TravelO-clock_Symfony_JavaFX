@@ -24,7 +24,6 @@
             <TableColumn fx:id="colonnePourcentage" prefWidth="200.0" text="Pourcentage" />
         </columns>
       </TableView>
-      <Button fx:id="boutonAjouterOffre" layoutX="587.0" layoutY="659.0" mnemonicParsing="false" onAction="#eventAjouter" text="Ajouter Offre" />
       <Button fx:id="boutonRetour" layoutX="1182.0" layoutY="659.0" mnemonicParsing="false" onAction="#actionRetour" text="Retour" />
    </children>
 </AnchorPane>

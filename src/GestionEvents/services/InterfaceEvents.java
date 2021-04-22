@@ -15,5 +15,7 @@ public interface InterfaceEvents<E> {
     public void ajouterEvent(E e);
     public void supprimerEvent(E e);
     public void modifierEvent(E e1,E e2);
-    public List<E> afficherEvent();   
+    public List<E> afficherEvent(); 
+    public double recupererPrixEvent(int id);
+    public void modifierNbrPlace(int id);
 }

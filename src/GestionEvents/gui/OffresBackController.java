@@ -46,8 +46,6 @@ public class OffresBackController implements Initializable {
     @FXML
     private TableColumn<Offre, Integer> colonnePourcentage;
     @FXML
-    private Button boutonAjouterOffre;
-    @FXML
     private Button boutonRetour;
     private OffresCRUD offresCRUD;
     private List<Offre> offreList;
@@ -86,17 +84,12 @@ public class OffresBackController implements Initializable {
                     root = loader.load();
                 } catch (IOException ex) {
                     ex.printStackTrace();
-                }   boutonAjouterOffre.getScene().setRoot(root);
+                }   boutonRetour.getScene().setRoot(root);
             }    
         });
     }    
 
-    @FXML
-    private void eventAjouter(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Ajouter Offre.fxml"));
-        Pane root = loader.load();
-        boutonAjouterOffre.getScene().setRoot(root);
-    }
+
     
     @FXML
     private void actionRetour(ActionEvent event) throws IOException {

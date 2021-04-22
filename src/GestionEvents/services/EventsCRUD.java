@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -76,13 +78,13 @@ public class EventsCRUD implements InterfaceEvents<Evenement> {
     public List<Evenement> afficherEvent() {
         List<Evenement> List = new ArrayList<>();
         try {
-            String requete = "SELECT user.prenom,evenement.nom,evenement.date_debut, evenement.date_fin, evenement.description, evenement.pays, evenement.ville, evenement.prix, evenement.nbr_places, evenement.rate"
+            String requete = "SELECT evenement.id, user.prenom,evenement.nom,evenement.date_debut, evenement.date_fin, evenement.description, evenement.pays, evenement.ville, evenement.prix, evenement.nbr_places, evenement.rate"
                     + " FROM user,evenement"
                     + " where user.id=evenement.user_id";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(requete);
             while(rs.next()) {
-            List.add(new Evenement(rs.getString(1),rs.getString(2),rs.getDate(3),rs.getDate(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getDouble(8),rs.getInt(9),rs.getDouble(10)));
+            List.add(new Evenement(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getDate(4), rs.getDate(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getDouble(9), rs.getInt(10), rs.getDouble(11)));
             }
             
             System.out.println("Evennement affichée !! ");
@@ -91,6 +93,43 @@ public class EventsCRUD implements InterfaceEvents<Evenement> {
             System.err.println(ex.getMessage());
         }
         return List;
+    }
+
+    @Override
+    public double recupererPrixEvent(int id) {
+        double prixTemp=0;
+        try {
+            String requete = "SELECT prix FROM evenement where id="+id;
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            if(rs.next())
+            {
+                prixTemp=(rs.getInt(1));
+            }        
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return prixTemp;
+    }
+
+    @Override
+    public void modifierNbrPlace(int id) {
+        int placeTemp=0;
+        try {
+            String requete = "SELECT nbr_places FROM evenement where id='"+id+"'";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            if(rs.next())
+            {
+                placeTemp=(rs.getInt(1));
+            }
+            placeTemp--;
+            requete="UPDATE evenement SET nbr_places='"+placeTemp+"' where id='"+id+"'";
+            st.executeUpdate(requete);
+            System.out.println("nbr_place modifie !! ");
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
     }
     
 }

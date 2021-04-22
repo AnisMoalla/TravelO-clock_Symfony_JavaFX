@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -21,14 +23,21 @@
             <TableColumn fx:id="colonnePrix" prefWidth="75.0" text="Prix" />
             <TableColumn fx:id="colonnePlace" prefWidth="75.0" text="Place" />
             <TableColumn fx:id="colonneNote" prefWidth="75.0" text="Note" />
+            <TableColumn fx:id="idEvent" prefWidth="75.0" text="idEvent" />
         </columns>
       </TableView>
-      <Button fx:id="boutonAjouterEvent" layoutX="567.0" layoutY="658.0" mnemonicParsing="false" onAction="#eventAjouter" text="Ajouter Evenement" />
+      <Button fx:id="boutonAjouterEvent" layoutX="1001.0" layoutY="674.0" mnemonicParsing="false" onAction="#eventAjouter" text="Ajouter Evenement" />
       <Label layoutX="464.0" layoutY="14.0" text="Evenement">
          <font>
             <Font size="72.0" />
          </font>
       </Label>
-      <Button fx:id="boutonRetour" layoutX="1182.0" layoutY="658.0" mnemonicParsing="false" onAction="#actionRetour" text="Retour" />
+      <Button fx:id="boutonRetour" layoutX="1182.0" layoutY="674.0" mnemonicParsing="false" onAction="#actionRetour" text="Retour" />
+      <TextField fx:id="in_search" layoutX="137.0" layoutY="88.0" />
+      <Label layoutX="45.0" layoutY="93.0" text="Recherche :" />
+      <Button fx:id="btn_csv" layoutX="1001.0" layoutY="88.0" mnemonicParsing="false" onAction="#CSV" text="CSV" />
+      <Button fx:id="btn_mail" layoutX="824.0" layoutY="674.0" mnemonicParsing="false" onAction="#sendMail" text="Envoyer Email" />
+      <TextArea fx:id="mailContent" layoutX="392.0" layoutY="638.0" prefHeight="114.0" prefWidth="408.0" />
+      <Button fx:id="buttonStat" layoutX="1100.0" layoutY="88.0" mnemonicParsing="false" onAction="#actionStat" prefHeight="31.0" prefWidth="147.0" text="Statistiques" />
    </children>
 </AnchorPane>

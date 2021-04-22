@@ -44,7 +44,13 @@ public class OfficeController implements Initializable {
 
     @FXML
     private void actionUser(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ReservationFront.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("TourRes.fxml"));
+        Pane root = loader.load();
+        boutonUser.getScene().setRoot(root);
+    }
+
+    private void actionReserverUnePlace(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("TourRes.fxml"));
         Pane root = loader.load();
         boutonUser.getScene().setRoot(root);
     }

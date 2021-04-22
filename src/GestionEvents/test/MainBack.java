@@ -5,6 +5,7 @@
  */
 package GestionEvents.test;
 
+import java.awt.Image;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

@@ -89,7 +89,7 @@ public class AjouterEvenementController implements Initializable {
                     JOptionPane.showMessageDialog(null, "La Date de Debut doit etre correcte !");
                 } else {
                     int resultat2 = datePickerDateFin.getValue().compareTo(datePickerDateDebut.getValue());
-                    if (resultat2 > 0) {
+                    if (resultat2 < 0) {
                         JOptionPane.showMessageDialog(null, "Date de Fin doit etre superieure à Date Debut !");
                     } else {
                         if (textFieldPays.getText().isEmpty()) {
@@ -104,27 +104,31 @@ public class AjouterEvenementController implements Initializable {
                                     if (textFieldNbrPlaces.getText().isEmpty()) {
                                         JOptionPane.showMessageDialog(null, "Vous devez saisir le nombre des Places d'abord !");
                                     } else {
-                                        e.setUser_id(Integer.parseInt(textFieldUserID.getText()));
-                                        e.setNom(textFieldNom.getText());
-                                        e.setDate_debut(java.sql.Date.valueOf(datePickerDateDebut.getValue()));
-                                        e.setDate_fin(java.sql.Date.valueOf(datePickerDateFin.getValue()));
-                                        e.setDescription(textAreaDescription.getText());
-                                        e.setPays(textFieldPays.getText());
-                                        e.setVille(textFieldVille.getText());
-                                        e.setNbr_places(Integer.parseInt(textFieldNbrPlaces.getText()));
-                                        e.setImage(textFieldImage.getText());
-                                        e.setPrix(Double.parseDouble(textFieldPrix.getText()));
-                                        eventsCRUD.ajouterEvent(e);
-                                        textAreaDescription.setText("");
-                                        textFieldImage.setText("");
-                                        textFieldNbrPlaces.setText("");
-                                        textFieldNom.setText("");
-                                        textFieldPays.setText("");
-                                        textFieldPrix.setText("");
-                                        textFieldUserID.setText("");
-                                        textFieldVille.setText("");
-                                        datePickerDateDebut.setValue(LocalDate.now());
-                                        datePickerDateFin.setValue(LocalDate.now());
+                                        if (textFieldPrix.getText().isEmpty()) {
+                                            JOptionPane.showMessageDialog(null, "Vous devez saisir le prix d'abord !");
+                                        } else {
+                                            e.setUser_id(Integer.parseInt(textFieldUserID.getText()));
+                                            e.setNom(textFieldNom.getText());
+                                            e.setDate_debut(java.sql.Date.valueOf(datePickerDateDebut.getValue()));
+                                            e.setDate_fin(java.sql.Date.valueOf(datePickerDateFin.getValue()));
+                                            e.setDescription(textAreaDescription.getText());
+                                            e.setPays(textFieldPays.getText());
+                                            e.setVille(textFieldVille.getText());
+                                            e.setNbr_places(Integer.parseInt(textFieldNbrPlaces.getText()));
+                                            e.setImage(textFieldImage.getText());
+                                            e.setPrix(Double.parseDouble(textFieldPrix.getText()));
+                                            eventsCRUD.ajouterEvent(e);
+                                            textAreaDescription.setText("");
+                                            textFieldImage.setText("");
+                                            textFieldNbrPlaces.setText("");
+                                            textFieldNom.setText("");
+                                            textFieldPays.setText("");
+                                            textFieldPrix.setText("");
+                                            textFieldUserID.setText("");
+                                            textFieldVille.setText("");
+                                            datePickerDateDebut.setValue(LocalDate.now());
+                                            datePickerDateFin.setValue(LocalDate.now());
+                                        }
                                     }
                                 }
                             }

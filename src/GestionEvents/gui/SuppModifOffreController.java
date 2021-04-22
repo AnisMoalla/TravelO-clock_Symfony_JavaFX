@@ -9,6 +9,7 @@ import GestionEvents.entites.Offre;
 import GestionEvents.services.OffresCRUD;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -48,17 +50,17 @@ public class SuppModifOffreController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        encapsulationOffre=new EncapsulationOffre();
-        offresCRUD=new OffresCRUD();
+        encapsulationOffre = new EncapsulationOffre();
+        offresCRUD = new OffresCRUD();
         textFieldPourcentage.setText(String.valueOf(encapsulationOffre.getPourcentage()));
         textFieldNom.setText(encapsulationOffre.getNom());
         datePickerDateDebut.setValue(encapsulationOffre.getDate_debut().toLocalDate());
         datePickerDateFin.setValue(encapsulationOffre.getDate_fin().toLocalDate());
-    }    
+    }
 
     @FXML
     private void actionSupprimer(ActionEvent event) throws IOException {
-        Offre offre = new Offre(encapsulationOffre.getNom(),encapsulationOffre.getDate_debut(),encapsulationOffre.getDate_fin(),encapsulationOffre.getPourcentage());
+        Offre offre = new Offre(encapsulationOffre.getNom(), encapsulationOffre.getDate_debut(), encapsulationOffre.getDate_fin(), encapsulationOffre.getPourcentage());
         offresCRUD.supprimerOffre(offre);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("OffresBack.fxml"));
         Pane root = loader.load();
@@ -74,16 +76,35 @@ public class SuppModifOffreController implements Initializable {
 
     @FXML
     private void actionModifier(ActionEvent event) throws IOException {
-        Offre offre1 = new Offre(encapsulationOffre.getNom(),encapsulationOffre.getDate_debut(),encapsulationOffre.getDate_fin(),encapsulationOffre.getPourcentage());
-        Offre offre2=new Offre();
-        offre2.setNom(textFieldNom.getText());
-        offre2.setDate_debut(java.sql.Date.valueOf(datePickerDateDebut.getValue()));
-        offre2.setDate_fin(java.sql.Date.valueOf(datePickerDateFin.getValue()));
-        offre2.setPourcentage(Integer.parseInt(textFieldPourcentage.getText()));
-        offresCRUD.modifierOffre(offre1, offre2);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("OffresBack.fxml"));
-        Pane root = loader.load();
-        boutonRetour.getScene().setRoot(root);
+        if (textFieldNom.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Vous devez saisir un Nom d'abord !");
+        } else {
+            if (textFieldPourcentage.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Vous devez saisir une Pourcentage d'abord !");
+            } else {
+                int resultat1 = datePickerDateDebut.getValue().compareTo(LocalDate.now());
+                if (resultat1 < 0) {
+                    JOptionPane.showMessageDialog(null, "La Date de Debut doit etre correcte !");
+
+                } else {
+                    int resultat2 = datePickerDateDebut.getValue().compareTo(datePickerDateFin.getValue());
+                    if (resultat2 > 0) {
+                        JOptionPane.showMessageDialog(null, "Date de Fin doit etre superieure à Date Debut !");
+                    } else {
+                        Offre offre1 = new Offre(encapsulationOffre.getNom(), encapsulationOffre.getDate_debut(), encapsulationOffre.getDate_fin(), encapsulationOffre.getPourcentage());
+                        Offre offre2 = new Offre();
+                        offre2.setNom(textFieldNom.getText());
+                        offre2.setDate_debut(java.sql.Date.valueOf(datePickerDateDebut.getValue()));
+                        offre2.setDate_fin(java.sql.Date.valueOf(datePickerDateFin.getValue()));
+                        offre2.setPourcentage(Integer.parseInt(textFieldPourcentage.getText()));
+                        offresCRUD.modifierOffre(offre1, offre2);
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("OffresBack.fxml"));
+                        Pane root = loader.load();
+                        boutonRetour.getScene().setRoot(root);
+                    }
+                }
+            }
+        }
     }
-    
+
 }

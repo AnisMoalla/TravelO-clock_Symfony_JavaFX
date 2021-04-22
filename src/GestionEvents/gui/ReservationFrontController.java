@@ -94,7 +94,7 @@ public class ReservationFrontController implements Initializable {
 
     @FXML
     private void actionRetour(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Office.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("TourRes.fxml"));
         Pane root = loader.load();
         boutonRetour.getScene().setRoot(root);
     }

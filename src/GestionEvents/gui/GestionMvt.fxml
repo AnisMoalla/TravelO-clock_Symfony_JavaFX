@@ -5,7 +5,9 @@
 
 <AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestionEvents.gui.GestionMvtController">
    <children>
-      <Button fx:id="buttonEvent" layoutX="250.0" layoutY="350.0" mnemonicParsing="false" onAction="#eventEvent" text="Evenements" />
-      <Button fx:id="buttonOffre" layoutX="1000.0" layoutY="350.0" mnemonicParsing="false" onAction="#eventOffre" text="Offres" />
+      <Button fx:id="buttonEvent" layoutX="170.0" layoutY="325.0" mnemonicParsing="false" onAction="#eventEvent" prefHeight="50.0" prefWidth="150.0" text="Evenements" />
+      <Button fx:id="buttonOffre" layoutX="565.0" layoutY="325.0" mnemonicParsing="false" onAction="#eventOffre" prefHeight="50.0" prefWidth="150.0" text="Offres" />
+      <Button fx:id="buttonRetour" layoutX="1132.0" layoutY="637.0" mnemonicParsing="false" onAction="#eventRetour" text="Retour" />
+      <Button fx:id="buttonReservations" layoutX="1015.0" layoutY="325.0" mnemonicParsing="false" onAction="#eventReservation" prefHeight="50.0" prefWidth="150.0" text="Reservations" />
    </children>
 </AnchorPane>

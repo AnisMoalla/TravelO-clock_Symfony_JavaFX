@@ -37,7 +37,9 @@ public class Offre {
         this.pourcentage = pourcentage;
     }
 
-    public Offre(String username, String eventname, String nom, Date date_debut, Date date_fin, int pourcentage) {
+    public Offre(String username, String eventname, String nom, Date date_debut, Date date_fin, int pourcentage, int evenement_id, int id ) {
+        this.id=id;
+        this.evenement_id=evenement_id;
         this.nom = nom;
         this.date_debut = date_debut;
         this.date_fin = date_fin;

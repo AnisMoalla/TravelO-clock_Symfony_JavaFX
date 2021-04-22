@@ -78,6 +78,12 @@ public class RessCRUD implements InterfaceRess<Reservation> {
         }
         return List;
     }
+
+    @Override
+    public void faireUneReservation(Reservation r) {
+        
+        
+    }
     
     
 }

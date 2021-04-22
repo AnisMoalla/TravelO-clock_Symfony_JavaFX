@@ -19,12 +19,7 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <Label layoutX="100.0" layoutY="300.0" text="Event ID :">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
-      <Label layoutX="100.0" layoutY="450.0" text="Nom :">
+      <Label layoutX="100.0" layoutY="300.0" text="Nom :">
          <font>
             <Font size="22.0" />
          </font>
@@ -39,15 +34,14 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <Label layoutX="750.0" layoutY="450.0" text="Pourcentage :">
+      <Label layoutX="434.0" layoutY="450.0" text="Pourcentage :">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
       <TextField fx:id="textFieldUserID" layoutX="270.0" layoutY="150.0" />
-      <TextField fx:id="textFieldEventID" layoutX="270.0" layoutY="300.0" />
-      <TextField fx:id="textFieldNom" layoutX="270.0" layoutY="450.0" />
-      <TextField fx:id="textFieldPourcentage" layoutX="963.0" layoutY="450.0" />
+      <TextField fx:id="textFieldNom" layoutX="270.0" layoutY="300.0" />
+      <TextField fx:id="textFieldPourcentage" layoutX="647.0" layoutY="450.0" />
       <Button fx:id="boutonValider" layoutX="540.0" layoutY="649.0" mnemonicParsing="false" onAction="#actionValider" text="Valider" />
       <Button fx:id="boutonRetour" layoutX="673.0" layoutY="649.0" mnemonicParsing="false" onAction="#actionRetour" text="Retour" />
       <DatePicker fx:id="datePickerDateDebut" layoutX="963.0" layoutY="150.0" />

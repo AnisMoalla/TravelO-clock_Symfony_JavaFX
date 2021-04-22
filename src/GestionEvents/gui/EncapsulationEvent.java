@@ -12,6 +12,7 @@ import java.sql.Date;
  * @author legion
  */
 public class EncapsulationEvent {
+    private static int id;
     private static String nom;
     private static Date date_debut;
     private static Date date_fin;
@@ -21,7 +22,8 @@ public class EncapsulationEvent {
     private static double prix;
     private static int nbr_places;
 
-    public EncapsulationEvent(String nom,Date date_debut,Date date_fin,String description,String pays,String ville,double prix,int nbr_places) {
+    public EncapsulationEvent(int id,String nom,Date date_debut,Date date_fin,String description,String pays,String ville,double prix,int nbr_places) {
+        this.id=id;
         this.nom = nom;
         this.date_debut = date_debut;
         this.date_fin = date_fin;
@@ -34,6 +36,16 @@ public class EncapsulationEvent {
 
     public EncapsulationEvent() {
     }
+
+    public static int getId() {
+        return id;
+    }
+
+    public static void setId(int id) {
+        EncapsulationEvent.id = id;
+    }
+    
+    
     
     public static String getNom() {
         return nom;

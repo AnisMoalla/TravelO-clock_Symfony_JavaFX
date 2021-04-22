@@ -58,13 +58,14 @@
       <TextField fx:id="textFieldNbrPlaces" layoutX="963.0" layoutY="319.0" />
       <TextField fx:id="textFieldVille" layoutX="963.0" layoutY="229.0" />
       <TextField fx:id="textFieldPrix" layoutX="963.0" layoutY="409.0" />
-      <Button fx:id="boutonRetour" layoutX="754.0" layoutY="650.0" mnemonicParsing="false" onAction="#actionRetour" text="Retour" />
+      <Button fx:id="boutonRetour" layoutX="843.0" layoutY="650.0" mnemonicParsing="false" onAction="#actionRetour" text="Retour" />
       <Label layoutX="517.0" layoutY="14.0" text="Editer un evenement">
          <font>
             <Font size="33.0" />
          </font>
       </Label>
-      <Button fx:id="boutonModifier" layoutX="450.0" layoutY="650.0" mnemonicParsing="false" onAction="#actionModifier" text="Modifier" />
-      <Button fx:id="boutonSupprimer" layoutX="596.0" layoutY="650.0" mnemonicParsing="false" onAction="#actionSupprimer" text="Supprimer" />
+      <Button fx:id="boutonModifier" layoutX="539.0" layoutY="650.0" mnemonicParsing="false" onAction="#actionModifier" text="Modifier" />
+      <Button fx:id="boutonSupprimer" layoutX="685.0" layoutY="650.0" mnemonicParsing="false" onAction="#actionSupprimer" text="Supprimer" />
+      <Button fx:id="boutonAjouterOffre" layoutX="359.0" layoutY="650.0" mnemonicParsing="false" onAction="#actionAjouterOffre" text="Ajouter Offre" />
    </children>
 </AnchorPane>

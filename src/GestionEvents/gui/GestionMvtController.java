@@ -27,7 +27,9 @@ public class GestionMvtController implements Initializable {
     @FXML
     private Button buttonOffre;
     @FXML
-    private Button buttonReservation;
+    private Button buttonRetour;
+    @FXML
+    private Button buttonReservations;
 
     /**
      * Initializes the controller class.
@@ -53,9 +55,16 @@ public class GestionMvtController implements Initializable {
 
     @FXML
     private void eventReservation(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("OffresBack.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ReservationBack.fxml"));
         Pane root = loader.load();
-        buttonReservation.getScene().setRoot(root);
+        buttonReservations.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void eventRetour(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Office.fxml"));
+        Pane root = loader.load();
+        buttonRetour.getScene().setRoot(root);
     }
     
 }

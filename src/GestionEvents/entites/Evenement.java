@@ -21,6 +21,7 @@ public class Evenement {
     private double rate;
     private int vote;
     private String username;
+    
 
     public Evenement() {
     }
@@ -65,7 +66,8 @@ public class Evenement {
         this.nbr_places = nbr_places;
     }
 
-    public Evenement(String username, String nom, Date date_debut, Date date_fin, String description, String pays, String ville, double prix, int nbr_places, double rate) {
+    public Evenement(int id,String username, String nom, Date date_debut, Date date_fin, String description, String pays, String ville, double prix, int nbr_places, double rate) {
+        this.id=id;
         this.nom = nom;
         this.date_debut = date_debut;
         this.date_fin = date_fin;

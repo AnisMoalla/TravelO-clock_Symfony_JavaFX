@@ -15,6 +15,7 @@ public interface InterfaceRess<R> {
     public void ajouterReservation(R r);
     public void supprimerReservation(R r);
     public void modifierReservation(R r1,R r2);
+    public void faireUneReservation(R r);
     public List<R> afficherReservation();
     
 }

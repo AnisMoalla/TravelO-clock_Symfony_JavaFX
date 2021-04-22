@@ -73,13 +73,13 @@ public class OffresCRUD implements InterfaceOffres<Offre> {
     public List<Offre> afficherOffre() {
         List<Offre> List = new ArrayList<>();
         try {
-            String requete = "SELECT user.prenom,evenement.nom,offre.nom ,offre.date_debut, offre.date_fin, offre.pourcentage"
+            String requete = "SELECT user.prenom,evenement.nom,offre.nom ,offre.date_debut, offre.date_fin, offre.pourcentage, offre.evenement_id, offre.id"
                     + " FROM user,evenement,offre"
                     + " where user.id=offre.user_id and evenement.id=offre.evenement_id  ";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(requete);
             while(rs.next()) {
-            List.add(new Offre(rs.getString(1),rs.getString(2),rs.getString(3),rs.getDate(4),rs.getDate(5),rs.getInt(6)));
+            List.add(new Offre(rs.getString(1),rs.getString(2),rs.getString(3),rs.getDate(4),rs.getDate(5),rs.getInt(6),rs.getInt(7),rs.getInt(8)));
             }
             
             System.out.println("Offre affichée !! ");
