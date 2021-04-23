@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guideGui.ModifierSupprimerGuideController">
+   <children>
+      <TextField fx:id="in_user_id" layoutX="204.0" layoutY="61.0" />
+      <TextField fx:id="in_pays" layoutX="204.0" layoutY="119.0" />
+      <TextField fx:id="in_ville" layoutX="204.0" layoutY="181.0" />
+      <TextField fx:id="in_tel" layoutX="188.0" layoutY="399.0" />
+      <TextField fx:id="in_age" layoutX="187.0" layoutY="474.0" />
+      <TextField fx:id="in_sexe" layoutX="693.0" layoutY="83.0" />
+      <TextField fx:id="in_nom" layoutX="693.0" layoutY="159.0" />
+      <TextField fx:id="in_prenom" layoutX="693.0" layoutY="230.0" />
+      <TextField fx:id="in_language" layoutX="693.0" layoutY="325.0" />
+      <TextField fx:id="in_vote" layoutX="693.0" layoutY="404.0" />
+      <TextField fx:id="in_rate" layoutX="693.0" layoutY="474.0" />
+      <Line endX="-73.00003051757812" endY="239.60003662109375" layoutX="529.0" layoutY="282.0" startX="-73.00003051757812" startY="-220.40000915527344" />
+      <Label layoutX="554.0" layoutY="87.0" text="sexe" />
+      <Label fx:id="l_user" layoutX="64.0" layoutY="65.0" text="user id" />
+      <Label layoutX="73.0" layoutY="123.0" text="pays" />
+      <Label layoutX="75.0" layoutY="181.0" text="ville" />
+      <Label layoutX="68.0" layoutY="399.0" text="tel" />
+      <Label layoutX="65.0" layoutY="478.0" text="age" />
+      <Label layoutX="555.0" layoutY="163.0" text="nom" />
+      <Label layoutX="546.0" layoutY="234.0" text="prenom" />
+      <Label layoutX="542.0" layoutY="329.0" text="language" />
+      <Label layoutX="544.0" layoutY="399.0" text="vote" />
+      <Label layoutX="546.0" layoutY="478.0" text="rate" />
+      <Button fx:id="btn_retour" layoutX="829.0" layoutY="560.0" mnemonicParsing="false" onAction="#retour" text="retour" />
+      <Button fx:id="btn_modifier" layoutX="466.0" layoutY="547.0" mnemonicParsing="false" onAction="#modifier" text="modifier" />
+      <Button fx:id="in_image" layoutX="57.0" layoutY="299.0" mnemonicParsing="false" onAction="#choosePhoto" prefHeight="26.0" prefWidth="90.0" text="choose a picture" />
+      <ImageView fx:id="in_photo" fitHeight="117.0" fitWidth="181.0" layoutX="188.0" layoutY="255.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="btn_supprimer" layoutX="353.0" layoutY="547.0" mnemonicParsing="false" onAction="#supprimer" text="supprimer" />
+   </children>
+</AnchorPane>

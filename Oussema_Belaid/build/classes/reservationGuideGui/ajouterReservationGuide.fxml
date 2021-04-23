@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="reservationGuideGui.AjouterReservationGuideController">
+   <children>
+      <TextField fx:id="in_guide" layoutX="357.0" layoutY="168.0" />
+      <TextField fx:id="in_touriste" layoutX="358.0" layoutY="266.0" />
+      <TextField fx:id="in_date_reservation" layoutX="357.0" layoutY="393.0" />
+      <Line endX="-73.00003051757812" endY="239.60003662109375" layoutX="668.0" layoutY="282.0" startX="-73.00003051757812" startY="-220.40000915527344" />
+      <Label layoutX="357.0" layoutY="123.0" text="id guide" />
+      <Label layoutX="357.0" layoutY="232.0" text="id touriste" />
+      <Label layoutX="359.0" layoutY="352.0" text="date reservation" />
+      <Button fx:id="btn_retour" layoutX="829.0" layoutY="560.0" mnemonicParsing="false" onAction="#retour" text="retour" />
+      <Button fx:id="btn_valider" layoutX="405.0" layoutY="547.0" mnemonicParsing="false" onAction="#valider" text="valider" />
+      <Line endX="-73.00003051757812" endY="239.60003662109375" layoutX="355.0" layoutY="282.0" startX="-73.00003051757812" startY="-220.40000915527344" />
+   </children>
+</AnchorPane>

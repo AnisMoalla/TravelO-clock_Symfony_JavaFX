@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vendeurGui.ModifierSupprimerVendeurController">
+   <children>
+      <TextField fx:id="in_user_id" layoutX="204.0" layoutY="83.0" />
+      <TextField fx:id="in_pays" layoutX="204.0" layoutY="159.0" />
+      <TextField fx:id="in_ville" layoutX="204.0" layoutY="255.0" />
+      <TextField fx:id="in_tel" layoutX="693.0" layoutY="255.0" />
+      <TextField fx:id="in_type" layoutX="693.0" layoutY="83.0" />
+      <TextField fx:id="in_nom" layoutX="693.0" layoutY="159.0" />
+      <TextField fx:id="in_heure_ouverture" layoutX="693.0" layoutY="325.0" />
+      <TextField fx:id="in_heure_fermeture" layoutX="693.0" layoutY="404.0" />
+      <Line endX="-73.00003051757812" endY="239.60003662109375" layoutX="529.0" layoutY="282.0" startX="-73.00003051757812" startY="-220.40000915527344" />
+      <Label layoutX="554.0" layoutY="87.0" text="type" />
+      <Label layoutX="80.0" layoutY="87.0" text="user id" />
+      <Label layoutX="86.0" layoutY="163.0" text="pays" />
+      <Label layoutX="87.0" layoutY="259.0" text="ville" />
+      <Label layoutX="560.0" layoutY="259.0" text="tel" />
+      <Label layoutX="555.0" layoutY="163.0" text="nom" />
+      <Label layoutX="542.0" layoutY="329.0" text="heure_ouverture" />
+      <Label layoutX="544.0" layoutY="399.0" text="heure_fermeture" />
+      <Button fx:id="btn_retour" layoutX="829.0" layoutY="560.0" mnemonicParsing="false" onAction="#retour" text="retour" />
+      <Button fx:id="in_image" layoutX="52.0" layoutY="391.0" mnemonicParsing="false" onAction="#choosePhoto" prefHeight="26.0" prefWidth="90.0" text="choose a picture" />
+      <ImageView fx:id="in_photo" fitHeight="117.0" fitWidth="181.0" layoutX="188.0" layoutY="332.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="btn_supprimer" layoutX="376.0" layoutY="548.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
+      <Button fx:id="btn_modifier" layoutX="467.0" layoutY="548.0" mnemonicParsing="false" onAction="#modifier" text="Modifier" />
+   </children>
+</AnchorPane>

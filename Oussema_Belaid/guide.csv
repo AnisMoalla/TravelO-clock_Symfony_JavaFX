@@ -1,0 +1,5 @@
+ID,user_id,pays,ville,image,tel,age,sexe,nom,prenom,language,vote,rate
+5,1,espagne,madrid,file:/C:/Users/masso/Desktop/anglais/ace7071e-65ec-427f-b5a9-8e2fc1d125f8_200x200.png,121212,12,male,he,he,spanish,12,1.2
+6,1,tunisie,ben arous,file:/C:/Users/masso/Downloads/172688849_4083755291668554_114857473851443511_n.jpg,23232323,23,female,she,she,arabic,12,1.5
+8,1,france,paris,file:/C:/Users/masso/Downloads/172688849_4083755291668554_114857473851443511_n.jpg,23568914,23,male,he,he,français,56,2.3
+10,1,tun,sous,file:/D:/DD/Apps%20&%20pics/4.jpg,22685877,22,male,ouss,haha,arabic,9,1.2

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="reservationGuideGui.AfficherReservationGuideController">
+   <children>
+      <TableView fx:id="tableGuide" layoutX="14.0" layoutY="48.0" prefHeight="500.0" prefWidth="871.0">
+        <columns>
+            <TableColumn fx:id="cl_id_guide" prefWidth="315.1999759674072" text="id_guide" />
+            <TableColumn fx:id="cl_id_touriste" prefWidth="311.2000427246094" text="id_touriste" />
+            <TableColumn fx:id="cl_date_reservation" prefWidth="242.4000244140625" text="date_reservation" />
+            <TableColumn fx:id="cl_id" minWidth="0.0" prefWidth="4.0" text="user_id" />
+        </columns>
+      </TableView>
+      <Button fx:id="btn_retour" layoutX="837.0" layoutY="560.0" mnemonicParsing="false" onAction="#retour" text="retour" />
+      <Button fx:id="btn_ajouter" layoutX="435.0" layoutY="560.0" mnemonicParsing="false" onAction="#ajouter" text="ajouter" />
+      <TextField fx:id="in_search" layoutX="108.0" layoutY="15.0" />
+      <Label layoutX="29.0" layoutY="19.0" text="rechercher:" />
+   </children>
+</AnchorPane>
