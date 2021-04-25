@@ -16,6 +16,7 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -31,6 +32,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -87,14 +89,13 @@ public class EventsBackController implements Initializable {
     private TextField in_search;
     @FXML
     private Button btn_csv;
-    @FXML
-    private Button btn_mail;
-    @FXML
-    private TextArea mailContent;
+   
     @FXML
     private TableColumn<Evenement, Integer> idEvent;
     @FXML
     private Button buttonStat;
+    @FXML
+    private ComboBox<String> combotri;
 
     /**
      * Initializes the controller class.
@@ -104,6 +105,11 @@ public class EventsBackController implements Initializable {
         eventsCRUD = new EventsCRUD();
         evenementList = eventsCRUD.afficherEvent();
         search_event();
+        combotri.getItems().addAll(
+                "rate",
+                "pays",
+                "ville"
+        );
 
 //        colonneUsername.setCellValueFactory(new PropertyValueFactory("username"));
 //        colonneDateDebut.setCellValueFactory(new PropertyValueFactory("date_debut"));
@@ -260,56 +266,29 @@ public class EventsBackController implements Initializable {
     }
 
     @FXML
-    private void sendMail(ActionEvent event) {
-        sendMail("anis.moalla@esprit.tn",mailContent.getText());
-    }
-    
-    private void sendMail(String recepient,String messageToSend) {
-        System.out.println("preparing to send mail");
-        Properties properties = new Properties();
-        properties.put("mail.smtp.auth", true);
-        properties.put("mail.smtp.starttls.enable", true);
-        properties.put("mail.smtp.host", "smtp.gmail.com");
-        properties.put("mail.smtp.port", "587");
-
-        String myAccountEmail = "projetpidev992@gmail.com";
-        String password = "ozxcgepevofquhfb";
-
-        Session session = Session.getInstance(properties, new Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(myAccountEmail, password);
-            }
-        }
-        );
-        Message message =  prepareMessage(session,myAccountEmail,recepient,messageToSend);
-        try {
-            Transport.send(message);
-        } catch (MessagingException ex) {
-            System.out.println(ex.getMessage());
-        }
-        System.out.println("message sent succefully!!!");
-        
-     }
-    private static Message prepareMessage(Session session, String myAccountEmail, String recepient,String messageToSend) {
-        try {
-            Message message= new MimeMessage(session);
-            message.setFrom(new InternetAddress(myAccountEmail));
-            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
-            message.setSubject("Mail Events");
-            message.setText(messageToSend);
-            return message;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
-    }
-
-    @FXML
     private void actionStat(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("StatEvent.fxml"));
         Pane root = loader.load();
         boutonRetour.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void eventtri(ActionEvent event) {
+        Comparator<Evenement> comparator;
+        if (combotri.getValue() == "rate") {
+            comparator = Comparator.comparingDouble(Evenement::getRate);
+
+        } else if (combotri.getValue() == "pays") {
+            comparator = Comparator.comparing(Evenement::getPays);
+
+        } else {
+            comparator = Comparator.comparing(Evenement::getVille);
+
+        }
+
+        FXCollections.sort(obl, comparator);
+        tableViewEvent.setItems(obl);
+
     }
 
 }

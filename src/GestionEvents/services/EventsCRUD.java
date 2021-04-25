@@ -131,5 +131,41 @@ public class EventsCRUD implements InterfaceEvents<Evenement> {
             System.err.println(ex.getMessage());
         }
     }
+
+    @Override
+    public Evenement getEventById(int id) {
+        Evenement event = null;
+        try {
+            String requete = "SELECT evenement.id, user.prenom,evenement.nom,evenement.date_debut, evenement.date_fin, evenement.description, evenement.pays, evenement.ville, evenement.prix, evenement.nbr_places, evenement.rate, evenement.vote,evenement.image"
+                    + " FROM user,evenement"
+                    + " where user.id=evenement.user_id and evenement.id='"+id+"'";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            while(rs.next()) {
+            event=new Evenement(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getDate(4), rs.getDate(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getDouble(9), rs.getInt(10), rs.getDouble(11),rs.getInt(12),rs.getString(13));
+            }
+            
+            System.out.println("Evennement affichée !! ");
+            
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return event;
+    }
+
+    @Override
+    public void voter(Evenement e) {
+        try {
+            String requete = "UPDATE evenement SET "
+                    + "rate = '" + e.getRate()+"', vote = '"+ e.getVote()
+                    +"' WHERE id ='" + e.getId()+"';";
+            Statement st = cnx.createStatement();
+            st.executeUpdate(requete);
+            System.out.println("Evenement Vote !! ");
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
     
 }

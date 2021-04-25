@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestionEvents.gui.DetailsReservationEventController">
+   <children>
+      <Label layoutX="215.0" layoutY="140.0" text="Nom Offre" />
+      <Label layoutX="215.0" layoutY="273.0" text="Date Debut" />
+      <Label layoutX="215.0" layoutY="430.0" text="Dtae Fin" />
+      <Label layoutX="775.0" layoutY="187.0" text="Pourcentage" />
+      <Label layoutX="775.0" layoutY="388.0" text="Image" />
+      <ImageView fx:id="imageView" fitHeight="247.0" fitWidth="310.0" layoutX="948.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="buttonRetour" layoutX="1150.0" layoutY="643.0" mnemonicParsing="false" onAction="#eventRetour" text="Retour" />
+      <Button fx:id="buttonReserver" layoutX="587.0" layoutY="643.0" mnemonicParsing="false" onAction="#eventreserver" text="Réserver" />
+      <Label fx:id="labelNom" layoutX="461.0" layoutY="130.0" text="Label" />
+      <Label fx:id="labelDateD" layoutX="469.0" layoutY="273.0" text="Label" />
+      <Label fx:id="labelDateF" layoutX="479.0" layoutY="430.0" text="Label" />
+      <Label fx:id="labelP" layoutX="1055.0" layoutY="187.0" text="Label" />
+   </children>
+</AnchorPane>

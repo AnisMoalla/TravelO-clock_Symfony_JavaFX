@@ -80,6 +80,37 @@ public class Evenement {
         this.username = username;
     }
     
+    public Evenement(int id,String username, String nom, Date date_debut, Date date_fin, String description, String pays, String ville, double prix, int nbr_places, double rate, int vote) {
+        this.id=id;
+        this.nom = nom;
+        this.date_debut = date_debut;
+        this.date_fin = date_fin;
+        this.description = description;
+        this.pays = pays;
+        this.ville = ville;
+        this.prix = prix;
+        this.nbr_places = nbr_places;
+        this.rate = rate;
+        this.username = username;
+        this.vote=vote;
+    }
+    
+    public Evenement(int id,String username, String nom, Date date_debut, Date date_fin, String description, String pays, String ville, double prix, int nbr_places, double rate, int vote, String image) {
+        this.id=id;
+        this.nom = nom;
+        this.date_debut = date_debut;
+        this.date_fin = date_fin;
+        this.description = description;
+        this.pays = pays;
+        this.ville = ville;
+        this.prix = prix;
+        this.nbr_places = nbr_places;
+        this.rate = rate;
+        this.username = username;
+        this.image=image;
+        this.vote=vote;
+    }
+    
     public String getUsername() {
         return username;
     }

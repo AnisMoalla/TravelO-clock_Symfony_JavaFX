@@ -18,4 +18,6 @@ public interface InterfaceEvents<E> {
     public List<E> afficherEvent(); 
     public double recupererPrixEvent(int id);
     public void modifierNbrPlace(int id);
+    public E getEventById(int id);
+    public void voter(E e);
 }

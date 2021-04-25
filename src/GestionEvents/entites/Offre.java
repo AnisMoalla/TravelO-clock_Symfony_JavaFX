@@ -29,6 +29,15 @@ public class Offre {
         this.date_fin = date_fin;
         this.pourcentage = pourcentage;
     }
+    
+    public Offre(int id, int evenement_id, String nom, Date date_debut, Date date_fin, int pourcentage) {
+        this.id = id;
+        this.evenement_id = evenement_id;
+        this.nom = nom;
+        this.date_debut = date_debut;
+        this.date_fin = date_fin;
+        this.pourcentage = pourcentage;
+    }
 
     public Offre( String nom, Date date_debut, Date date_fin, int pourcentage) {
         this.nom = nom;

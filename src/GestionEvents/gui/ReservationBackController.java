@@ -29,7 +29,6 @@ import javafx.scene.layout.Pane;
  */
 public class ReservationBackController implements Initializable {
 
-    @FXML
     private Button boutonAjouterReservation;
     @FXML
     private Button boutonRetour;
@@ -84,7 +83,6 @@ public class ReservationBackController implements Initializable {
         });
     }    
 
-    @FXML
     private void eventAjouter(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AjouterResrvation.fxml"));
         Pane root = loader.load();
